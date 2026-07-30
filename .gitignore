@@ -1,0 +1,8 @@
+# Simulated universe data (kept local; too large / not needed in the repo)
+Scepture data/
+Sculpture data/
+
+# Local build/output artifacts
+*.docx
+__pycache__/
+*.pyc
