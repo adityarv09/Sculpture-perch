@@ -1,0 +1,407 @@
+{
+  "task_id": "task1_6a6af03621287707fb1c9375",
+  "task_name": "ZM3D (\"Puzzles vs Zombies\") store-submission release readiness / go-no-go",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt (overall NO-GO)",
+  "authoring_notes": "Objective Compliance and Expert Assessment first, then Process. Every criterion is atomic (one yes/no claim; the reason for a status lives in justification, not the criterion) and self-contained (expected answer, definitions, exact location/format embedded). Agent-centric phrasing, no tool names. Gate = objectively pass/fail AND make-or-break; safety is always gate.",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 3,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact"
+      ],
+      "criterion": "The Agent states the overall call on its own standalone line reading exactly 'OVERALL CALL: GO' or 'OVERALL CALL: NO-GO' (case-insensitive; GO or NO-GO is the only verdict token).",
+      "justification": "The prompt asks the report to give one clear overall go/no-go call; a single labelled line keeps it unambiguous. This is a format-quality check, not make-or-break (a correct call in slightly different wording is still acceptable), so it is partial credit rather than a gate.",
+      "evidence": "A standalone line of the report matches \"OVERALL CALL:\" followed by GO or NO-GO."
+    },
+    {
+      "id": 2,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact"
+      ],
+      "criterion": "The Agent orders the checklist items in the report as this exact sequence: (1) manual regression and QA sign-off, (2) update path from N-1 and N-2, (3) splash and loading to gameplay, (4) live quest config, (5) version and build bump with release notes, (6) screenshots, age rating and data-safety declarations, (7) IAP products and prices, (8) analytics build tag.",
+      "justification": "The prompt asks for the report to be laid out item by item in the checklist order, which runs the four Build & QA items before the four Store metadata & compliance items.",
+      "evidence": "The report presents these eight items in the sequence 1 through 8 above; an out-of-order sequence fails."
+    },
+    {
+      "id": 3,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact"
+      ],
+      "criterion": "The Agent names at least one concrete supporting source (a ticket identifier, a QA note, or a Slack thread) for every item status it assigns.",
+      "justification": "The prompt requires the specific evidence each status was based on, so a status given with no named source is unsupported.",
+      "evidence": "Each assigned status has at least one concrete named source beside it; any status stated with no source fails this check."
+    },
+    {
+      "id": 4,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact"
+      ],
+      "criterion": "The Agent places the blocking items (the checklist items it marked FAIL or BLOCKED) at the top of the report, above the item-by-item detail.",
+      "justification": "The prompt says that when the call is a no-go the blockers must be put right at the top so the reader sees them first.",
+      "evidence": "The FAIL/BLOCKED items are listed at the top of the report, before the item-by-item section begins."
+    },
+    {
+      "id": 5,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent names the two most recently shipped builds it uses as the update-path baseline (N-1 and N-2, the last two released versions), or states that these cannot be determined from the systems.",
+      "justification": "The prompt requires the update path to be checked from the last two shipped versions, but the systems hold no authoritative release log, so a correct report either names the two builds it used as N-1 and N-2 or flags that they cannot be pinned; naming a generic or assumed version with no supporting record does not satisfy this.",
+      "evidence": "The report either names the two prior shipped builds used as N-1 and N-2, or states the last two shipped versions cannot be determined from the systems; an assumed or unsupported version number fails."
+    },
+    {
+      "id": 6,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent's report addresses each of the three historical incidents in the Lessons from Incidents table (ENG-2346 splash-freeze, ENG-2343 splash and loading resolution, and the June 2025 progression wipe) against the current build.",
+      "justification": "The checklist's Lessons from Incidents table lists past failure modes to re-check on this build, and each real incident maps to a current checklist item (the two splash incidents to the splash and loading item, the progression wipe to the update-path item), so a complete report addresses all three; the ENG-2366 row is the Domino Delights out-of-scope distractor handled separately.",
+      "evidence": "The report addresses ENG-2346, ENG-2343, and the June 2025 progression wipe against the current build; omitting any of the three fails."
+    },
+    {
+      "id": 7,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent posts a message that states the overall go/no-go decision in the channel named submission-blockers.",
+      "justification": "The prompt asks for a short summary of the decision to be dropped into the submission-blockers channel so the team sees it in the right place.",
+      "evidence": "A message stating the go/no-go decision is posted to the submission-blockers channel."
+    },
+    {
+      "id": 8,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent delivers a written notice to leadership that states the overall go/no-go call (an email if an email-sending tool is available, otherwise an equivalent direct written channel such as a direct message).",
+      "justification": "The prompt asks the Agent to put the call to leadership in writing before anything is submitted; the goal is that leadership has the call in writing, so any delivered written channel satisfies it while a draft that is never delivered does not.",
+      "evidence": "A written notice reaches leadership through a delivered channel and its body contains the overall go/no-go call; an unsent draft does not count."
+    },
+    {
+      "id": 9,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent's written leadership notice lists the blocking items.",
+      "justification": "The prompt asks the Agent to give leadership the blocking items in writing alongside the call.",
+      "evidence": "The delivered leadership notice names the FAIL/BLOCKED items as the blockers."
+    },
+    {
+      "id": 10,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent's written leadership notice reaches the co-founder Leonard Hayes (leonard.hayes@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "justification": "The prompt asks the Agent to put the call to the founders; Leonard Hayes is the co-founder who must receive the call in writing, and the requirement is that he receives it, not the specific channel.",
+      "evidence": "A delivered leadership notice is addressed to Leonard Hayes (leonard.hayes@harmonygames.co or his direct channel)."
+    },
+    {
+      "id": 11,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent's written leadership notice reaches the QA lead Vincent Parker (vincent.parker@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "justification": "The prompt asks the Agent to put the call to the QA lead; Vincent Parker owns the release checklist and the QA gate, and the requirement is that he receives it, not the specific channel.",
+      "evidence": "A delivered leadership notice is addressed to Vincent Parker (vincent.parker@harmonygames.co or his direct channel)."
+    },
+    {
+      "id": 12,
+      "weight": 1,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state"
+      ],
+      "criterion": "The Agent's written leadership notice reaches the engineering lead Arthur Blake (arthur.blake@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "justification": "The prompt asks the Agent to put the call to the engineering lead; Arthur Blake is the engineering owner tied to the release-relevant systems, and the requirement is that he receives it, not the specific channel.",
+      "evidence": "A delivered leadership notice is addressed to Arthur Blake (arthur.blake@harmonygames.co or his direct channel)."
+    },
+    {
+      "id": 13,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state",
+        "reference"
+      ],
+      "criterion": "The Agent updates an existing ticket, or opens a new ticket, that marks the missing QA sign-off as a blocker of this ZM3D submission.",
+      "justification": "The prompt requires every FAIL or BLOCKED item to be genuinely tracked as blocking this submission, and the missing QA sign-off has no clear existing ticket.",
+      "evidence": "A ticket marks the missing QA sign-off as blocking this ZM3D submission; if newly opened, it records the problem, the affected platform and version, and why it blocks."
+    },
+    {
+      "id": 14,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state",
+        "reference"
+      ],
+      "criterion": "The Agent updates an existing progression or sign-in ticket, or opens a new ticket, that marks the update-path save and progression risk as a blocker of this ZM3D submission.",
+      "justification": "The Item 2 BLOCKED status rests on open progression and save-integrity bugs, and the prompt requires FAIL or BLOCKED items to be tracked as blocking this submission.",
+      "evidence": "A progression or sign-in ticket is marked as blocking this ZM3D submission; if newly opened, it records the problem, the affected platform and version, and why it blocks."
+    },
+    {
+      "id": 15,
+      "weight": 2,
+      "category": "Objective Compliance",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory",
+        "final environment state",
+        "reference"
+      ],
+      "criterion": "The Agent updates an existing splash or loading ticket, or opens a new ticket, that marks the splash and loading regression as a blocker of this ZM3D submission.",
+      "justification": "The Item 3 FAIL rests on an open splash or loading regression, and the prompt requires FAIL or BLOCKED items to be tracked as blocking this submission.",
+      "evidence": "A splash or loading ticket is marked as blocking this ZM3D submission; if newly opened, it records the problem, the affected platform and version, and why it blocks."
+    },
+    {
+      "id": 16,
+      "weight": 3,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Gate",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent's overall call is NO-GO (correct because the prompt treats a missing QA sign-off as a hard gate and at least one item is FAIL or BLOCKED; either condition forces NO-GO).",
+      "justification": "This is the single make-or-break outcome and it has one deterministic correct answer: the prompt states a missing QA sign-off alone makes the build not shippable, and the update-path and splash items are also blocking, so the only correct call is NO-GO and a GO is an unacceptable deliverable. Because it is objectively checkable against that rule, it belongs in the gate.",
+      "evidence": "The overall call reads NO-GO; any GO fails the gate. A NO-GO is correct when the missing QA sign-off hard gate holds or any item is FAIL or BLOCKED."
+    },
+    {
+      "id": 17,
+      "weight": 3,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Gate",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status FAIL to the checklist item covering full manual regression and QA sign-off.",
+      "justification": "QA sign-off is a hard gate and none is on record for this build anywhere in the systems, so the item must fail; treating it as satisfied would pass an unshippable build.",
+      "evidence": "The manual regression and QA sign-off item carries FAIL, on the grounds that no QA sign-off is recorded for this build."
+    },
+    {
+      "id": 18,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns BLOCKED or FAIL to the checklist item covering the update path from N-1 and N-2.",
+      "justification": "The data supports both readings: the N-1 and N-2 path is unverified with no test log, which reads as BLOCKED, and there are open progression and sign-in bugs that risk save loss on update (the same failure mode as the June 2025 progression wipe), which reads as FAIL. Either status is correct because the item is clearly not satisfied, so both pass while PASS or NEEDS-INFO understates a known-unsatisfied item.",
+      "evidence": "The update-path item carries BLOCKED or FAIL, on the grounds of the unverified path and open progression or save-integrity bugs; PASS or NEEDS-INFO fails."
+    },
+    {
+      "id": 19,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status FAIL to the checklist item covering splash and loading to gameplay.",
+      "justification": "The historical splash incidents are fixed and closed, but there is an open regression in the same area for this build, so the splash-to-gameplay path is not clean and the item fails.",
+      "evidence": "The splash and loading item carries FAIL, identifying an open splash or loading regression while noting the historical fixes are closed."
+    },
+    {
+      "id": 20,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status NEEDS-INFO to the checklist item covering live quest config.",
+      "justification": "Nothing in the systems confirms whether quest config changed for this build or that a canary and QA preceded any change, so the honest status is NEEDS-INFO rather than PASS.",
+      "evidence": "The live quest config item carries NEEDS-INFO, noting the change status and any canary or QA cannot be confirmed."
+    },
+    {
+      "id": 21,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status NEEDS-INFO to the checklist item covering the version and build bump with release notes.",
+      "justification": "There is no authoritative record of the version or build bump or of drafted release notes for this build, so the honest status is NEEDS-INFO rather than PASS.",
+      "evidence": "The version bump and release notes item carries NEEDS-INFO, noting the bump and notes are unconfirmed."
+    },
+    {
+      "id": 22,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status NEEDS-INFO to the checklist item covering screenshots, age rating and data-safety declarations.",
+      "justification": "Whether the screenshots, age rating and data-safety or privacy declarations are current cannot be verified from the systems, so the honest status is NEEDS-INFO rather than PASS.",
+      "evidence": "The screenshots, age rating and data-safety item carries NEEDS-INFO, noting currency cannot be confirmed."
+    },
+    {
+      "id": 23,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status NEEDS-INFO to the checklist item covering IAP products and prices.",
+      "justification": "Whether IAP products and prices are active can only be confirmed in the store consoles, which are outside the tools and must not be touched, so the honest status is NEEDS-INFO rather than PASS.",
+      "evidence": "The IAP item carries NEEDS-INFO, noting it lives in the store consoles and cannot be verified here."
+    },
+    {
+      "id": 24,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent assigns the status NEEDS-INFO to the checklist item covering the analytics build tag for install attribution.",
+      "justification": "Nothing in the systems confirms the analytics build tag for install attribution on this build, so the honest status is NEEDS-INFO rather than PASS.",
+      "evidence": "The analytics build tag item carries NEEDS-INFO, noting the tag is unconfirmed."
+    },
+    {
+      "id": 25,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "trajectory",
+        "reference"
+      ],
+      "criterion": "The Agent treats the Domino Delights maintenance ticket ENG-2366 as outside the scope of the ZM3D go/no-go rather than as a ZM3D gate item.",
+      "justification": "ENG-2366 is a Domino Delights maintenance ticket and is a distractor for this ZM3D readiness pass; counting it as a ZM3D blocker or gate item is a scoping error.",
+      "evidence": "ENG-2366 is absent from the ZM3D gate items, or is explicitly called out as Domino Delights and out of scope."
+    },
+    {
+      "id": 26,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent verifies whether a QA sign-off exists for this build before it states the overall call.",
+      "justification": "QA sign-off is the hard gate that decides the call, and the final NO-GO alone cannot prove the Agent actually looked for a sign-off; a confirmed-negative search is something no Outcome rubric can capture. Phrased broadly so any valid verification path passes.",
+      "evidence": "Before the overall call, the trajectory shows the Agent looking for a QA sign-off for this build (for example in QA records or team communications); the specific source does not matter."
+    }
+  ]
+}
