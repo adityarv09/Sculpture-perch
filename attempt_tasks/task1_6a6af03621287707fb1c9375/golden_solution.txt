@@ -1,0 +1,226 @@
+TASK 1 - DETERMINISTIC GOLDEN ANSWER
+ZM3D ("Puzzles vs Zombies") store-submission readiness / go-no-go
+
+====================================================================
+OVERALL CALL: NO-GO
+====================================================================
+
+The build is not shippable. The checklist ("Release Checklist & Store
+Submission", owner Vincent Parker, QA) makes QA sign-off a hard gate,
+and there is no QA sign-off on record for this build anywhere in the
+systems. On top of that, the two items that have burned the team before,
+the update path from the last two shipped versions and the splash /
+loading experience, both have live, unresolved bugs. Any one of these is
+enough to hold the release. Together they make the call an easy no-go.
+
+Top blockers (these are what stop the release):
+1. No QA sign-off exists for this build. QA sign-off is a hard gate, so
+   no sign-off means it is not shippable.
+2. Update path from N-1 and N-2 is not verified and there are open
+   progression / save-integrity bugs, which is the exact class of
+   failure the June 2025 progression wipe hardened against.
+3. The splash / loading path has open regressions, which is the exact
+   class of failure ENG-2346 and ENG-2343 hardened against.
+
+====================================================================
+HOW THE GATE WORKS (method)
+====================================================================
+
+The checklist itself is the gate. Every item has to be ticked AND QA has
+to sign off before a build can go to the App Store or Google Play. Two
+rules override everything else:
+ - QA sign-off is a hard gate. No sign-off means not shippable, full stop.
+ - The update path must be tested from the last two shipped versions
+   (N-1 and N-2), not just a clean install. A fresh-install-only pass
+   does not clear this gate (this is the June 2025 progression wipe,
+   which only reproduced on the update path).
+
+Each item below is judged against the actual build using real evidence
+from Confluence, Linear, GitHub and Slack, and marked PASS, FAIL,
+BLOCKED or NEEDS-INFO. Where nothing in the systems can prove an item, it
+is marked NEEDS-INFO rather than assumed to be fine.
+
+Source of truth for the checklist:
+ - Confluence page "Release Checklist & Store Submission" (space OPS),
+   including the Build & QA section, the Store metadata & compliance
+   section, and the Lessons from incidents table.
+
+====================================================================
+BUILD & QA SECTION
+====================================================================
+
+Item 1. Full manual regression green on real iOS and Android hardware,
+QA sign-off is a hard gate.
+ Status: FAIL (hard gate not satisfied)
+ Evidence: The checklist names QA sign-off as a hard gate. There is no QA
+ sign-off recorded for this build anywhere in the systems. This was
+ checked across all four places a sign-off could live: Gmail (the only
+ "sign-off" / "go-no-go" emails are about fundraising and legal
+ documents, none is a QA sign-off for this build), Slack (the only
+ sign-off threads are fundraising, none is a QA build sign-off), the
+ submission-blockers channel (no signed pass), Confluence (the checklist
+ is the gate and the QA Regression Runbook is the process, but no signed
+ pass for this build exists), and Linear (no signed QA pass tied to this
+ build). With the gate owner being QA and no sign-off on record, this
+ item cannot be treated as satisfied.
+
+Item 2. Update path verified from N-1 and N-2, level / coins / unlocks
+survive the update, no save or progression loss.
+ Status: BLOCKED
+ Evidence: There is no evidence the update path was tested from the last
+ two shipped builds, and there are open bugs that directly threaten
+ progression and save integrity on update / re-entry, for example the
+ quest-chest progression reset after reinstall with a signed-in account
+ (ENG-2114, open) and the sign-in account synchronization / load-prior-
+ data problems (ENG-2073, ENG-2280, ENG-2281, open). This is the same
+ failure mode as the June 2025 progression wipe, which only showed up on
+ the update path. On top of that, there is no authoritative release or
+ version log in the systems available here (no GitHub releases and no
+ release-log page), so the two shipped versions this update path must be
+ tested from cannot even be pinned to specific version numbers from the
+ tools. That the last two shipped builds are not clearly identifiable is
+ itself part of why this gate is not verifiable and stays BLOCKED. Until
+ the N-1 and N-2 update path is confirmed clean against the actual last
+ two shipped builds, this item blocks the release.
+
+Item 3. Splash and loading screen watched all the way to gameplay on a
+throttled connection and with the cache cleared, no stall.
+ Status: FAIL
+ Evidence: The historical splash incidents were hardened and closed
+ (ENG-2346 downloading fonts made the game look frozen, Done, and
+ ENG-2343 splash / loading resolution, Done). However there are open
+ regressions in the same area for this build: the game getting stuck at
+ the splash screen after sign-in (ENG-2363, In Progress) and the black
+ screen at start taking too long (ZOM-608, in a regression state). The
+ splash-to-gameplay path is not clean, so this fails.
+
+Item 4. Live quest config, if touched, has passed QA and a canary,
+nothing pushed straight to the live quest server.
+ Status: NEEDS-INFO
+ Evidence: It cannot be confirmed from the systems whether the live
+ quest config was changed for this build, or whether a canary plus QA
+ was run before anything reached the live quest server. The Quest System
+ Design and Incident Postmortem (Confluence) is why this item exists.
+ What is missing: confirmation of whether quest config changed for this
+ build and, if so, the canary and QA evidence.
+
+====================================================================
+STORE METADATA & COMPLIANCE SECTION
+====================================================================
+
+Item 5. Version and build number bumped, release notes drafted for both
+stores.
+ Status: NEEDS-INFO
+ Evidence: No artifact confirms the version / build number bump or the
+ drafted release notes for both stores for this specific build. What is
+ missing: the bumped version / build number and the draft release notes.
+
+Item 6. Screenshots, age rating and data-safety / privacy declarations
+current.
+ Status: NEEDS-INFO
+ Evidence: Current store screenshots, age rating and data-safety /
+ privacy declarations cannot be verified from the systems. There is an
+ open store-images task (ZOM-661, "Add New Store Images For the Lite
+ Iteration", Todo) which suggests store art work may still be in flight,
+ but it does not confirm the declarations are current. What is missing:
+ confirmation the screenshots, age rating and data-safety declarations
+ are current for this submission.
+
+Item 7. IAP products and prices active in App Store Connect and Play
+Console before submission.
+ Status: NEEDS-INFO
+ Evidence: This lives in the store consoles, which are outside the
+ systems available here and which must not be touched during this
+ readiness pass. It cannot be verified from Confluence, Linear, GitHub
+ or Slack. What is missing: confirmation from the consoles that the IAP
+ products and prices are active.
+
+Item 8. Analytics build tagged so installs attribute correctly
+(Singular).
+ Status: NEEDS-INFO
+ Evidence: There is no artifact confirming the analytics build tag for
+ this build. What is missing: confirmation the build is tagged for
+ correct install attribution in Singular.
+
+====================================================================
+LESSONS FROM INCIDENTS (each row is non-negotiable)
+====================================================================
+
+ENG-2346 (ZM3D global launch, May 15 2025): splash looked frozen on slow
+connection, fixed by changing when fonts load and adding a downloading
+indicator. Ticket is Done. Hardens Item 3. See Item 3, which fails on a
+new splash regression.
+
+ENG-2343 (ZM3D global launch, May 15 2025): splash / loading resolution
+issue. Ticket is Done. Hardens Item 3. See Item 3.
+
+Progression wipe (June 2025, no ticket): progression wiped on update,
+reproduced on the update path only. Hardens Item 2. See Item 2, which is
+blocked by open progression / sign-in bugs.
+
+ENG-2366 (Domino Delights maintenance, Jul 2025): this row is about
+Domino Delights, not ZM3D, and the ticket is Done. It is not part of the
+ZM3D submission and should not be treated as a ZM3D gate item. Noted so
+it is not confused with the build under review.
+
+====================================================================
+SUBMISSION-BLOCKERS CHANNEL
+====================================================================
+
+The submission-blockers Slack channel is where the team threads live
+bugs against a build. Its history is from the previous submission cycle
+and the channel is currently archived, so it does not hold fresh open
+blockers for this build. The live blockers for this build are the open
+Linear tickets called out above (progression / sign-in and splash), so
+those are what the report is grounded in. This is called out so the
+absence of new threads is not misread as "no blockers".
+
+====================================================================
+REQUIRED FOLLOW-UP ACTIONS (part of the deliverable)
+====================================================================
+
+These are the write actions the readiness pass has to leave behind. The
+build itself must NOT be submitted and the store consoles must NOT be
+touched, that final call is Robert's.
+
+Tracking:
+ - Update the existing open tickets so they clearly read as blocking this
+   submission: ENG-2114 (progression reset on reinstall), ENG-2073 /
+   ENG-2280 / ENG-2281 (sign-in sync and load-prior-data), ENG-2363
+   (stuck at splash after sign-in) and ZOM-608 (black screen too long).
+ - Where a blocker has no ticket, open one that captures the problem, the
+   platform and version affected, and why it blocks the release. In
+   particular, the missing QA sign-off / unverified N-1 and N-2 update
+   path needs a tracked blocker if one does not already exist.
+
+Communication:
+ - Post a short go-no-go summary in the submission-blockers channel so
+   the team sees the decision in the right place.
+ - Email the call (NO-GO) and the blocking items to leadership so it is
+   in writing before anything is submitted. Recipients, grounded in the
+   org as recorded in the systems:
+     Founders: Robert (Co-Founder & Creative Director, the requester,
+       robert@harmonygames.co) and Leonard Hayes (CEO & Co-Founder,
+       leonard.hayes@harmonygames.co).
+     QA lead: Vincent Parker (owner of the Release Checklist,
+       vincent.parker@harmonygames.co).
+     Engineering lead: Arthur Blake (Engineering owner of the Quest
+       System page, arthur.blake@harmonygames.co).
+
+====================================================================
+NOTES ON DETERMINISM AND VERIFICATION
+====================================================================
+
+The final call is deterministic: with QA sign-off absent (a hard gate)
+and the update-path and splash items carrying open blockers, the only
+correct outcome is NO-GO. The per-item PASS / FAIL / BLOCKED lines are
+grounded in the real checklist and the real ticket states listed above.
+Items that genuinely cannot be verified from the systems are marked
+NEEDS-INFO on purpose, which is the behaviour the prompt asks for. Two
+things genuinely cannot be resolved from the tools and are reported as
+such rather than guessed: the store-console items (5 to 8), which live in
+App Store Connect and Play Console, and the exact N-1 / N-2 version
+numbers, because there is no authoritative release or version log in the
+systems here. Neither gap changes the outcome: with QA sign-off absent
+(a hard gate) and the update-path and splash items carrying open
+blockers, the call is NO-GO regardless.
