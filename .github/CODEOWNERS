@@ -1,0 +1,9 @@
+# Code owners for Sculpture-perch
+# Every PR that modifies any file automatically requests review from the owner.
+# With "Require review from Code Owners" enabled in the main branch ruleset,
+# a PR cannot be merged into main until the owner approves.
+#
+# NOTE: the PR author is never auto-requested on their own PR (GitHub rule),
+# so this auto-request applies when someone else opens the PR.
+
+* @adityarv09
