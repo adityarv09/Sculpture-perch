@@ -1,0 +1,6 @@
+# Code owners for Sculpture-perch
+# Every PR that touches any file automatically requests review from the owner
+# and (with "Require review from Code Owners" enabled in the branch ruleset)
+# cannot be merged into main until the owner approves.
+
+* @adityarv09
