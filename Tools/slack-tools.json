@@ -1,0 +1,547 @@
+[
+  {
+    "name": "slack_health",
+    "parameters": {}
+  },
+  {
+    "name": "slack_conversations_add_message",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "payload": {
+        "required": "required",
+        "type": "string"
+      },
+      "content_type": {
+        "required": "optional",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user_id": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_add_reaction",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_channels_list",
+    "parameters": {
+      "channel_types": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_conversations_history",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "include_activity_messages": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_conversations_replies",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "include_activity_messages": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_create_conversation",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "is_private": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "is_im": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "user_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "creator": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_conversations_edit_message",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "message_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "new_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "shift_subsequent": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "slack_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "slack_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "slack_get_message_metadata",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "slack_get_reactions",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "slack_list_channel_members",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_list_drafts",
+    "parameters": {
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_list_files",
+    "parameters": {
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_read_channel",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_read_file",
+    "parameters": {
+      "file_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "max_bytes": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_read_thread",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_read_user_profile",
+    "parameters": {
+      "user": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "slack_remove_reaction",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_schedule_message",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "post_at": {
+        "required": "required",
+        "type": "integer"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_search_channels",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "include_private": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "slack_search_emojis",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_conversations_search_messages",
+    "parameters": {
+      "search_query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "filter_date_on": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_during": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_after": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_before": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_in_channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_in_im_or_mpim": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_threads_only": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "filter_users_from": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_users_with": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_search_public",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_search_public_and_private",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_search_users",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "slack_send_message",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_send_message_draft",
+    "parameters": {
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "slack_submit_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  }
+]

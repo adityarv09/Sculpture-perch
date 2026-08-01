@@ -1,0 +1,84 @@
+[
+  {
+    "name": "gdocs_health",
+    "parameters": {}
+  },
+  {
+    "name": "gdocs_batch_update",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  },
+  {
+    "name": "gdocs_create_document",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "bodyText": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdocs_delete_document",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdocs_get_document",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdocs_get_document_text",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdocs_search_documents",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]

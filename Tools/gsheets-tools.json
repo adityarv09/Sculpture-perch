@@ -1,0 +1,126 @@
+[
+  {
+    "name": "gsheets_health",
+    "parameters": {}
+  },
+  {
+    "name": "gsheets_batch_update",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  },
+  {
+    "name": "gsheets_create_spreadsheet",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "initialSheetTitle": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gsheets_get_spreadsheet",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "includeGridData": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "gsheets_search_spreadsheets",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gsheets_values_append",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      },
+      "values": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  },
+  {
+    "name": "gsheets_values_batch_get",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "ranges": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  },
+  {
+    "name": "gsheets_values_get",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gsheets_values_update",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      },
+      "values": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  }
+]
