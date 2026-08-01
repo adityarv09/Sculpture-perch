@@ -1,0 +1,627 @@
+[
+  {
+    "name": "linear_health",
+    "parameters": {}
+  },
+  {
+    "name": "linear_create_comment",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_create_issue",
+    "parameters": {
+      "team": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "links": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "linear_create_project",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "team": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "summary": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "lead": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "startDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "targetDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "linear_create_team",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_create_user",
+    "parameters": {
+      "email": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_attachment",
+    "parameters": {
+      "attachmentId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_attachments",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_issue",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_project",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_team",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_get_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "linear_list_comments",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_cycles",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_issue_labels",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_issue_statuses",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_issues",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_projects",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "member": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_teams",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_list_users",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeDisabled": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_show_data",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_submit_list_issues",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "linear_update_issue",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "estimate": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "links": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "linear_update_project",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "summary": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "lead": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "startDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "targetDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  }
+]

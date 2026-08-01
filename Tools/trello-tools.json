@@ -1,0 +1,525 @@
+[
+  {
+    "name": "trello_health",
+    "parameters": {}
+  },
+  {
+    "name": "trello_add_comment",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_add_label_to_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "labelId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_add_member_to_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_archive_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_archive_list",
+    "parameters": {
+      "listId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_create_card",
+    "parameters": {
+      "idList": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "desc": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      },
+      "due": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "idMembers": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "idLabels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "trello_create_check_item",
+    "parameters": {
+      "checklistId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      },
+      "checked": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "trello_create_checklist",
+    "parameters": {
+      "idCard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_create_label",
+    "parameters": {
+      "idBoard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "trello_create_list",
+    "parameters": {
+      "idBoard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_delete_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_attachment",
+    "parameters": {
+      "attachmentId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_attachments",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_board_actions",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "before": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "since": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "trello_get_board_members",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_card_actions",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "trello_get_cards_in_list",
+    "parameters": {
+      "listId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_cards_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_checklist",
+    "parameters": {
+      "checklistId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_checklists_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_comments",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "trello_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_labels_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_lists",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_member",
+    "parameters": {
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_get_member_cards",
+    "parameters": {
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_list_boards",
+    "parameters": {
+      "organizationId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "trello_move_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "idList": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "trello_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "modelTypes": {
+        "required": "optional",
+        "type": "array"
+      },
+      "idBoards": {
+        "required": "optional",
+        "type": "array"
+      },
+      "boards_limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cards_limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "trello_submit_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "modelTypes": {
+        "required": "optional",
+        "type": "array"
+      },
+      "idBoards": {
+        "required": "optional",
+        "type": "array"
+      },
+      "boards_limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cards_limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "trello_update_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "desc": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "due": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueComplete": {
+        "required": "optional",
+        "type": "boolean | null"
+      },
+      "idList": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "closed": {
+        "required": "optional",
+        "type": "boolean | null"
+      },
+      "idMembers": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "idLabels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "trello_update_check_item",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "checkItemId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]

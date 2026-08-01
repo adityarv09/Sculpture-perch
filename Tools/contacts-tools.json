@@ -1,0 +1,137 @@
+[
+  {
+    "name": "contacts_health",
+    "parameters": {}
+  },
+  {
+    "name": "contacts_add_new_contact",
+    "parameters": {
+      "first_name": {
+        "required": "required",
+        "type": "string"
+      },
+      "last_name": {
+        "required": "required",
+        "type": "string"
+      },
+      "gender": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "age": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "nationality": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "city_living": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "country": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "job": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "phone": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "address": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "contacts_delete_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "contacts_edit_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "updates": {
+        "required": "required",
+        "type": "any"
+      }
+    }
+  },
+  {
+    "name": "contacts_get_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "contacts_get_contacts",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "contacts_search_contacts",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "contacts_show_data",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]

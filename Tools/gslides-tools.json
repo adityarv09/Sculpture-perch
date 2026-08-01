@@ -1,0 +1,80 @@
+[
+  {
+    "name": "gslides_health",
+    "parameters": {}
+  },
+  {
+    "name": "gslides_batch_update",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    }
+  },
+  {
+    "name": "gslides_create_presentation",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gslides_get_page",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      },
+      "pageObjectId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gslides_get_presentation",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gslides_get_presentation_text",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gslides_search_presentations",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]
