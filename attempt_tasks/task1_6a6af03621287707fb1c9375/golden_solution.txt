@@ -196,9 +196,10 @@ Tracking:
 Communication:
  - Post a short go-no-go summary in the submission-blockers channel so
    the team sees the decision in the right place.
- - Email the call (NO-GO) and the blocking items to leadership so it is
-   in writing before anything is submitted. Recipients, grounded in the
-   org as recorded in the systems:
+ - Get the call (NO-GO) and the blocking items to leadership in writing,
+   through any direct written channel, so it is on record before anything
+   is submitted. Recipients, grounded in the org as recorded in the
+   systems:
      Founders: Robert (Co-Founder & Creative Director, the requester,
        robert@harmonygames.co) and Leonard Hayes (CEO & Co-Founder,
        leonard.hayes@harmonygames.co).
