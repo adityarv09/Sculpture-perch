@@ -117,8 +117,8 @@
         "trajectory",
         "final environment state"
       ],
-      "criterion": "The Agent delivers a written notice to leadership that states the overall go/no-go call (an email if an email-sending tool is available, otherwise an equivalent direct written channel such as a direct message).",
-      "justification": "The prompt asks the Agent to put the call to leadership in writing before anything is submitted; the goal is that leadership has the call in writing, so any delivered written channel satisfies it while a draft that is never delivered does not.",
+      "criterion": "The Agent delivers a written notice to leadership that states the overall go/no-go call, through any direct written channel available (for example a direct message or a channel post).",
+      "justification": "The prompt asks the Agent to put the call to leadership in writing before anything is submitted, and does not require a specific medium; the goal is that leadership has the call in writing, so any delivered written channel satisfies it while a draft that is never delivered does not.",
       "evidence": "A written notice reaches leadership through a delivered channel and its body contains the overall go/no-go call; an unsent draft does not count."
     },
     {
@@ -147,7 +147,7 @@
         "trajectory",
         "final environment state"
       ],
-      "criterion": "The Agent's written leadership notice reaches the co-founder Leonard Hayes (leonard.hayes@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "criterion": "The Agent's written leadership notice reaches the co-founder Leonard Hayes (leonard.hayes@harmonygames.co) through any direct written channel.",
       "justification": "The prompt asks the Agent to put the call to the founders; Leonard Hayes is the co-founder who must receive the call in writing, and the requirement is that he receives it, not the specific channel.",
       "evidence": "A delivered leadership notice is addressed to Leonard Hayes (leonard.hayes@harmonygames.co or his direct channel)."
     },
@@ -162,7 +162,7 @@
         "trajectory",
         "final environment state"
       ],
-      "criterion": "The Agent's written leadership notice reaches the QA lead Vincent Parker (vincent.parker@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "criterion": "The Agent's written leadership notice reaches the QA lead Vincent Parker (vincent.parker@harmonygames.co) through any direct written channel.",
       "justification": "The prompt asks the Agent to put the call to the QA lead; Vincent Parker owns the release checklist and the QA gate, and the requirement is that he receives it, not the specific channel.",
       "evidence": "A delivered leadership notice is addressed to Vincent Parker (vincent.parker@harmonygames.co or his direct channel)."
     },
@@ -177,7 +177,7 @@
         "trajectory",
         "final environment state"
       ],
-      "criterion": "The Agent's written leadership notice reaches the engineering lead Arthur Blake (arthur.blake@harmonygames.co), whether by email or an equivalent direct written channel.",
+      "criterion": "The Agent's written leadership notice reaches the engineering lead Arthur Blake (arthur.blake@harmonygames.co) through any direct written channel.",
       "justification": "The prompt asks the Agent to put the call to the engineering lead; Arthur Blake is the engineering owner tied to the release-relevant systems, and the requirement is that he receives it, not the specific channel.",
       "evidence": "A delivered leadership notice is addressed to Arthur Blake (arthur.blake@harmonygames.co or his direct channel)."
     },
