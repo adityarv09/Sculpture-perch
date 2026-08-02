@@ -1,0 +1,122 @@
+GOLDEN ANSWER FORM
+Task 1 - Consolidated live-incident and player-compensation ledger
+Task ID: 6a5e8d740d8f3d5bc4090273
+Attempt ID: 6a6d58ad094d6658ef948dd2
+Persona: Robert, Co-Founder, robert@harmonygames.co
+Universe date: 2026-01-27
+
+==================================================================
+DETERMINISTIC GOLDEN ANSWER
+==================================================================
+
+Solved independently from the prompt and the universe tables. Every ticket state, date, pull request and player handle below was read from the raw JSON rather than carried over from notes. A deterministic, objective end state exists: the same set of writes, carrying the same facts, is reachable by any competent solver.
+
+INCIDENT 1 - Nov 2024, daily quests stopped populating (Domino Delights) Window: 2024-11-15 to 2024-11-18, about 73 hours.
+Spread: both iOS and Android, catalog-wide. ENG-1892 is titled "The quests are not populated at all in both platforms". No player count is recorded.
+Root cause: a new Ads-type quest template was auto-deployed to the live quest server untested; the malformed template made the population and reset routine fail catalog-wide.
+Ticket: ENG-1892, Done, created 2024-11-15, completed 2024-11-18.
+Merged fix: yes. In GameOfDominoes, "Quest system updates" (2024-11-16), "Assuring quests are loaded from the server before it's unlocked" (2024-11-19) and a quest fix branch (2024-11-19). The immediate remedy was operational; the code hardening followed.
+Held: yes. No open bugs remain in this class.
+
+INCIDENT 2 - May 2025, loading froze partway (Domino Delights) Window: surfaced 2025-05-08, fixes completed 2025-05-13 and 2025-05-15.
+Spread: global builds, worst for players needing a non-English font pack. ENG-2346 carries the label "Hot Fix - Global Launch" and records build 0.2.197. Reported via a one-star store review from Italy. No player count is recorded.
+Root cause: the font pack downloads between 22 and 23 percent of the loading bar with no progress indication, so the game looks frozen rather than busy. Arthur Blake in live-incidents: "Yes def the font downloading. It happens between 22% and 23%".
+Tickets: ENG-2346, Done, created 2025-05-12, completed 2025-05-13. ENG-2343, Done, created 2025-05-08, completed 2025-05-15.
+Merged fix: yes. GameOfDominoes PR 1845 "Required Font Loaded At Startup", merged 2025-05-13, body "Show downloading popup", which is precisely the missing progress indication. Loose end: PR 1847 "check old fonts" was opened 2025-05-13 and closed WITHOUT merging.
+Held: no. The tickets closed and the code merged, but the class did not close. ENG-2363 "After signing-in, the game stuck at splash screen" is In Progress and ZOM-608 "The black screen at the start takes too long" is Regression.
+
+INCIDENT 3 - June 2025, players returned at level 1 with progression gone (Domino Delights) Window: reports from 2025-06-08 onward; never formally closed.
+Spread: both platforms. ENG-2114 records "android 133 & iOS 115"; ENG-2280 and ENG-2281 record "ios submission 140". Player count cannot be established and the ledger must say so rather than invent one.
+Root cause: a device-ID change orphaned saves, so the client created a fresh level-1 account while the real progression stayed under the previous id. Vincent Parker in live-incidents: "Suddenly goes to level 1 but his user-id was the same in Metabase only the progression was lost".
+Tickets: NO INCIDENT TICKET WAS EVER OPENED. Related open bugs are ENG-2114, ENG-2073, ENG-2280 and ENG-2281, all in Bugs. They are symptoms filed against the product, not a record of the incident.
+Merged fix: no. Searching all 2,629 pull requests for device-id, re-link, orphaned save, account merge or progression recovery returns nothing that addresses this. There is no code fix anywhere in the history.
+Held: not applicable, nothing shipped. The only mitigation is a manual support workaround, the account re-link procedure in the Customer Support Playbook.
+
+INCIDENT 4 - July 2025, lives stopped regenerating and events stopped firing (Domino Delights) Window: roughly 2025-07-12 to 2025-07-26. First player-visible symptom 03:41 on 2025-07-13.
+Spread: all Domino Delights players. Store revenue fell on the order of 30 percent across the outage, per the Live-Ops Event Engine page. Player count cannot be established.
+Root cause: the live-ops scheduler stopped advancing. Life regeneration runs on the same scheduler tick loop as event firing, so a single stall took out both player-facing systems at once. There is one scheduler process with no hot standby.
+Tickets: NO INCIDENT TICKET WAS EVER OPENED. The Live-Ops Event Engine page states "No standalone ticket was cut at the time". Nearest open tickets are ZOM-667 (Todo, created 2025-10-23) and ENG-2400 (Bugs, created 2025-11-02), both filed months after the outage.
+Merged fix: no, and this is the sharpest finding in the set. No pull request in any repository between July and September 2025 touches the scheduler, the tick loop, cron, a heartbeat or a watchdog. game-of-dominoes-backend has nothing at all between 2025-06-14 and 2025-09-10, a three-month gap spanning the entire outage. The lives merges that do exist are a different game (match3d) or a different system ("infinite lives adjustment", GameOfDominoes, 2025-08-01). The single largest revenue event in the set has neither a ticket nor a code fix.
+Held: nothing to hold. The symptom recurs: live-incidents on 2025-11-01, "this live getting stuck at 0 issue continues".
+
+INCIDENT 5 - Aug 2025, Plague Race would not start (Zombie Match 3D) Window: reported 2025-08-04, ticket raised 2025-08-05, ticket closed 2025-08-07.
+Spread: players above level 100 on Zombie Match 3D could not compete. At least two players reported it, Player A on 2025-08-04 and Player B on 2025-08-05. No total is recorded.
+Root cause: levels above 100 are generated algorithmically and do not register for Plague Race. Vincent Parker in live-incidents: "algo levels doesnt count for plague race".
+Ticket: ZOM-456 "Level 111 issue where bottom hud doesn't appear", Done, created 2025-08-05, completed 2025-08-07. Raised urgent in direct response to the player report and announced in the channel by the Linear bot.
+Merged fix: late and incomplete. match3d PR 404 "update algo levels" merged 2025-08-27, twenty days AFTER ZOM-456 was closed. Its own body admits the gap: the branch "requires a script that changes algo level settings for every user - not just the new ones", so existing players were not covered.
+Held: no. On 2025-08-06 at 22:26, after the ticket-era build, Player B reports in issuefeed that "the race is still not functioning". The live-ops calendar still carries the standing warning to treat pre-fix cohorts with caution when reading event revenue.
+
+BUG POOL SWEEP
+  The pool is exactly 45 tickets: Bugs 22, Regression 6, In Progress 17. Every one carries an outcome; "unrelated" is an outcome, so an untouched ticket is a miss. Accounting is complete and closes exactly: 7 + 5 + 33 = 45.
+    Required attributions (7): ENG-2363 and ZOM-608 to incident 2; ENG-2114, ENG-2073, ENG-2280, ENG-2281 to incident 3; ENG-2400 to incident 4.
+    Defensible extras in pool (5), credit but never required: ENG-2345, ENG-2277, ENG-2349, ENG-2350, ZOM-611.
+    Unrelated (33): the remainder.
+  ZOM-667 sits in Todo, outside the three named states, so it is out of scope.
+
+COMPENSATION (window-scoped)
+  Confirmed granted (4):
+    2025-07-14  5 lives      Player C   confirmed in issuefeed "Appears to be okay"
+    2025-07-19  5 lives      Player C   confirmed "Yes lives are back"
+    2025-07-24  5 lives      Player C   confirmed "They are Thankyou very much"
+    2025-08-06  5,000 coins  Player B   confirmed "Thank you so much for the coins"
+  Promised, never delivered (1):
+    2025-08-04  10 catapults Player A   no confirmation anywhere that it was issued
+  The three players are distinct and separable only in issuefeed by author handle: Player A ends 3841c55a2660, Player B ends 33867c8aaf35, Player C ends 2841f41. The 5,000 coins went to Player B, not to Player A who was promised the catapults, so the coins do not discharge the promise. Merging them is a wrong answer. The amount is 5,000, not the 2,000 first proposed. Incidents 1, 2 and 3 have no compensation, and the ledger must say so plainly. Out of window and excluded: 2024-11-25/26, 2024-12-02 (50,000 coins), 2025-04-22, 2025-05-29, 2025-11-02.
+  Playbook check: the only grant rule is "Never issue a compensating grant before a re-link", which governs incident 3 cases. No grant inside the five windows is an incident 3 case, so the rule was never triggered. The July grants are what the triage row prescribes. Asserting a breach is a wrong answer.
+
+REQUIRED WRITES (67, none batchable)
+  1  index page in the Operations space (OPS)
+  5  incident pages, children of the index
+  6  labels, one per new page
+ 45  ticket tags
+  2  incident tickets, for incidents 3 and 4 only
+  5  remediation tickets, the five unfiled items on the engine page
+  2  compensation sheet: create plus append its 5 rows
+  1  summary post in live-incidents
+
+BOUNDARY
+  Issue, reverse or adjust no grant, and ask no person to do so.
+
+==================================================================
+MULTIPLE VALID APPROACHES
+==================================================================
+
+[ ] Golden solution is the only valid approach
+[X] Multiple valid approaches exist
+
+The final universe state is deterministic: the same 67 writes carrying the same facts, verdicts and exclusions. What varies is the route to it and a small number of presentation choices that no rubric grades. Both are recorded below so a grader does not mistake a legitimate variation for a miss.
+
+==================================================================
+ALTERNATIVE APPROACHES NOTES
+==================================================================
+
+1. Investigation order. The five incidents can be worked in any order, and the GitHub pass can run per incident or as one sweep of all 2,629 pull requests filtered afterwards. The compensation pass must come after the windows are fixed, because it is scoped to them, but nothing else is ordered. No rubric grades sequence.
+
+2. Discovery route into the incident set. On the under-specified prompt the five incidents are recoverable either from the support playbook triage table, which names four by month and cause, plus the live-ops calendar for the Plague Race bug, or by reading the live-incidents channel history directly. Both land on the same five.
+
+3. Which merged fix is named for incident 1. Three GameOfDominoes pull requests are defensible: "Quest system updates" (2024-11-16), "Assuring quests are loaded from the server before it's unlocked" (2024-11-19) and a quest fix branch (2024-11-19). The prompt asks for the merged fixes and their dates, so naming any one, any combination, or all three is correct. None is uniquely required.
+
+4. How a ticket is tagged. linear_comments is empty in this universe, so the outcome must be recorded on the issue itself. Doing it through labels, through the description, or through both is equally valid. Grade the issue's final state, never the presence of a comment.
+
+5. The defensible extras. ENG-2345, ENG-2277, ENG-2349, ENG-2350 and ZOM-611 can each be attributed to an incident with stated evidence or marked unrelated. Both readings are defensible on the data. Credit an attribution that states its evidence, never penalise its absence, and never penalise the ticket being marked unrelated. ENG-2345 is the strongest of the five and the hardest to find, since its title and body never mention fonts and the link runs through the Slack thread from the day it was opened.
+
+6. ZOM-667 and the remediation count. ZOM-667 is in Todo, outside the three named states, so an agent that leaves it alone is correct and one that volunteers it against incident 4 is also correct. Separately, the quest postmortem's unfiled "add a canary" follow-up is a sixth defensible remediation ticket beyond the engine page's five. Credit a sixth ticket, require five.
+
+7. Page structure and labelling. Page order under the index is not graded, and chronological, by-game and by-severity orderings are all acceptable. Label text is not graded either, only that all six new pages carry at least one label.
+
+8. Sheet shape. Column naming, ordering and formatting are not graded. What is graded is that the sheet exists and carries the five compensation events with the granted versus promised distinction preserved and the players kept apart.
+
+9. Summary post depth. The post must summarise the findings in live-incidents. Length, structure and whether it links the pages are open. The prompt does not ask for a recommendation, so producing one is optional and not graded, provided it does not cross the boundary by directing anyone to issue compensation.
+
+WHAT IS NOT AN ALTERNATIVE APPROACH. These are wrong answers, not variations:
+- Treating ticket state as proof a fix shipped and skipping GitHub.
+- Tagging only the obvious matches and leaving the rest of the 45 untouched.
+- Treating the related open bugs as the missing incident tickets and opening one ticket instead of two, or opening a third for incident 5.
+- Reading only live-incidents, which loses the 2025-07-19 confirmation and merges the players.
+- Merging Player A and Player B so the catapults look delivered.
+- Reporting 2,000 coins instead of the 5,000 actually issued.
+- Importing out-of-window grants into the ledger.
+- Asserting a support playbook breach with no evidenced re-link case.
+- Estimating a player count for any incident.
+- Declaring incident 2 or incident 5 fully resolved.
+- Issuing or adjusting a grant, or asking a person to.

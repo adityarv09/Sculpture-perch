@@ -1,0 +1,57 @@
+====================================================================
+DETERMINISTIC GOLDEN ANSWER
+====================================================================
+
+A deterministic golden answer exists. Every ask in the prompt resolves to one outcome fixed by the data. Universe-now is 2026-01-27 and every figure below was recomputed at that anchor.
+
+1. The art board holds 18 open issues, not 31. "In Review" and "Duplicate" are terminal state types in this workspace, and each of the four terminal states carries its timestamp on every row: Done 488 of 488 with completed_at, Canceled 78 of 78 with canceled_at, In Review 11 of 11 with completed_at, Duplicate 2 of 2 with canceled_at. A filter excluding only Done and Canceled returns 31, which is thirteen too many. State split: Todo 11, Team Epic 4, Backlog 3.
+
+2. The 18 are ART-73, ART-384, ART-385, ART-541, ART-585, ART-605, ART-620, ART-630, ART-638, ART-683, ART-684, ART-695, ART-696, ART-698, ART-705, ART-723, ART-755, ART-792.
+
+3. Fourteen of the 18 have not moved in the last twelve months. The window opens on 2025-01-27, and the four that moved inside it are ART-755 (2025-02-03), ART-723 and ART-705 (2025-02-19) and ART-792 (2025-08-26).
+
+4. The open board splits by owner as oscar.bennett six, calvin.price three, marcus.bennett three, owen.baker two, martin.walsh one, and three carrying no assignee at all.
+
+5. The three with no assignee are ART-73, ART-541 and ART-683.
+
+6. oscar.bennett@harmonygames.co holds the most stale work, six of the fourteen against a runner-up of three. His six are ART-605, ART-620, ART-638, ART-695, ART-696 and ART-698, which is his entire open load, and every one last moved between June and September 2024. Supporting signal: only 2 of the 86 issues assigned to him were updated at any point in 2025, and he has created none.
+
+7. All six move to brian.foster@harmonygames.co, and so do the three with no assignee. Nine tickets end up on Brian, and nine is the figure the prompt asks to be reported.
+
+8. Eleven art issues sit in review while already carrying a completion timestamp and must be closed off, and eleven is the figure the prompt asks to be reported: ART-74, ART-424, ART-425, ART-426, ART-444, ART-513, ART-542, ART-588, ART-655, ART-722 and ART-760. ART-238 and ART-336 look similar but already carry a cancellation timestamp, so they are neither open nor in need of closing.
+
+9. Nothing among the eighteen open issues can be closed on evidence, so the correct number of closures from that set is zero. The prompt names two routes and both are empty. Chat holds two mentions of the eighteen, both bare links posted at creation time, neither a completion. The code host holds zero references to any of them across commits, pull requests, comments, reviews and timeline events. Also swept and empty: Gmail, Confluence, Drive, Docs, Sheets, Slides, Calendar, Contacts, Linear comments, and the relations and links fields on all eighteen. The agent should state a finding against each of the eighteen rather than one blanket sentence.
+
+10. Nothing new may be assigned to marcus.bennett@harmonygames.co, who holds ten open issues on the Zombie board and sits in eight Zombie channels. On the art board he holds ART-705, ART-723 and ART-755, all of which moved in February 2025.
+
+11. ART-792, "ZM3D - Marketing Screenshots round 3", is the only one of the eighteen belonging to Zombie Match 3D rather than the retired Domino title. It does not belong on the art board and should sit on the Zombie board, which carries 129 open issues and was active on 2026-01-28.
+
+12. The playable-ad vendor was holding a slot starting December 25th. The engagement moved to Zombie Match 3D on 2025-08-26 after Domino was written off, went on hold on 2025-10-24, and the vendor stated the slot on 2025-10-27 and again on 2025-11-21. It chased on 2025-11-21 and again on 2026-01-15 and neither was answered. A ticket must be raised so the follow-up stops being dropped.
+
+
+====================================================================
+MULTIPLE VALID APPROACHES
+====================================================================
+
+The asks have single correct answers. What varies is the order of work.
+
+1. Count-first. Establish the true open set, then staleness, then owners, then the board hygiene, then the vendor thread. Follows the prompt's own order and is the safest.
+
+2. Owner-first. Group by assignee, find the stale concentration, then reconcile the rest. Reaches the ownership finding fastest, risks under-serving the closure restraint.
+
+3. Hygiene-first. Clear the review-state backlog, then work out what is genuinely left. Reaches the eleven closures fastest, risks carrying the inflated open count into every later figure.
+
+All three reach every item above. No rubric criterion requires a particular ordering.
+
+
+====================================================================
+SUPPORTING DOCUMENTATION
+====================================================================
+
+04_golden_solution.md    Worked solution: the deterministic core, with every figure re-derived from the raw export at the 2026-01-27 anchor, plus a corrections log covering the findings that were withdrawn.
+01_persona.md            Persona verification for Brian Foster and the scenario window.
+02_universe_map.md       Sources, distractors, ground truth, feasibility walk.
+03_prompt_specified.txt  The prompt as run.
+12_platform_fields.txt   Sources, distractors, failure points and tripwires.
+
+No Task Recorder recording exists. The solution was derived from the universe export.

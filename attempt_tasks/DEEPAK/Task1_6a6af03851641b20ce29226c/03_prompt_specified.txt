@@ -1,0 +1,30 @@
+Hey, can you sort out the art board for me. Domino has been dead since August and nobody has
+properly been through it since, so it is still carrying a pile of tickets from a game we are not
+shipping any more.
+
+Start with the honest count: how many tickets are genuinely still open on it, not just what the
+filter tells you, how many of those have not moved in the last twelve months, and how the open ones
+split across the people holding them. I want that split by owner, including how many sit with nobody
+at all.
+
+Some of what looks open is already finished and never got marked. Anything still sitting in review
+that the record shows was completed should be closed off properly, and tell me how many you closed
+that way.
+
+Then take what is genuinely left and go through it one by one, checking whether anything anywhere
+says the work is finished, a message or a commit, and tell me what you found for each. Close the
+ones you find something for and only those. Where there is nothing, say so and leave it open.
+
+Whoever is sitting on the most of the stale ones has clearly stopped working them, so pull all of
+their open tickets onto my name, along with anything that has nobody on it at all, and tell me who
+it was and how many tickets end up on me. Do not put anything more on Marcus, he is buried in
+Zombie.
+
+Anything on that board that is actually Zombie work does not belong there, so flag it and say where
+it should live. And the playable ads people have chased us twice since November with nobody here
+answering, so tell me what slot they were holding for us and raise a ticket so it stops getting
+dropped.
+
+Then send Leonard the numbers: the open count, the stale count, the split by owner, how many you
+closed as already finished, what you found behind each of the rest, who I took work off and how many
+landed on me, and the slot the playable ads people were holding.
