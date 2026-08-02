@@ -1,0 +1,130 @@
+GOLDEN SOLUTION - Consolidated live-incident and player-compensation ledger
+
+Universe date 2026-01-27. Every ticket state, pull request number, date and quote below was read from the raw tables. This is the reference the rubrics grade against.
+
+==================================================================
+PART A - THE LEDGER (one index page plus five incident pages in the Operations space)
+==================================================================
+
+The prompt does not state an ordering, so page order is NOT gradeable. Chronological is natural but any order passes.
+
+The prompt asks for six things per incident: the window, the platforms and how widely it spread, the root cause, every ticket, whether a fix merged in the code, and whether it held. Note that the ask is spread, not a headcount. No player count is recoverable for any of the five, so a page that states the spread and says the count is not establishable is correct, and a page that invents a figure fails. These are graded as two separate things: the platform reach is graded on each incident page, and the honest unknown for incidents 3 and 4 is graded as its own finding, so getting the platforms right does not earn the unknown-count credit and vice versa. Ticket state alone does not answer the last two. Every "landed in code" line below was verified against github_pull_requests, and where it says no fix exists that is a proved absence across all 2,629 pull requests, not an assumption.
+
+INCIDENT 1 - November 2024, daily quests stopped populating and resetting (Domino Delights) Window: 2024-11-15 17:42 UTC to 2024-11-18 17:44 UTC, about 73 hours. Platforms and spread: both iOS and Android, every player. Quest population is all-or-nothing per run, so one bad template emptied the tray for the entire catalog. No player count is recorded. Root cause: a new Ads-type quest template was auto-deployed to the live quest server with no testing. The malformed template made the population and reset routine fail catalog-wide. Ticket: ENG-1892, Done, created 2024-11-15, completed 2024-11-18, assignee oliver.brooks. Landed in code: yes. In GameOfDominoes, "Quest system updates" merged 2024-11-16, "Assuring quests are loaded from the server before it's unlocked" merged 2024-11-19, and a quest fix branch merged 2024-11-19. The prompt says "name the merged fixes and their dates" rather than naming a single pull request, so any one or more of these three is a correct answer and none of them is uniquely required. The immediate remedy was operational (bad template removed, auto-deploy disabled, server redeployed) and the code hardening followed. Held: yes. No open bugs remain in this class. Evidence: page_quest_postmortem (space ENG); ENG-1892; live-incidents, created the same day.
+
+INCIDENT 2 - May 2025, game froze partway through loading (Domino Delights) Window: surfaced 2025-05-08, fixes completed 2025-05-13 and 2025-05-15. Platforms and spread: global builds, worst for players needing a non-English font pack. Reported via a one-star store review from Italy on build 0.2.197. No player count is recorded. Root cause: font pack downloading between 22 and 23 percent of the loading bar with no progress indication, so the game looked frozen. Confirmed by Arthur Blake: "Yes def the font downloading. It happens between 22% and 23%". Tickets: ENG-2346 Done 2025-05-13, ENG-2343 Done 2025-05-15. Landed in code: yes. GameOfDominoes PR #1845 "Required Font Loaded At Startup", merged 2025-05-13, +138/-51, body "Show downloading popup", which is precisely the missing progress indication. Note the loose end: PR #1847 "check old fonts" was opened 2025-05-13 and closed WITHOUT merging, +0/-0. Held: NO, AND THIS IS THE FIRST TRAP. The tickets closed and the code merged, but the class did not close. ENG-2363 "After signing-in, the game stuck at splash screen" is In Progress, and ZOM-608 "The black screen at the start takes too long" is Regression. A correct answer says the May fix shipped and still did not end the problem, and names ENG-2363 or ZOM-608. This is graded as partial credit, not a gate: both candidate tickets are contested, so a run that concludes the fix held is wrong but not disqualified. This is a gate and it requires both: either one alone no longer satisfies it, because both are enumerable ground truth and naming one was reward-hackable. The prompt does not announce that such a case exists, so finding it is discovery rather than confirmation. Evidence: ENG-2346, ENG-2343, ENG-2363, ZOM-608; PR #1845 and #1847; live-incidents 2025-05-09.
+
+INCIDENT 3 - June 2025, players returning at level 1 with progression gone (Domino Delights) Window: reports from 2025-06-08 onward; never formally closed. Platforms and spread: both platforms. Player count cannot be established, and the ledger must say so rather than invent one. Root cause: a device-ID change orphaned saves, so the client created a fresh level-1 account while the real progression stayed under the previous id. Vincent Parker: "Suddenly goes to level 1 but his user-id was the same in Metabase only the progression was lost". Tickets: NO INCIDENT TICKET WAS EVER OPENED. Related open bugs are ENG-2114, ENG-2073, ENG-2280, ENG-2281, all state Bugs. Landed in code: NO. Searching all 2,629 pull requests for device-id, re-link, orphaned save, account merge or progression recovery returns nothing that addresses this. There is no code fix anywhere in the history. Held: not applicable, nothing shipped. The only mitigation is a manual support workaround, the account re-link procedure in the playbook. Evidence: page_support_playbook triage table and re-link procedure; live-incidents 2025-06-08 and 2025-06-09; absence in github_pull_requests.
+
+INCIDENT 4 - July 2025, lives stopped regenerating and no events fired (Domino Delights) Window: roughly 2025-07-12 to 2025-07-26. First player-visible symptom 03:41 on 2025-07-13. Platforms and spread: all players on Domino Delights. Store revenue fell on the order of 30 percent across the outage, per the live-ops engine page. Player count cannot be established. Root cause: the live-ops scheduler stopped advancing. Life regeneration runs on the same scheduler tick loop as event firing, so a single stall took out both systems at once. There is one scheduler process with no hot standby. Tickets: NO INCIDENT TICKET WAS EVER OPENED. The engine page says "No standalone ticket was cut at the time". Nearest open ticket is ENG-2400 (Bugs, 2025-11-02), same title, filed months later. ZOM-667 (Todo, 2025-10-23) is Zombie Match 3D, a different title, so it is credit rather than required. ENG-2238 is Done and predates the outage. Landed in code: NO, AND THIS IS THE SHARPEST FINDING IN THE TASK. No pull request in any repository between July and September 2025 touches the scheduler, the tick loop, cron, a heartbeat or a watchdog. game-of-dominoes-backend has nothing at all between 2025-06-14 and 2025-09-10, a three-month gap spanning the entire outage. The lives merges that do exist are a different game (match3d) or a different system ("infinite lives adjustment", GameOfDominoes, 2025-08-01). The single largest revenue event in the set has no ticket and no code fix. Held: nothing to hold. The symptom recurs: live-incidents 2025-11-01, "this live getting stuck at 0 issue continues". Evidence: page_live_ops_engine (space ENG); live-incidents through July 2025; ZOM-667; ENG-2400; absence in github_pull_requests.
+
+INCIDENT 5 - August 2025, Plague Race would not start (Zombie Match 3D) Window: reported 2025-08-04, tickets raised 2025-08-05, algo-levels ticket closed 2025-08-25. Platforms and spread: players above level 100 on Zombie Match 3D could not compete. At least two players reported it, Player A on 2025-08-04 and Player B on 2025-08-05. No total is recorded. Root cause: levels above 100 are generated algorithmically and do not register for Plague Race. Vincent Parker: "algo levels doesnt count for plague race". Tickets: the report spawned a cluster on 2025-08-05. ZOM-459 "Algo levels doesn't count for plague race" is the incident's own ticket, Done 2025-08-25, and it records the scoring defect verbatim. ZOM-456 "Level 111 issue where bottom hud doesn't appear" is the HUD and input-block symptom the player described first, Done 2025-08-07. ZOM-457 "Algo Level Issues" is the umbrella the algo-levels tickets hang off, Done 2025-08-25, and ZOM-458 "Quitting algo levels still makes the level change animation" is STILL Todo. Naming ZOM-459 or ZOM-456 both count; requiring ZOM-456 alone was a ground-truth error, corrected here. Landed in code: LATE AND INCOMPLETE, AND THIS IS THE SECOND TRAP. match3d PR #404 "update algo levels" merged 2025-08-27, +141/-140, two days AFTER ZOM-459 was closed on 2025-08-25, so the ticket was marked done before the code landed. Its own body admits the gap: "the branch requires a script that changes algo level settings for every user - not just the new ones". So existing players were not covered. Held: no. On 2025-08-06 at 22:26, after ZOM-456 closed, Player B reports in issuefeed that "the race is still not functioning", and ZOM-458 remains open to this day. The liveops calendar still carries the standing warning to treat pre-fix cohorts with caution when reading event revenue. Evidence: page_liveops_calendar; ZOM-459, ZOM-456, ZOM-457, ZOM-458; PR #404; live-incidents 2025-08-04 and 2025-08-05; issuefeed 2025-08-06.
+
+==================================================================
+PART B - THE BUG POOL SWEEP
+==================================================================
+
+The prompt says to tag every ticket in Bugs, Regression or In Progress with its incident, or mark it unrelated. Counted from linear_issues.json that is exactly 45 tickets: 22 in Bugs, 6 in Regression, 17 in In Progress. Every one of the 45 must carry an outcome. "Unrelated" is an outcome, so a ticket left untouched is a miss, not a judgment call.
+
+The sweep answers a question the rest of the task cannot: of everything still open against the product, how much of it traces back to these five incidents? It is not answerable by sampling, and each ticket is judged against five incident definitions the agent derived itself in Part A, so the sweep is gated on that work rather than runnable in parallel with it. Seven of the 45 belong to an incident and 38 do not. Two of the seven are the hardest finds in the task and both sit in In Progress, which is why the state is in scope: ENG-2363, the ticket that proves the May 2025 fix shipped and still did not close the class, and ENG-2345, reachable only by connecting a ticket that never mentions fonts to the Slack thread from the day it was opened.
+
+REQUIRED ATTRIBUTIONS (7). One rubric each:
+  Incident 2: ENG-2363 (In Progress) or ZOM-608 (Regression). ENG-2363 may also be attributed to incident 3 and is credited either way. Neither is a clean match. ENG-2363 was opened 2025-06-03, is sign-in triggered and stalls at 0 percent rather than the font stall at 22 percent; ZOM-608 is Zombie Match 3D from 2025-10-14. Either satisfies the incident 2 attribution and both is credit.
+  Incident 3: ENG-2114, ENG-2073, ENG-2280, ENG-2281 (all Bugs)
+  Incident 4: ENG-2400 (Bugs)
+
+DEFENSIBLE EXTRAS. Credit if attributed with stated evidence, never penalise their absence, and never penalise them being marked unrelated: ENG-2345 "Addressable Issues" (In Progress, opened 2025-05-09) to incident 2. Opened the same day Arthur Blake said in live-incidents that he would move the font load "into addressables manager". The ticket body is about scene re-download rather than fonts specifically, so this is a strong inference, not a certainty. ENG-2277 "Lives economy is buggy and can go minus values" (Bugs, 2025-04-11) to incident 4. Predates the outage, so it is a pre-existing bug in the same subsystem rather than a consequence. ENG-2349 "Axe arena and win and collect infinite lives timers are not correct" (Bugs, 2025-05-15) to incident 4. Axe Arena was one of the events Leonard named as dead on 2025-07-12, but the ticket predates the outage. ENG-2350 "Minigame tokens are not generated by the timer" (Bugs, 2025-05-15) to incident 4, timer subsystem, also predates. ZOM-611 "Card upgrade sync issues" (In Progress, 2025-10-14) to incident 3, account sync class. ZOM-667 "Lives regen syncing issues" (Todo) to incident 4. Outside the three states, so it is out of the prompt's stated scope entirely. Credit if the agent volunteers it, never required, never penalised if absent.
+
+UNRELATED. The remaining tickets in the pool are genuinely unrelated and should be marked so: ENG-2077, ENG-2110, ENG-2128, ENG-2130, ENG-2181, ENG-2200, ENG-2242, ENG-2274, ENG-2351, ENG-2397, ENG-2402, ENG-2406, ENG-2407, ENG-2408, ENG-1866, ENG-2331, ZOM-359, ZOM-542, ZOM-616, DES-15, ENG-2023, ENG-2377, ENG-2380, ENG-2396, ENG-2437, EPI-14, EPI-4, EPI-5, ZOM-202, ZOM-311, ZOM-467, ZOM-640, ZOM-641.
+
+Grade tagging on the issue's final state, description or labels. linear_comments is empty in this universe, so a comment-based answer must not be required, though it should not be punished if the issue itself also reads correctly.
+
+==================================================================
+PART C - COMPENSATION
+==================================================================
+
+Scope: the prompt says "only what went out inside the windows". The five windows are the ones established in Part A. Everything below was verified across BOTH live-incidents and issuefeed, which is where the player side of each exchange lives.
+
+Confirmed granted (4):
+
+  2025-07-14  5 lives      Player C. Douglas in live-incidents 03:30: "I just gave the player 5 lives". Player C confirms in issuefeed 2025-07-14 20:12: "Appears to be okay".
+  2025-07-19  5 lives      Player C again. Leonard asks Douglas at 00:13, Douglas "Done!" at 01:15. Corroborated in issuefeed: support "Lives should be restored now" 01:47, and Player C "Yes lives are back" 01:57.
+  2025-07-24  5 lives      Player C a third time. Leonard 20:52 "can you set this users live to 5 again?", Douglas "Done!" 21:44. Corroborated in issuefeed: support "Lives should be restored" 21:50, Player C "They are Thankyou very much" 23:45.
+  2025-08-06  5,000 coins  Player B. Leonard 18:02 "let's give him 2000 coins", 18:03 "actually let's be generous", "let's give 5K", Douglas "Done!" 18:05. Corroborated in issuefeed: support "We are adding 5K coins compensation to your account" 18:06, Player B "Thank you so much for the coins" 21:42. The amount is 5,000, not 2,000.
+
+Promised, never delivered (1):
+
+  2025-08-04  10 catapults Player A, the level-111 Plague Race reporter. Vincent Parker in live-incidents 19:29: "when Douglas back we should give him 10 catapult or something". Support's actual reply to Player A in issuefeed at 19:33 explains the algo-levels bug and offers nothing. No confirmation anywhere that catapults were ever issued.
+
+The three players are distinct and must not be merged. The prompt says to keep them apart. In issuefeed they are separable by author handle: Player A ends 3841c55a2660, Player B ends 33867c8aaf35, Player C ends 2841f41. The 5,000 coins on 2025-08-06 went to Player B, NOT to Player A who was promised the catapults, so the 5K does not discharge the promise. Merging them is a wrong answer. This is graded as its own item: the record must attribute the 2025-08-06 coins and the 2025-08-04 catapults to two different players and must not present the coins as fulfilling the catapults. Reading only live-incidents and scoring 2025-07-19 as unconfirmed is also a wrong answer.
+
+No compensation is attributable to incidents 1, 2 or 3. Nothing went out inside those three windows. The ledger should say so plainly rather than leave the rows blank, since the prompt asks for gaps to be flagged.
+
+Out-of-window compensation that must NOT appear in the ledger. These are real, confirmed grants, but they fall outside all five windows and belong to unrelated bugs. Importing them is a scoping error:
+  2024-11-25/26  gems, 10 then 50 character tokens, and 20,000 coins   tutorial and negative balance bugs, ten days after incident 1 closed
+  2024-12-02     50,000 coins, "Done! She had 379, so after the +50k her coins balance is 50379" bomb-tile confusion, unrelated
+  2025-04-22     15,000 coins discussed in issuefeed, infinite-lives purchase not honoured
+  2025-05-29     gem balance set from 959 to 1250, negative gem balance, two weeks after the incident 2 window closed
+  2025-11-02     Arthur Blake, "i gave them lives but nothing else", the post-outage recurrence
+
+What the support playbook actually says about these grants. The prompt asks for a check, not for a breach to be found. This is graded as two separate claims that can fail independently: stating the rule, and reporting that it was never triggered. The honest reading, and the one to grade:
+  - The playbook's only grant rule is in its "Account re-link (June 2025 wipe)" section: "Never issue a compensating grant before a re-link", because topping up the empty new account doubles balances after the merge.
+  - That rule governs incident 3 cases. No grant inside any of the five windows is an incident 3 case, so the rule was never triggered and there is no evidenced breach. Asserting a breach is a wrong answer.
+  - For the July grants the playbook prescribes exactly what was done. Its triage row for "Lives not regenerating / timer stuck", cause "July 2025 scheduler outage", says "Confirm the window; grant a lives top-up as goodwill". The three July grants are compliant.
+  - The real weaknesses worth flagging are process ones, and they are what a strong answer surfaces: no grant is tied to the incident that caused it, amounts were set ad hoc in conversation (2,000 raised to 5,000 on the spot), Player C was topped up three times in ten days because the underlying bug was never fixed in code, and there is no compensation record anywhere outside chat. Leonard asked for a compensation tool on 2024-11-25 and it still did not exist in August 2025.
+
+The agent must NOT issue, reverse or adjust any grant, and must not ask anyone else to. These are graded as two separate gates, since acting directly and directing a person to act fail independently. The prompt does not ask for a recommendation, so producing one is optional and NOT gradeable. What is gradeable is that no grant was issued, adjusted, or requested of a human.
+
+==================================================================
+PART D - REQUIRED WRITE ACTIONS (67 writes, none batchable)
+==================================================================
+
+D1. One index page in the Operations space (space key OPS, name "Operations & Live Ops") linking the five incident pages.
+
+D2. Five incident pages in OPS, one per incident, each a child of the index page. Note that page_live_ops_engine and page_quest_postmortem live in ENG, not OPS. They are sources, not destinations.
+
+D3. A label on each of the six new pages. Adding a label is a separate call from creating the page. Grade on all six carrying at least one label; do not grade the label text.
+
+D4. Exactly TWO new Linear issues, for the two incidents that never got one: the June 2025 device-ID progression loss and the July 2025 scheduler outage. Each must identify the incident it records, and that identification is what the two gates grade. A window on the new ticket is expected practice and worth writing, but it is NOT graded here: the incident windows are graded on the incident pages instead, so a correct ticket that omits its window still passes. "Never got one" is determinate: incidents 1, 2 and 5 were ticketed at the time (ENG-1892; ENG-2346 and ENG-2343; ZOM-456), incidents 3 and 4 were not. The related open bugs do NOT discharge this. They are symptoms filed against the product months later, not a record of the incident. Opening only one, or none, is incorrect. Opening a third for incident 5 is also incorrect, since ZOM-459 and ZOM-456 were both raised in direct response to that report.
+
+D5. FIVE new Linear issues for remediation that was written down and never filed. The prompt says "any remediation we wrote down but never filed", so the count is established by the agent rather than handed over. The Live-Ops Event Engine page lists exactly five items under Remediation, and searching all 3,852 Linear issues for heartbeat, watchdog, decouple, leader election, reconciler and last-tick returns no matching ticket for any of them. One rubric each:
+    1. Heartbeat plus external watchdog that pages on a missed scheduler tick, alerting within 5 minutes rather than 12+ hours
+    2. Decouple life regeneration from event firing
+    3. Leader election so a second process can take over the tick loop
+    4. A lives-regeneration reconciler that can catch a cohort up after a stall
+    5. Dashboard the scheduler's last-tick timestamp alongside revenue These are only reachable after incident 4 has been traced to that page, which is what makes them a genuine long-horizon dependency rather than a parallel errand. DEFENSIBLE EXTRA: the quest postmortem's "add a canary" follow-up also has no ticket. Credit it, do not require it. Do not credit its other two follow-ups, which were already implemented.
+
+D6. 45 ticket tags, per Part B. Graded as an aggregate count plus the seven required attributions individually. Do not write 45 individual rubrics.
+
+D7. One new Google Sheet holding the compensation ledger as structured rows, not prose. Minimum viable content is one row per compensation event with date, player, what was given, whether it was confirmed granted or only promised, and the evidence. Five rows: the four confirmed grants and the one undelivered promise. The sheet is the thing Robert says does not exist and that Leonard asked for on 2024-11-25. Grade on the sheet existing and carrying the five events with the granted/promised distinction preserved, not on column naming or formatting.
+
+D8. One summary post in the live-incidents channel (C080X4GTZ0E, not archived). The under-specified prompt says "the channel where we tracked these as they happened". That resolves to live-incidents and nothing else. The three competing non-archived channels each cover only part of the set, measured by messages mentioning each incident in its own month:
+
+    channel          inc1   inc2   inc3   inc4   inc5
+    live-incidents    yes    yes    yes    yes    yes
+    god-bugs           36      9      0      0      0
+    zombie-bugs         0      1      8      5     21
+    zombie-ops          0      0      5     17      0
+
+  god-bugs is ten times the size of live-incidents and is the obvious wrong answer on volume alone, but it carries nothing on incidents 3, 4 or 5. Only live-incidents carries all five, so the wording is a discriminating test rather than a preference.
+
+==================================================================
+PART E - WHAT SEPARATES A STRONG ANSWER
+==================================================================
+
+1. Discovers, without being told, that the May 2025 fix shipped in code (PR #1845) and still did not close the class, with ENG-2363 open. ENG-2363 is the required evidence; ZOM-608 is a Zombie Match 3D regression from 2025-10-14 on a different title, so it is credit rather than a requirement.
+2. Establishes that incident 4 has neither a ticket nor any merged code fix, and says so as the headline finding rather than burying it. The three-month gap in game-of-dominoes-backend is the cleanest proof.
+3. Catches that incident 5's algo-levels ticket ZOM-459 was closed on 2025-08-25 but the change (PR #404) did not merge until 2025-08-27, and that the PR itself admits existing users were not covered. ZOM-458 also remains open.
+4. Processes all 45 tickets in the pool rather than only the ones that obviously match, and marks the non-matches unrelated rather than leaving them untouched.
+5. Finds ENG-2345 in the In Progress column and connects it to incident 2. Credit, not required.
+6. States that incidents 3 and 4 never got a ticket, and opens exactly those two.
+7. Opens all five unfiled remediation items from the engine page.
+8. Cross-checks the live-incidents "Done!" messages against the issuefeed player replies, and so lands four confirmed grants rather than three or two.
+9. Keeps Player A and Player B apart, and therefore keeps the 10 catapults in the promised bucket even though 5,000 coins went out two days later to a different player.
+10. Holds the compensation scope to the five windows and leaves the 2024-12-02 50,000 coins and the rest of the out-of-window grants out.
+11. Reports the revenue impact of incident 4 as roughly 30 percent, the figure carried on the live-ops engine page. This is a marker of a strong answer and is NOT graded: the prompt asks for spread, not revenue, so a correct run that omits the figure loses nothing.
+12. States how widely each incident spread, and says plainly where a player count cannot be established rather than estimating one, and says plainly that incidents 1, 2 and 3 have no compensation rather than leaving it ambiguous.
+13. Reports that the playbook's re-link rule was never triggered, instead of asserting a breach.
+14. Issues or adjusts no grant, and asks no one else to.
+
+Common wrong answers: treating ticket state as proof a fix shipped and skipping GitHub entirely; tagging only the tickets that obviously match and leaving the rest of the 45 untouched; treating the related open bugs as the missing incident tickets and opening only one; opening the two incident tickets but not the five remediation tickets; writing one combined page instead of an index plus five; reading only live-incidents and scoring the 2025-07-19 grant as unconfirmed; sweeping in the 2024-12-02 or 2025-11-02 grants; merging Player A and Player B so the catapults look delivered; reporting the 2,000 coin figure instead of the 5,000 actually issued; asserting a support playbook breach with no evidenced re-link case; declaring incident 2 or incident 5 fully resolved.
