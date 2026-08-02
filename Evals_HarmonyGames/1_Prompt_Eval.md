@@ -12,7 +12,7 @@ A Harmony Games task ships **two prompts**: a **fully specified** prompt (states
 - **Respect the empty tables.** No calendar/scheduling, no slide decks, no Linear comments, no GitHub issues/releases/tags. A prompt that asks the agent to "schedule a meeting", "build a deck", or "open a GitHub issue" is **infeasible** in this universe.
 - When in doubt, dig deeper. The cost of missing a factual error or feasibility gap is far greater than the cost of extra exploration.
 
-**Fixed universe date:** 2026-07-30 (see `Scepture data/MANIFEST.md`).
+**Fixed universe date:** 2026-01-27 (see `Scepture data/MANIFEST.md`).
 
 ---
 
@@ -27,6 +27,7 @@ TODO:
 - [ ] Phase 0.3: Read the golden_solution.txt / task_metadata.md if present — understand intended ground truth + pillar profile
 - [ ] Phase 1.1: Persona Coherence — verify the acting persona has a mailbox/role and would plausibly send this
 - [ ] Phase 1.2: Naturalness & Voice — anti-pattern detection on BOTH prompts
+- [ ] Phase 1.2b: Word Limit — each prompt body is 200 words or fewer (HARD GATE)
 - [ ] Phase 1.3: Structural Anti-Patterns — command list, bolt-on, pre-solving, tool mention
 - [ ] Phase 1.4: Dual-Prompt Consistency — same end-state under both the specified and under-specified readings
 - [ ] Phase 2.1: Unique Ground Truth — end-state divergence analysis (with precision guardrail)
@@ -36,7 +37,7 @@ TODO:
 - [ ] Phase 2.5: Investigation + Action — read/write balance (writes must be non-scheduling)
 - [ ] Phase 2.6: Clarity & Specificity — action-decision ambiguity, delegation clarity
 - [ ] Phase 2.7: Contrived vs Natural Difficulty
-- [ ] Phase 2.8: Date Alignment — relative time resolves against 2026-07-30 with real data in-window
+- [ ] Phase 2.8: Date Alignment — relative time resolves against 2026-01-27 with real data in-window
 - [ ] Phase 3.1: Pillar Profile Compliance — does each pillar hit its intended band, no off-profile over-build?
 - [ ] Phase 3.2: Difficulty — can this plausibly hold Gemini Pass@5 < 30% on the fully-specified prompt?
 - [ ] Phase 4.1: Final Scoring Table
@@ -123,6 +124,38 @@ Verify each prompt reads like a real employee message, not a spec document.
 | No jargon inconsistent with the persona | | |
 
 **Red flags:** overly formal/structured; reads like a spec; over-stacked (many separate asks crammed in so it reads like a checklist — **soft flag** unless it becomes a bolt-on or contrived).
+
+---
+
+### 1.2b Word Limit Check (HARD GATE)
+
+Every prompt must be **200 words or fewer**. Count the prompt body only: exclude the persona/scenario header, the `---` separators, the `## Hint` block, and any authoring notes appended to the file. Count the fully specified and under-specified prompts **separately**; each must independently clear the limit.
+
+| Prompt | Word count | Limit | Pass? |
+|---|---:|---:|---|
+| Fully specified | | 200 | Y/N |
+| Under-specified | | 200 | Y/N |
+
+Count it, do not estimate:
+
+```bash
+python3 - "$PROMPT_FILE" <<'PY'
+import sys, re, io
+t = io.open(sys.argv[1], encoding='utf-8').read()
+# prompt.txt is split by lines of 10+ dashes:
+#   [0] header  [1] fully specified body  [2] under-specified body  [3] hint  [4] notes
+parts = re.split(r'\n-{10,}\n', t)
+spec  = parts[1]
+under = re.sub(r'^\s*TASK 1 - UNDER-SPECIFIED PROMPT\s*', '', parts[2])
+for label, body in (('fully specified', spec), ('under-specified', under)):
+    n = len(body.split())
+    print(f'{label:16} {n:4} words  {"PASS" if n <= 200 else "FAIL (over by %d)" % (n - 200)}')
+PY
+```
+
+Sanity-check the split before trusting the numbers: if either count comes back near zero or wildly large, the file's separators differ from the expected shape and you are counting the wrong slice.
+
+**Scoring:** FAIL if either prompt exceeds 200 words. This is not waivable — an over-length prompt is rejected regardless of how good the rest of the task is. Recommend cutting restatement first, then background, then optional deliverables; never cut a constraint the rubric grades.
 
 ---
 
@@ -277,14 +310,14 @@ Does the prompt require BOTH investigation and a real write action (that isn't s
 
 ### 2.8 Date Alignment Check
 
-Universe fixed date = **2026-07-30**. Relative time is allowed IF it resolves correctly and the resolved window has data.
+Universe fixed date = **2026-01-27**. Relative time is allowed IF it resolves correctly and the resolved window has data.
 
 **Step 1:** scan for relative phrases ("this week", "recently", "the last two shipped versions", "Thursday", "currently").
-**Step 2:** resolve each against 2026-07-30 and apply the litmus test ("would the answer change if the agent thought it was a different date?").
+**Step 2:** resolve each against 2026-01-27 and apply the litmus test ("would the answer change if the agent thought it was a different date?").
 **Step 3:** verify the resolved window actually has data in the universe.
-**Step 4:** confirm the universe data broadly aligns with 2026-07-30 (no stale/contradictory references caused by drift).
+**Step 4:** confirm the universe data broadly aligns with 2026-01-27 (no stale/contradictory references caused by drift).
 
-**Scoring:** FAIL if the request doesn't make sense given 2026-07-30, relative time is unanchored, the resolved window is empty, or universe data is misaligned and creates stale/ambiguous references; PASS otherwise.
+**Scoring:** FAIL if the request doesn't make sense given 2026-01-27, relative time is unanchored, the resolved window is empty, or universe data is misaligned and creates stale/ambiguous references; PASS otherwise.
 
 ---
 
@@ -328,6 +361,7 @@ If the prompt is trivially solvable, it will not hold Pass@5 < 30% → recommend
 | Unique Ground Truth | PASS/FAIL | … |
 | Feasibility (incl. empty-table + dimensional) | PASS/NON-FAIL/FAIL | … |
 | Explicit Tool Mention | PASS/FAIL | … |
+| Word Limit (<=200 each) | PASS/FAIL | … |
 | Clarity & Specificity (incl. delegation) | PASS/NON-FAIL/FAIL | … |
 | Contrived / Unnatural | PASS/NON-FAIL/FAIL | … |
 | Date Alignment | PASS/NON-FAIL/FAIL | … |
@@ -386,6 +420,7 @@ If the prompt is trivially solvable, it will not hold Pass@5 < 30% → recommend
 | Dual-prompt drift | Specified and under-specified imply different end-states | Major (Dual-Prompt Consistency) |
 | Off-profile difficulty | A pillar cranked high that the task never scoped | Flag (Pillar Compliance) |
 | Too easy | Trivially solvable — won't hold Pass@5 < 30% | Major (Difficulty) |
+| Over-length prompt | Either prompt body exceeds 200 words | Major (Word Limit) |
 
 ---
 

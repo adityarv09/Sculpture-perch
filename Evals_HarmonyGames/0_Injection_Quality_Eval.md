@@ -10,7 +10,7 @@ When an author edits the Harmony Games universe (adds or modifies Slack messages
 
 This eval consolidates all injection validation into 7 hard gates plus a difficulty phase that scores against the project's **5 Pillars**. Every injected or modified record is checked individually. The eval produces a binary PASS/FAIL verdict (all 7 gates must pass) plus a pillar-difficulty read used to confirm the task can plausibly land **Pass@5 < 30%** on the Gemini checkpoint.
 
-**Fixed universe date:** 2026-07-30 (the extract-complete date; see `Scepture data/MANIFEST.md`).
+**Fixed universe date:** 2026-01-27 (the extract-complete date; see `Scepture data/MANIFEST.md`).
 **Services (12 connectors):** Confluence, Contacts, GCalendar (empty), Google Docs, Google Drive, GitHub, Gmail, Google Sheets, Google Slides (empty), Linear, Slack, Trello.
 
 **Tool ground truth:** `Tools/5_Server_Tools_Details.json` (276 tools across 13 connectors) is the authoritative catalog of what each connector's tools are and their parameters. **Distinguish two things:** a *tool* can exist in that catalog while the *data table it reads/writes is empty* in this universe extract. The constraints below are **data** constraints (empty tables), not tool-existence constraints.
@@ -53,12 +53,12 @@ This eval consolidates all injection validation into 7 hard gates plus a difficu
   - [ ] 2.1: Sample 3+ existing IDs from the same table to establish the pattern
   - [ ] 2.2: For EACH injected ID, verify it follows the established pattern
   - [ ] 2.3: For EACH injected ID, verify uniqueness (no collision with existing rows)
-  - [ ] 2.4: For Slack ts fields, verify they resolve to a plausible date at/before 2026-07-30
+  - [ ] 2.4: For Slack ts fields, verify they resolve to a plausible date at/before 2026-01-27
   - [ ] 2.5: For Gmail message/thread IDs, verify the format matches existing rows
   - [ ] 2.6: Record verdict per record: VALID / ID_VIOLATION
 
 - [ ] Phase 3: Date & Time Consistency
-  - [ ] 3.1: For EACH injected timestamp, verify it is at or before 2026-07-30
+  - [ ] 3.1: For EACH injected timestamp, verify it is at or before 2026-01-27
   - [ ] 3.2: For Slack/Gmail business comms, verify timestamps land on plausible working days/hours
   - [ ] 3.3: For Slack reply chains (thread_ts), verify chronological ordering (parent ts < reply ts)
   - [ ] 3.4: For Gmail threads, verify message ordering within the thread is coherent
@@ -156,7 +156,7 @@ This eval consolidates all injection validation into 7 hard gates plus a difficu
 |---|---|---|---|
 | Pattern mismatch | Injected ID doesn't follow the table's convention | Existing Linear issues use a team-key prefix (e.g., `ENG-1234`); injected `ISSUE-5678` | **ID_VIOLATION** |
 | Duplicate ID | Injected ID collides with an existing row | Injected Slack `ts` already present in `slack_messages.json` | **ID_VIOLATION** |
-| Slack ts invalid | Slack `ts` resolves to a date after 2026-07-30 or implausibly old | `ts: "1609459200.000001"` → 2021-01-01 in a 2026 thread | **ID_VIOLATION** |
+| Slack ts invalid | Slack `ts` resolves to a date after 2026-01-27 or implausibly old | `ts: "1609459200.000001"` → 2021-01-01 in a 2026 thread | **ID_VIOLATION** |
 | Gmail ID format | Message/thread id doesn't match existing rows | Injected `email-new-1` when real IDs are opaque hashes | **ID_VIOLATION** |
 | PR/commit id format | GitHub PR number or commit sha not in the real format/range | PR number far above the max real PR, or a non-40-char sha | **ID_VIOLATION** |
 
@@ -168,11 +168,11 @@ This eval consolidates all injection validation into 7 hard gates plus a difficu
 
 ## Phase 3: Date & Time Consistency (HARD GATE)
 
-**All injected timestamps must be at or before 2026-07-30 and chronologically coherent.**
+**All injected timestamps must be at or before 2026-01-27 and chronologically coherent.**
 
 | Check | What to look for | Audit example | Verdict |
 |---|---|---|---|
-| Future timestamp | Any timestamp after 2026-07-30 | Email `date: "2026-08-15..."` — past the extract date | **TEMPORAL_VIOLATION** |
+| Future timestamp | Any timestamp after 2026-01-27 | Email `date: "2026-08-15..."` — past the extract date | **TEMPORAL_VIOLATION** |
 | Reply before parent | A Slack reply `ts` precedes its `thread_ts` | reply dated before the message it answers | **TEMPORAL_VIOLATION** |
 | Thread incoherence | Gmail messages within a thread out of chronological order | reply timestamped before the message it quotes | **TEMPORAL_VIOLATION** |
 | State/date illogical | Linear "Done"/GitHub "merged" dated before "created" | issue `completed_at` earlier than `created_at` | **TEMPORAL_VIOLATION** |
@@ -322,7 +322,7 @@ Score each pillar the injection is meant to support as **Low / Medium / High**:
 |---|---|---|---|
 | 1 | Wrong value type vs sibling rows | P1 | SCHEMA_VIOLATION |
 | 2 | Duplicate ID / Slack `ts` collision | P2 | ID_VIOLATION |
-| 3 | Timestamp after 2026-07-30 | P3 | TEMPORAL_VIOLATION |
+| 3 | Timestamp after 2026-01-27 | P3 | TEMPORAL_VIOLATION |
 | 4 | Slack reply before its parent | P3 | TEMPORAL_VIOLATION |
 | 5 | Injecting into an empty table (gcal, gslides, linear_comments, github_issues) | P1 | SCHEMA_VIOLATION |
 | 6 | Name/handle spelled differently across services | P4 | CROSS_SERVICE_VIOLATION |

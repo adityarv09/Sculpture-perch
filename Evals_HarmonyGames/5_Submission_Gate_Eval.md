@@ -44,7 +44,7 @@
   - [ ] 2.2: Persona has authority for ALL rubric-required actions (no overreach)
   - [ ] 2.3: If the task sends email, the persona owns a mailbox in gmail/gmail_users.json (only 8 exist)
   - [ ] 2.4: Slack/email attribution matches the persona in universe data
-  - [ ] 2.5: All rubric events fall at/before 2026-07-30; no future-as-past
+  - [ ] 2.5: All rubric events fall at/before 2026-01-27; no future-as-past
   - [ ] 2.6: Every entity reference exists in universe data
   - [ ] 2.7: Recipients exist in Contacts/Slack/Gmail and are active
   - [ ] 2.8: Record verdict: CONSISTENT / MISMATCH / PHANTOM
@@ -86,7 +86,7 @@
   - [ ] 6.9: Expert-Assessment bands — fixed −1…+1 scale, distinct falsifiable bands?
   - [ ] 6.10: Penalties — subtract-only 0/−1/−2/−3, positive wording; no negative weights; must-fail behaviors in the gate not as penalties?
   - [ ] 6.11: Feasibility (strict) — every explicit ask fulfillable (no "minor secondary" escape)?
-  - [ ] 6.12: Date alignment (strict) — universe data temporally sound with 2026-07-30?
+  - [ ] 6.12: Date alignment (strict) — universe data temporally sound with 2026-01-27?
 
 - [ ] Phase 7: F7 — Pillar Profile & Difficulty
   - [ ] 7.1: Each pillar hits its declared band; no off-profile over-build
@@ -138,7 +138,7 @@
 | No mailbox | Email-sending persona absent from `gmail/gmail_users.json` (8 mailboxes) | task requires the persona to email but they have no mailbox | **MISMATCH** |
 | Wrong attribution | Slack/email attributed to the wrong persona | messages authored as another user | **MISMATCH** |
 | Role overreach | Rubric requires the persona to approve/certify beyond authority | an engineer required to sign off on a release gate reserved for a lead | **MISMATCH** |
-| Future-as-past | Rubric expects analysis of events after 2026-07-30 | references a build "shipped" after the extract date | **MISMATCH** |
+| Future-as-past | Rubric expects analysis of events after 2026-01-27 | references a build "shipped" after the extract date | **MISMATCH** |
 | Phantom entity | Prompt/rubric references a message/person/ticket that doesn't exist | "the doc Robert shared" with no such Drive/Docs file | **PHANTOM** |
 | Inactive recipient | Rubric emails someone not in Contacts/Gmail or departed | recipient absent from the universe | **PHANTOM** |
 
@@ -199,7 +199,7 @@ A Process rubric is legitimate ONLY if all three hold: (1) required by every val
 | 6.9 | Expert-Assessment band off the −1…+1 scale or non-falsifiable | **BAD_BAND** |
 | 6.10 | Negative weight, or a must-fail behavior encoded as a penalty (belongs in the gate) | **BAD_PENALTY** |
 | 6.11 | Any explicit ask can't be fulfilled — no "minor secondary" escape | **INFEASIBLE** |
-| 6.12 | Universe data misaligned with 2026-07-30 → stale/ambiguous references | **DATE_MISALIGNED** |
+| 6.12 | Universe data misaligned with 2026-01-27 → stale/ambiguous references | **DATE_MISALIGNED** |
 
 ---
 
@@ -270,7 +270,7 @@ A Process rubric is legitimate ONLY if all three hold: (1) required by every val
 | 3 | Full scan of 586k Slack / 24.7k Gmail rows with no filter | F1 | UNREACHABLE |
 | 4 | Email-sending persona has no mailbox in `gmail_users.json` | F2 | MISMATCH |
 | 5 | Prompt references a message/person/ticket that doesn't exist | F2 | PHANTOM |
-| 6 | Rubric event dated after 2026-07-30 | F2 | MISMATCH |
+| 6 | Rubric event dated after 2026-01-27 | F2 | MISMATCH |
 | 7 | "Must use `specific_tool`" when equivalent returns same data | F3 | TOOL_GATE |
 | 8 | Write action categorized as Process | F3 | WRITE_IN_PROCESS |
 | 9 | Quality-degree judgment as Objective Compliance | F3 | MISCATEGORIZED |
@@ -290,7 +290,7 @@ A Process rubric is legitimate ONLY if all three hold: (1) required by every val
 | 23 | Expert band off the −1…+1 scale or non-falsifiable | F6 | BAD_BAND |
 | 24 | Negative weight or must-fail behavior as a penalty | F6 | BAD_PENALTY |
 | 25 | Explicit ask can't be fulfilled — no "minor secondary" escape | F6 | INFEASIBLE |
-| 26 | Universe data misaligned with 2026-07-30 | F6 | DATE_MISALIGNED |
+| 26 | Universe data misaligned with 2026-01-27 | F6 | DATE_MISALIGNED |
 | 27 | Specified + under-specified prompts drive different end-states | F7 | PROMPT_DRIFT |
 | 28 | A claimed-high pillar not actually exercised | F7 | UNDER_BUILT |
 | 29 | An unscoped pillar cranked high | F7 | OFF_PROFILE |
