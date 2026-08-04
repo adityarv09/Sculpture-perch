@@ -138,7 +138,7 @@
 | No mailbox | Email-sending persona absent from `gmail/gmail_users.json` (8 mailboxes) | task requires the persona to email but they have no mailbox | **MISMATCH** |
 | Wrong attribution | Slack/email attributed to the wrong persona | messages authored as another user | **MISMATCH** |
 | Role overreach | Rubric requires the persona to approve/certify beyond authority | an engineer required to sign off on a release gate reserved for a lead | **MISMATCH** |
-| Future-as-past | Rubric expects analysis of events after 2026-01-27 | references a build "shipped" after the extract date | **MISMATCH** |
+| Future-as-past | Rubric expects analysis of events after 2026-01-27 | references a build "shipped" after today's date | **MISMATCH** |
 | Phantom entity | Prompt/rubric references a message/person/ticket that doesn't exist | "the doc Robert shared" with no such Drive/Docs file | **PHANTOM** |
 | Inactive recipient | Rubric emails someone not in Contacts/Gmail or departed | recipient absent from the universe | **PHANTOM** |
 

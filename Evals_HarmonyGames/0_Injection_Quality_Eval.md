@@ -10,7 +10,7 @@ When an author edits the Harmony Games universe (adds or modifies Slack messages
 
 This eval consolidates all injection validation into 7 hard gates plus a difficulty phase that scores against the project's **5 Pillars**. Every injected or modified record is checked individually. The eval produces a binary PASS/FAIL verdict (all 7 gates must pass) plus a pillar-difficulty read used to confirm the task can plausibly land **Pass@5 < 30%** on the Gemini checkpoint.
 
-**Fixed universe date:** 2026-01-27 (the extract-complete date; see `Scepture data/MANIFEST.md`).
+**Today's date in the universe:** 2026-01-27 — the reference "now" for all temporal checks (see `Scepture data/MANIFEST.md`). No universe data/event should be dated after this.
 **Services (12 connectors):** Confluence, Contacts, GCalendar (empty), Google Docs, Google Drive, GitHub, Gmail, Google Sheets, Google Slides (empty), Linear, Slack, Trello.
 
 **Tool ground truth:** `Tools/5_Server_Tools_Details.json` (276 tools across 13 connectors) is the authoritative catalog of what each connector's tools are and their parameters. **Distinguish two things:** a *tool* can exist in that catalog while the *data table it reads/writes is empty* in this universe extract. The constraints below are **data** constraints (empty tables), not tool-existence constraints.
@@ -172,7 +172,7 @@ This eval consolidates all injection validation into 7 hard gates plus a difficu
 
 | Check | What to look for | Audit example | Verdict |
 |---|---|---|---|
-| Future timestamp | Any timestamp after 2026-01-27 | Email `date: "2026-08-15..."` — past the extract date | **TEMPORAL_VIOLATION** |
+| Future timestamp | Any timestamp after 2026-01-27 | Email `date: "2026-08-15..."` — after today's date | **TEMPORAL_VIOLATION** |
 | Reply before parent | A Slack reply `ts` precedes its `thread_ts` | reply dated before the message it answers | **TEMPORAL_VIOLATION** |
 | Thread incoherence | Gmail messages within a thread out of chronological order | reply timestamped before the message it quotes | **TEMPORAL_VIOLATION** |
 | State/date illogical | Linear "Done"/GitHub "merged" dated before "created" | issue `completed_at` earlier than `created_at` | **TEMPORAL_VIOLATION** |

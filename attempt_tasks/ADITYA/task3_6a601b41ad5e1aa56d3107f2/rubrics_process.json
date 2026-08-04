@@ -1,0 +1,38 @@
+{
+  "task_id": "task3_6a601b41ad5e1aa56d3107f2",
+  "task_name": "Combo Fighter UA Scale-Readiness Decision Pack (HOLD)",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Process only where Outcomes cannot prove required ordering/consult: Confluence individual reads before pack write, and workbook tab-list before select.",
+  "category": "Process",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent consults the Combo Fighter Game Design Document and each of the six cross-check pages as individual page reads before writing the decision pack, rather than answering from search snippets.",
+      "justification": "The prompt forbids snippet-only evidence. Outcomes score the findings; only trajectory shows each page was consulted before the pack write.",
+      "evidence": "Before the Decision Pack write, the trajectory shows the Agent opened/read the GDD and each of the six cross-check pages individually. Answering any of those from a search-result list alone fails."
+    },
+    {
+      "id": 2,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent lists the Combo Fighter Design Details tabs before selecting which tabs to open for the pack.",
+      "justification": "The prompt requires listing every tab before deciding which matter. No Outcome can prove that list-before-select order.",
+      "evidence": "Trajectory shows a tab listing for Combo Fighter Design Details before the Agent opens Versions, LevelDetails, Silver Economy, or Permanent Upgrades."
+    }
+  ]
+}

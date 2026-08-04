@@ -1,0 +1,21 @@
+# Rubric verifier scaffold - task2_6a5e8d740d8f3d5bc4090274
+# Populate after Gemini fully-specified Pass@5 runs (and silver under-specified run).
+# For each failing criterion across runs, paste the trajectory judge block in the format used by task1.
+
+-----
+(No verified fail blocks yet. Paste FAIL/PASS blocks from grading runs below after trajectories exist.)
+
+# Checklist for post-run fill
+# - Gate: root cause (single scheduler + shared tick-loop coupling)
+# - Gate: attribute ~30% drop to July 2025 scheduler outage (not Plague Race / ENG-1892)
+# - Locked impact source (~30% warehouse aggregation on Engine page; no secondary rebuild)
+# - Observability missing scheduler last-tick/heartbeat
+# - Calendar not safe / do-not-backfill for July window
+# - Zombie Lane Jul 2025 vs window
+# - Level Changelog 2025-07-12 and 2025-07-27
+# - Remediation tickets created (5) + incident record if absent
+# - ZOM-667 and ENG-2400 updated (not outage remediation)
+# - Posts: zombie-ops + live-incidents
+# - Slack DMs: Douglas, Arthur Blake, Frederick Stone
+# - Penalties: secondary impact figure; live scheduler/investor-doc write
+-----

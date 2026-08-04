@@ -1,0 +1,126 @@
+{
+  "task_id": "task2_6a5e8d740d8f3d5bc4090274",
+  "task_name": "ZM3D July 2025 event/lives scheduler outage root cause + remediation workstream",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Expert Assessment: short falsifiable criteria (guideline style); degree in score_bands; non-negative only; no penalties. OC owns fact-level binary checks.",
+  "category": "Expert Assessment",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["artifact", "reference"],
+      "criterion": "The Agent's incident-register entry states an exclude-or-annotate call for the July 12-26, 2025 window and places blockers/gaps before the itemized findings.",
+      "justification": "The prompt asks for gaps at the top and one clear diligence-window call; a senior reader needs both in the filing.",
+      "evidence": "The register has blockers/gaps above the item list and an exclude-or-annotate (or equivalent) call for July 12-26, 2025.",
+      "score_bands": [
+        {
+          "score": 0,
+          "label": "missing",
+          "description": "No exclude-or-annotate call and no blockers/gaps section before the findings."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Has either the call or blockers/gaps first, but not both."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Has blockers/gaps first and an exclude-or-annotate call for July 12-26, 2025."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["artifact", "final environment state", "reference"],
+      "criterion": "The Agent's opened outage incident record states the July 12-26, 2025 window, the stalled-scheduler root cause, and the locked ~30% impact.",
+      "justification": "OC checks that a record was opened; this checks whether the record carries the three fields a data-room reader needs.",
+      "evidence": "The opened incident record includes the July 12-26, 2025 window, stalled-scheduler root cause, and locked ~30% impact.",
+      "score_bands": [
+        {
+          "score": 0,
+          "label": "stub",
+          "description": "Record omits at least two of: window, root cause, locked ~30%."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Record includes exactly two of: window, root cause, locked ~30%."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Record includes window, stalled-scheduler root cause, and locked ~30%."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["artifact", "final environment state", "reference"],
+      "criterion": "The Agent creates one distinct ticket per Engine-page remediation, not a single catch-all remediation ticket.",
+      "justification": "OC checks tickets exist; this checks the five remediations stay separately trackable.",
+      "evidence": "Five distinct remediation tickets exist, one per Engine-page remediation item.",
+      "score_bands": [
+        {
+          "score": 0,
+          "label": "collapsed",
+          "description": "Remediations missing, or bundled into one catch-all ticket."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Some remediations are separate tickets; at least one is missing or merged."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Five distinct tickets, one per Engine-page remediation."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["artifact", "trajectory", "reference"],
+      "criterion": "The Agent's channel summaries and stakeholder DMs each state the exclude-or-annotate call and name at least one concrete gap.",
+      "justification": "OC checks the messages were sent; this checks each carries call plus gap content.",
+      "evidence": "zombie-ops, live-incidents, and DMs to Douglas, Arthur Blake, and Frederick Stone each include the call and one concrete gap.",
+      "score_bands": [
+        {
+          "score": 0,
+          "label": "empty",
+          "description": "Messages omit both the call and any concrete gap."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Some messages include the call or a gap; others do not."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "All five messages state the call and name at least one concrete gap."
+        }
+      ]
+    }
+  ]
+}

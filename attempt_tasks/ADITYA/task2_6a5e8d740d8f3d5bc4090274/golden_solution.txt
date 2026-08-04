@@ -1,0 +1,58 @@
+OVERALL CALL: DILIGENCE WINDOW NOT SAFE TO LEAVE UNANNOTATED
+
+The July 2025 Zombie Match 3D ("Puzzles vs Zombies") revenue drop is the event/lives scheduler outage documented on the "Live-Ops Event Engine" page. The impact figure the outage write-up locks as source of truth is the BI warehouse aggregation, on the order of 30% for the window. None of the remediations that page documents were ever ticketed, Observability would not catch a stalled scheduler today (no last-tick/heartbeat signal), and the published Live-Ops calendar is not safe to use for that window. The diligence / trailing metrics read must exclude or explicitly annotate July 12-26, 2025. Do not touch the live scheduler or event config, and do not place the 30% figure into the investor doc.
+
+TOP GAPS / BLOCKERS
+1. No standalone incident ticket exists for the outage yet.
+2. All remediations documented on Live-Ops Event Engine are untracked (heartbeat/watchdog, decouple, leader-election, reconciler, last-tick dashboard).
+3. Observability & Alerting has no scheduler last-tick or heartbeat signal, so the same stall would still page late or not at all.
+4. ZOM-667 and ENG-2400 are open lives-regen bugs, not the outage remediation workstream; they must be labeled as such so people stop pointing at them as the fix.
+
+ITEM-BY-ITEM (gate: Live-Ops Event Engine; cross-check Calendar, Observability; daily-quest look-alike via Linear ENG-1892)
+
+Item 1 - Confirmed outage window and first player-visible symptom: CONFIRMED.
+Window roughly July 12-26, 2025. First player-visible symptom was lives no longer regenerating, first observed around 03:41 UTC on July 13, 2025. Source: Live-Ops Event Engine. (Corroboration: live-incidents thread noting a player's lives balance dropped starting July 13, 2025, 3:41 AM.)
+
+Item 2 - Root cause (what stalled and why both systems went down): CONFIRMED.
+A single active scheduler process with no hot standby stalled. Player life regeneration runs on the same 60-second tick loop as event firing, so one stall took down both live events and lives regeneration. Source: Live-Ops Event Engine (Architecture + lives coupling + SPOF warning).
+
+Item 3 - Revenue impact and locked source of truth: CONFIRMED.
+Store revenue dipped on the order of 30% across the outage. The Live-Ops Event Engine page coherence-locks that figure to the BI warehouse aggregation and states the raw event logs are incomplete for those days. Take ~30% from that locked source; do not invent a number or rebuild one from a secondary source (logs, sheets, or a warehouse query). Source: Live-Ops Event Engine.
+
+Item 4 - Would Observability catch a stalled scheduler today?: MISSING.
+The Observability & Alerting signals table covers Game API error rate, Aurora CPU/connections, Event pipeline lag, and Crash spike. There is no scheduler last-tick timestamp or heartbeat page, so a stalled scheduler would not be caught by the current signal set. Source: Observability & Alerting.
+
+Item 5 - Is the published calendar safe to use for that window?: CONFIRMED (not safe).
+Live-Ops Event Calendar & Planning warns that the July 2025 scheduler outage meant scheduled events did not fire and the published calendar diverged from what players saw; do not backfill or reason about that window from the calendar. The reconstructed timeline and revenue impact live on the Live-Ops Event Engine page. Source: Live-Ops Event Calendar & Planning.
+
+Item 6 - Is this the Plague Race leaderboard algo bug?: SEPARATE.
+Plague Race is a recurring ZM3D ranked event. A scoring/matchmaking algorithm bug surfaced in August 2025 and skewed leaderboard settlement; treat pre-fix cohorts with caution. Different system, different month; do not attribute the July revenue drop to it. Source: Live-Ops Event Calendar & Planning.
+
+Item 7 - Is this the daily-quest outage?: SEPARATE.
+Linear ENG-1892 ("The quests are not populated at all in both platforms") is Done, created 2024-11-15, and describes quests failing to appear once unlocked. That is a November 2024 quest-population incident, not the July 2025 ZM3D scheduler outage. Different date and failure mode. Source: Linear ENG-1892.
+
+Item 8 - Zombie Lane ship timing vs the outage window: CONFIRMED.
+Zombie Lane (ZM3D, one-off seasonal) is listed as Shipped Jul 2025 on the Live-Ops calendar. That ship month sits inside/against the July 12-26 outage window, which is why the calendar divergence warning matters for any July event revenue read. Source: Live-Ops Event Calendar & Planning.
+
+Item 9 - Do the documented remediations already exist as tickets?: MISSING (all absent).
+Remediations on Live-Ops Event Engine, none found as Linear tickets after search:
+1. Heartbeat + external watchdog (page on missed tick within 5 minutes).
+2. Decouple life regeneration from event firing.
+3. Leader election / hot standby for the tick loop.
+4. Lives-regeneration reconciler / cohort backfill after a stall.
+5. Dashboard scheduler last-tick timestamp alongside revenue.
+Related-but-not-substitute: ENG-2238 (Done, Mar 2025, change event scheduler rules) and ENG-2240 (Canceled) pre-date the outage and are not these remediations.
+
+Item 10 - Are ZOM-667 / ENG-2400 the outage work?: SEPARATE.
+ZOM-667 (Todo) "Lives regen syncing issues" and ENG-2400 (Bugs) "Lives are not generating for some real players" are live lives-regen bugs. They are not the July scheduler-outage incident record and they do not implement the remediations above. Update both so they clearly say they are not the July 2025 scheduler-outage remediation.
+
+CORROBORATION
+- Zombie Match 3D spreadsheet, Level Changelog sheet: version columns include 2025-07-12 and 2025-07-27, which bracket the outage window. Do not invent a second revenue % from this sheet; impact stays locked at ~30% from the Engine page source of truth.
+- Slack channels zombie-ops and live-incidents: team-facing summary posts; July-window lives/scheduler chatter is supporting context, not a replacement for the Engine page.
+
+REQUIRED FOLLOW-UP (do not touch live scheduler/config; do not write the figure into the investor doc)
+1. Open an incident record for the July 12-26, 2025 scheduler outage (window, root cause, locked ~30% impact, data-window exclusion), since none already exists.
+2. Create five engineering tickets, one per remediation item above, owned under Douglas (scheduler/backend) with Arthur Blake as engineering lead visibility, prioritized.
+3. Update ZOM-667 and ENG-2400 so each clearly states it is not the July 2025 scheduler-outage remediation.
+4. Post a short summary in zombie-ops and in live-incidents covering the call, the ~30% locked impact, the unannotated-window risk, and the opened workstream.
+5. Slack DM Douglas, Arthur Blake, and Frederick Stone with the call and the gaps.

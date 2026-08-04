@@ -1,0 +1,99 @@
+OVERALL CALL: Hold off on paid UA for now. Not ready to open a paid UA soft launch.
+
+Universe today for this pack is 2026-01-27. Combo Fighter is still a parked prototype. The only in-window test-track builds are 1.0.62 and 1.0.72. Early D1 looks encouraging on paper (1.0.72 clears the Product OKRs D1 greater than 30 percent bar at 31 percent), but install bases are still tiny (largest in-window cohort is 244). Versions also lists 1.0.88 dated 2026-02-04 which is after today and must not be used as current evidence. The GDD still claims no ad SDK and no monetization in the MVP, while Combo-Fighters has merged AppLovinMAX / rewarded-ads work before today, so surface that conflict and keep the product gate on GDD + QA (ads n/a); a merged PR alone is not fundable ROAS readiness. The IAP PR's merge timestamp sits after today and is out of window. Soft currency in the MVP workbook is silver/gold only (not studio coins+gems). Content is 35 of 163. No Combo paid-UA card on UA/BD, no Linear workstream, and no open-spend decision already sitting in prototype Slack. Do not open paid UA, do not configure campaigns, do not invent warehouse retention or ROAS figures.
+
+TOP GAPS AND BLOCKERS
+1. Title remains parked with no UA spend behind it (GDD).
+2. Product gate still says no ads/monetization in MVP (GDD + QA n/a) while Combo-Fighters shows merged rewarded-ads PRs: docs/code conflict; ROAS not fundable for paid UA yet.
+3. Scale not validated: largest in-window D1 cohort is 244 installs (1.0.72); 1.0.62 is only 127.
+4. Out-of-window row: Versions/GDD list 1.0.88 on Feb 4 2026 (after today); exclude from today's spend call.
+5. Content cliff: 35-level MVP versus 163-level designed track (GDD and LevelDetails).
+6. Currency model mismatch: Economy Design is coins and gems; Combo MVP workbook is silver/gold only.
+7. No existing Linear scale-readiness or paid UA workstream; no Combo paid-UA card on UA/BD.
+
+ITEM-BY-ITEM (gate: "Combo Fighter — Game Design Document"; cross-checks: "Product OKRs — 2025 H1", "Economy Design — Coins, Lives & Boosters", "Analytics & Metrics Dashboards (Metabase)", "Analytics Integration — Unity → Snowflake", "QA Regression Runbook", "Release Checklist & Store Submission"; corroboration: Combo Fighter Design Details + Combo-Fighters GitHub + UA/BD Trello + #prototype Slack)
+
+Item 1 - Still parked with no UA spend?: CONFIRMED.
+GDD states Combo Fighter remains parked and the studio has not put UA spend behind it yet. Source: Combo Fighter GDD.
+
+Item 2 - In-window test-track builds versus D1 greater than 30 percent OKR bar: MIXED (one clear, not scale-safe); exclude post-today rows.
+In-window (release date on or before 2026-01-27):
+- 1.0.62, Jan 21 2026, 127 installs, D1 25 percent (0.25), below bar.
+- 1.0.72, Jan 25 2026, 244 installs, D1 31 percent (0.31), clears bar on paper.
+Out of window:
+- 1.0.88, Feb 4 2026, 30 installs, D1 43 percent (after today); exclude.
+- 1.0.91, Feb 5 2026 (empty stub); ignore.
+Source: GDD, Versions, Product OKRs 2025 H1.
+
+Item 3 - In-window install bases large enough to treat D1 as scale-validated?: FAIL.
+244 installs (1.0.72) is still a test-track cohort. 1.0.62 is thinner at 127. Do not import 1.0.88 into the readiness call. Source: Versions.
+
+Item 4 - GDD D0 session claim versus Versions D0 Minutes (in-window): CONFLICT, prefer Versions.
+GDD ~60 minutes D0 summary vs Versions in-window D0 Minutes: 1.0.62 = 48.74; 1.0.72 = 42.98. Cite Versions for per-build minutes. Source: GDD and Versions.
+
+Item 5 - No ads/monetization MVP claim versus Combo-Fighters code history: CONFLICT; product gate stays HOLD.
+GDD: Ads none in MVP (no ad SDK, no interstitials, no rewarded placements); monetization deferred; ROAS cannot be produced the way Product OKRs require.
+QA Regression Runbook: Combo column marks IAP and ads as n/a.
+Combo-Fighters GitHub (in-window merges): AppLovinMAX integration and Rewarded Ads (PR #24, merged 2026-01-13), upgrade-ad cooldown (PR #26, merged 2026-01-15), and Main Menu Updates (PR #28, merged 2026-01-17, adds ad timer icons and upgrade ad buttons per the PR body) all conflict with the GDD claim, so surface the conflict.
+IAP (PR #34) merge timestamp 2026-01-28 is after today, so treat as out of window for this pack.
+For the spend call: keep the product gate on GDD + QA; do not treat merged ads PRs alone as fundable ROAS readiness on thin cohorts while docs still say MVP has no ads. Leave a short PR comment/review on each of PR #24, #26, and #28 noting HOLD and docs conflict. Source: GDD, QA, Combo-Fighters PRs.
+
+Item 6 - Studio coins and gems economy present in Combo MVP?: MISSING (soft-currency only).
+Economy Design defines coins + gems. GDD Combo MVP rewards are gold only. Design Details Silver Economy is silver/wave soft currency; Permanent Upgrades prices and rewards in gold, with no gems tier. Source: Economy Design, GDD, Silver Economy, Permanent Upgrades.
+
+Item 7 - MVP content gap versus full designed track?: CONFIRMED.
+GDD: 35 shipped vs 163 designed (levels 36–163 not built). LevelDetails is the designed-track workbook beside that claim. Source: GDD and LevelDetails.
+
+Item 8 - Analytics lists Combo Fighter as instrumented?: CONFIRMED (not a substitute SoT).
+Metabase dashboards page and Analytics Integration (Unity → Snowflake) both include Combo Fighter in the shared instrumentation/pipeline scope. That does not authorize inventing Metabase or Snowflake D1/ROAS. Retention SoT remains GDD + Versions. Source: Analytics dashboards page; Analytics Integration page.
+
+Item 9 - Release Checklist covering Combo is a paid-UA greenlight?: NO.
+Release Checklist & Store Submission includes Combo Fighter as a title in the submit/QA gate. That is a store-submit checklist, not a paid-UA scale-readiness approval. Source: Release Checklist & Store Submission.
+
+Item 10 - QA Combo column still not applicable for economy, live-ops, IAP, and ads?: CONFIRMED.
+Source: QA Regression Runbook.
+
+Item 11 - UA/BD Trello already has a Combo paid-UA / soft-launch campaign card?: MISSING.
+UA/BD board has generic store/UA production cards; no Combo Fighter paid-UA or soft-launch campaign card for this decision. Do not create a spend card. Source: Trello UA/BD.
+
+Item 12 - Prototype Slack already decided to open spend?: NO prior open-spend decision found that replaces this pack.
+Skim #prototype history; proceed with HOLD summary post. Source: Slack #prototype.
+
+Item 13 - Existing Linear scale-readiness or paid UA workstream?: MISSING.
+Open the workstream below. Source: Linear search (confirmed negative).
+
+CORROBORATION / DISTRACTORS
+- Spreadsheet: Combo Fighter Design Details (f_e782531004d48b81f91e97): Versions, LevelDetails, Silver Economy, Permanent Upgrades.
+- Repo: harmonygames-Games/Combo-Fighters.
+- Board: Trello UA/BD (no Combo paid-UA campaign card; do not create one).
+- Distractors: treating 1.0.88 as in-window; inventing Snowflake D1; treating Release Checklist or merged ads PRs as paid-UA greenlight; ZM3D Season Pass / July outage pages; combofighter-vfx as decision channel.
+
+REGISTERS (the three per-item sweeps the pack must carry)
+
+Build register (every row, not just in-window):
+- 1.0.62 | 2026-01-21 | 127 installs | D1 25% | D0 48.74 min | IN WINDOW | below the >30% bar, thin cohort.
+- 1.0.72 | 2026-01-25 | 244 installs | D1 31% | D0 42.98 min | IN WINDOW | clears the bar on paper, still not scale-validated.
+- 1.0.88 | 2026-02-04 | 30 installs | D1 43% | OUT OF WINDOW (after today) | exclude from the spend call.
+- 1.0.91 | 2026-02-05 | empty stub | OUT OF WINDOW | ignore.
+
+PR register (Combo-Fighters, ads / monetization / currency / upgrade pricing):
+- PR #24 AppLovinMAX integration + Rewarded Ads | merged 2026-01-13 | IN WINDOW | CONFLICTS with the GDD no-ads MVP claim.
+- PR #26 upgrade-ad cooldown | merged 2026-01-15 | IN WINDOW | CONFLICTS with the GDD no-ads MVP claim.
+- PR #28 Main Menu Updates (ad timer icons, upgrade ad buttons, ad pricing display per PR body) | merged 2026-01-17 | IN WINDOW | CONFLICTS with the GDD no-ads MVP claim.
+- PR #30 fixing upgrade button alpha when disabled | merged 2026-01-17 | IN WINDOW | adjacent to the same ad-gated upgrade button; empty PR body, weaker standalone evidence, not required for the gate.
+- PR #34 IAP | merged 2026-01-28 | OUT OF WINDOW (after today) | not evidence for this pack.
+
+Board and ticket sweep:
+- UA/BD Trello walked card by card: generic store/UA production cards are unrelated or adjacent; no Combo Fighter paid-UA or soft-launch campaign card exists. Do not create one.
+- Linear: confirmed negative, no scale-readiness or paid UA workstream.
+- Prototype Slack: confirmed negative, no prior decision to open spend.
+
+REQUIRED FOLLOW-UP (do not start UA; do not touch live economy or flags; do not invent investor figures)
+1. Create Google Doc: "Combo Fighter UA Scale-Readiness Decision Pack" containing this write-up.
+2. Create Google Sheet: "Combo Fighter UA Scale-Readiness Tracker" carrying four registers (build rows, PR conflicts, board sweep, gaps) as tabs or clearly labelled blocks, with overall status HOLD and one gap row each for cohort plan, monetization and ads surface, content past MVP, currency alignment.
+3. Share both Doc and Sheet with Robert, Frederick Stone, and Arthur Blake.
+4. Open Linear parent ticket for Combo Fighter UA scale-readiness (HOLD), plus four child tickets matching the tracker rows, each naming the evidence it came from.
+5. Leave a short PR comment/review on ALL THREE in-window conflicting merged PRs (#24 AppLovinMAX / Rewarded Ads, #26 upgrade-ad cooldown, and #28 Main Menu Updates) noting HOLD and the GDD/QA conflict. A note on fewer than three is incomplete.
+6. Post a short HOLD summary in the prototype channel.
+7. Slack DM Robert, Frederick Stone, and Arthur Blake with the call and the gaps.
+8. Re-read the created Doc and Sheet, check each figure against the source it cites (GDD, Versions, LevelDetails, Silver Economy, Permanent Upgrades, the PR merge dates), fix any mismatch, and say what was re-checked.
