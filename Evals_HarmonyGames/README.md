@@ -20,6 +20,8 @@ They follow `attempter_guidelines.md` (the 5 Pillars, persona and prompt rules) 
 
 - **Company:** Harmony Games (mobile game studio; flagship *Zombie Match 3D*, ships as *Puzzles vs Zombies*).
 - **Today's date in the universe:** **2026-01-27** — the reference "now" for all temporal/feasibility checks (per `Scepture data/MANIFEST.md`).
+- **Fixed universe date ("today" for the agent):** **2026-01-27**.
+- **Some data is future-dated relative to 2026-01-27 and is OFF-LIMITS as task material.** Rows dated after the universe date: about 3,873 substantive `slack_messages` (the whole Feb 2026 studio wind-down thread), 88 `github_pull_requests`, 2 `linear_issues`, 1 `confluence_page`. A prompt, rubric or golden solution that treats any of it as already-happened is a future-as-past defect. The 708 Slack rows stamped 2026-07-30 are export artifacts with empty `text` and null `user_id`, not content.
 - **Data location:** `Scepture data/<schema>/<table>.json` — one flat JSON array per table. Verify every claim/value against these raw files.
 - **12 connectors:** Confluence, Contacts, GCalendar, Google Docs, Google Drive, GitHub, Gmail, Google Sheets, Google Slides, Linear, Slack, Trello.
 - **Tool ground truth:** `Tools/5_Server_Tools_Details.json` — the authoritative catalog of **276 tools + parameters** across 13 connectors (the 12 above plus Snowflake). Every evaluator checks tool/parameter existence against this file.

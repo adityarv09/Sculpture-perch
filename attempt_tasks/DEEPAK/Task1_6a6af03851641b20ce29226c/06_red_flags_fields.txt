@@ -1,0 +1,45 @@
+====================================================================
+DOOM LOOP (same call 3 or more times)
+====================================================================
+
+No
+
+====================================================================
+MISSING ERROR HANDLING
+====================================================================
+
+No
+
+====================================================================
+MISSING DISTRIBUTED CONTEXT (only 1 to 2 sources)
+====================================================================
+
+No
+
+====================================================================
+INCOMPLETE SYNTHESIS
+====================================================================
+
+Yes
+
+====================================================================
+RED FLAG NOTES / OVERRIDES
+====================================================================
+
+Scope. Four trajectories were supplied for this round, runs 1, 2, 4 and 5. Run 3 was not supplied, so every figure below is drawn from four runs rather than five.
+
+Doom loop, No. The longest run of consecutive identical calls, matching on both tool name and parameters, is 1 in all four runs. No call was ever issued twice in a row. The most repeated identical call anywhere in a run is 2 in run 1, 3 in run 2, and 1 in runs 4 and 5, and in run 2 the three instances are separated by other work rather than consecutive.
+
+Missing error handling, No. Zero hard errors occurred in any run; every tool call returned status success. The designed severity-1 failure fired heavily: message search returns an empty result set with status success for quoted, boolean or multi-term queries, and across the four runs 113 searches were issued of which 52 came back empty. Every one of the 52 was followed by a differently phrased query, so recovery was 52 of 52. Run 4 alone issued 52 searches and absorbed 31 empty results without abandoning a line of enquiry. No run treated an empty result as proof that no record existed, which matters on this task because the correct answer for sixteen of the eighteen open issues is that no completion record exists, so a run could reach the right conclusion by the wrong route. None did.
+
+Missing distributed context, No. Distinct services per run were 8, 7, 6 and 6, well past the three-source floor. Run 1: linear 67, slack 20, trello 10, gmail 5, contacts 3, github 2. Run 2: linear 50, slack 17, shell 16, files 11, trello 3, github 2. Run 4: linear 66, slack 38, github 11, gmail 8, trello 2, contacts 1. Run 5: linear 50, slack 22, trello 5, github 5, gmail 2, contacts 1. Tool call totals were 109, 100, 126 and 85, a mean of 105.
+
+Incomplete synthesis, Yes, in all four runs, and it is the same failure in each. Every run retrieved the completion timestamps on the eleven In Review issues and used them to justify closing those issues, then counted those same eleven as open in the figures it reported. Run 1 states both positions in one message to Leonard: "Genuinely Open: 29 tickets across all open states (Todo: 11, In Review: 11, Backlog: 3, Team Epic: 4)" and, four points later, "11 tickets sitting in In Review were closed off because the records (completed_at timestamps) showed they were already completed". Runs 2 and 5 do the same. Run 4 closes the same eleven and reports 29 open without restating the timestamp rationale. The information needed to reach 18 was in hand and acted upon in one part of the deliverable while contradicting another part of the same deliverable. That is gathered and not integrated, which is what this flag measures.
+
+Override on incomplete synthesis. An automated pass that only checks whether facts appearing in tool output also appear in the written report would score this No, because every figure the runs reported does appear in their output. The flag fires on the internal contradiction rather than on a dropped fact, and that is the correct reading: the runs did not fail to surface information, they failed to reconcile two conclusions drawn from the same information.
+
+Consequence, recorded because it explains the score distribution. This single unreconciled fact is the root of the four criteria that fail in every run: the open count, the stale count, the per-owner split and the unassigned count. Reported open counts were 29, 28, 29 and 29 against a correct 18, and each of the other three figures is computed from that inflated set.
+
+Depth observation, not a flag. Tool calls were 109, 100, 126 and 85, mean 105, with three of four runs clearing 100. This meets the Pillar 4 High band.
+
+Fabrication observation, not one of the four flags. Two runs closed issues on completion records that do not exist. Run 1 closed ART-638 citing a "Baklava release announcement" and run 4 closed ART-638 and ART-605 on the same and a claimed Slack confirmation. Sweeps of commits, pull requests, chat, mail, wiki, drive, Linear comments and Trello return nothing for either issue. This is covered by the closure criteria rather than by this taxonomy.

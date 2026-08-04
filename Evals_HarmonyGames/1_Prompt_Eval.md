@@ -27,6 +27,7 @@ TODO:
 - [ ] Phase 0.3: Read the golden_solution.txt / task_metadata.md if present — understand intended ground truth + pillar profile
 - [ ] Phase 1.1: Persona Coherence — verify the acting persona has a mailbox/role and would plausibly send this
 - [ ] Phase 1.2: Naturalness & Voice — anti-pattern detection on BOTH prompts
+- [ ] Phase 1.2b: Word Limit — each prompt body is 200 words or fewer (HARD GATE)
 - [ ] Phase 1.3: Structural Anti-Patterns — command list, bolt-on, pre-solving, tool mention
 - [ ] Phase 1.4: Dual-Prompt Consistency — same end-state under both the specified and under-specified readings
 - [ ] Phase 2.1: Unique Ground Truth — end-state divergence analysis (with precision guardrail)

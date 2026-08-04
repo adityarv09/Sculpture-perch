@@ -1,0 +1,127 @@
+TASK 1 - FULLY SPECIFIED PROMPT
+Persona: Robert (Co-Founder, Harmony Games)
+Scenario: Consolidated live-incident and player-compensation ledger
+
+------------------------------------------------------------------
+
+Every time something breaks we firefight it and it evaporates. I want one place holding it all.
+
+Cover five production incidents. Domino Delights: Nov 2024 quests stopped populating; May 2025 loading froze partway; June 2025 players came back at level 1; July 2025 lives stopped regenerating and events stopped firing. Zombie Match 3D: Aug 2025 Plague Race would not start, screen unresponsive.
+
+Give each its own page in our Operations space under one index page, all labelled. On each: the window, platforms and how widely it spread, root cause, every ticket, whether a fix merged and held. Name the merged fixes and their dates, and say where none exist.
+
+Then tag every ticket in Bugs, Regression or In Progress with its incident, or mark it unrelated.
+
+Then compensation, only what went out inside the windows. Separate granted from promised, keep the players apart, check the grants against the support playbook, and put it in a sheet. Issue or adjust nothing yourself, and ask no one to.
+
+Open tickets for any incident that never got one, and any remediation we wrote down but never filed. Summarise in #live-incidents. Ground every line in evidence and flag gaps rather than guessing.
+
+------------------------------------------------------------------
+
+TASK 1 - UNDER-SPECIFIED PROMPT
+
+Every time something breaks we firefight it and it evaporates. I want one place holding it all.
+
+Cover our five production incidents. Give each its own page where our support and live-ops planning lives, under one index page, all labelled. On each: the window, platforms and how widely it spread, root cause, every ticket, whether a fix merged and held. Name the merged fixes and their dates, and say where none exist.
+
+Then tag every ticket in Bugs, Regression or In Progress with its incident, or mark it unrelated.
+
+Then compensation, only what went out inside the windows. Separate granted from promised, keep the players apart, check the grants against the support playbook, and put it in a sheet. Issue or adjust nothing yourself, and ask no one to.
+
+Open tickets for any incident that never got one, and any remediation we wrote down but never filed. Summarise in the channel where we tracked these as they happened. Ground every line in evidence and flag gaps rather than guessing.
+
+------------------------------------------------------------------
+
+## Hint
+
+(to be filled after the silver trajectory run; leave empty if the run passes unhinted)
+
+------------------------------------------------------------------
+
+## Authoring notes (not part of either prompt)
+
+Universe date: 2026-01-27. All five incidents fall between Nov 2024 and Aug 2025, so every reference sits in the past and none of the future-dated Feb 2026 data is touched.
+
+Word limit: 200 per prompt, per attempter_guidelines.md rule 7, which makes over-length a hard fail. Fully specified 198, under-specified 169. Counted on the prompt body alone, excluding this header, the separators, the hint block and these notes.
+
+Symptom-only phrasing. Incidents are named by what players saw, never by root cause. The loading freeze does not mention fonts, the level-1 incident does not mention device ids, the July stretch does not mention the scheduler, and the Plague Race entry gives the symptom the player reported ("would not start, screen unresponsive") without the level-100 threshold or the algorithmic-generation cause. The agent derives all four causes itself.
+
+### Tool-call depth (Pillar 4): why this version reaches 100+
+
+Two earlier drafts measured under 60 calls. The error in both was estimating reads. Agents do not page through a 1,228-message channel or a 3,852-issue table, they run two or three searches and get everything back in a batch, so reads plateau somewhere around 30 to 45 no matter how much evidence the task scatters. Reads are not a lever.
+
+Writes are, because every write is exactly one call and none of them can be batched. This version is built on an unbatchable write floor of 67:
+
+- 1 index page in the Operations space
+- 5 incident pages hanging off it
+- 6 labels, one per page, since adding a label is a separate call from creating the page
+- 45 ticket tags. Bugs holds 22 issues, Regression 6 and In Progress 17, counted from linear_issues.json. "Tag it with its incident or mark it unrelated" makes every one of the 45 a write regardless of how the agent judges it, so the count is fixed and does not depend on attribution being generous.
+- 2 incident tickets for the two incidents that never got one
+- 5 remediation tickets for the five unfiled items on the engine page
+- 2 for the sheet: one creation call plus one append for its rows
+- 1 Slack post
+
+That is 1 + 5 + 6 + 45 + 2 + 5 + 2 + 1 = 67. A floor of 67 writes plus 35 to 45 reads puts the total at 102 to 112. Even on the pessimistic read estimate it clears 100.
+
+A cross-linking ask (four updates back onto the source pages) was cut when the rubric set was trimmed. It cost four writes and four rubrics, the worst ratio of any ask here, and its scope was agent-determined rather than fixed, which made it the one deliverable that could fail a correct agent.
+
+### Why the bug-pool sweep is in the task
+
+The sweep exists because the question it answers is the one a founder consolidating an incident record actually has: of everything still open against the product, how much of it traces back to these five incidents? That question cannot be answered by sampling. It is answered by going through the queue, and the queue is 45 deep.
+
+The judgement is real, not clerical. Seven of the 45 belong to an incident and 38 do not, so the agent has to decide each one against five incident definitions it derived itself earlier in the task. Two of the seven are the hardest finds in the set. ENG-2363 "After signing-in, the game stuck at splash screen" is the ticket that proves the May 2025 fix shipped and still did not close the class, which is the finding that separates a strong answer from a plausible one. ENG-2345 "Addressable Issues" (opened 2025-05-09) is the incident 2 follow-up Arthur Blake described in the channel that same day as shoving the font load "into addressables manager"; its own title and body never mention fonts, so it is reachable only by connecting the ticket to the Slack thread. Both sit in In Progress, so narrowing the sweep to Bugs and Regression to save 17 writes would remove them and cost the task its two best pieces of signal.
+
+This is the "multiple related issues to connect" shape rather than a volume constraint. The write count is a consequence of the queue depth, not the reason for the ask, and attempter_guidelines.md is explicit on the point: "Tool-call count is only a rough heuristic, not a target. If you're not hitting your assigned depth, add more data, more stakes, and more asks."
+
+### Why the compensation ask is window-scoped
+
+"only what went out inside the windows" is load-bearing, not filler. The live-incidents channel carries player compensation across its whole 14-month history, and issuefeed carries more. Without the window clause the ledger has no bounded answer: a 2024-12-02 grant of 50,000 coins, a 2025-05-29 gem top-up and a 2025-11-02 lives grant are all real, all confirmed, and all unrelated to the five incidents. Two competent agents would produce different ledgers. The clause also creates a genuine dependency, since the windows must be established in the incident pass before the compensation pass can start.
+
+### Why "keep the players apart"
+
+Three distinct players appear in the compensation record and they are only separable in issuefeed, by author handle. Player A was promised 10 catapults on 2025-08-04 and never received anything. Player B received 5,000 coins on 2025-08-06. Merging them makes the undelivered promise look delivered, which is the single most common wrong answer.
+
+### Why "check the grants against the support playbook"
+
+An earlier phrasing, "flag where we broke the support playbook rule on grants", asserted a breach the data does not support. The playbook's only grant rule sits inside its June 2025 re-link section: "Never issue a compensating grant before a re-link". The same page's triage row for the July 2025 scheduler outage tells first-line support to "grant a lives top-up as goodwill", so the July lives grants are what the playbook prescribes, not a violation of it. The neutral phrasing keeps the investigation and lets the honest finding be graded either way.
+
+### Why "any incident that never got one"
+
+An earlier phrasing, "lacking one of its own", was ambiguous for incident 5. ZOM-456 was raised on 2025-08-05 in direct response to the Plague Race report and announced in the channel, but its title and body describe the level 111 HUD and input block rather than the algo-levels scoring defect, so a rigorous agent could argue it is not the incident's own ticket and open a third. "Never got one" is determinate: incidents 1, 2 and 5 were ticketed, incidents 3 and 4 were not. Exactly two.
+
+### Review fix: gate G1, fully specified prompt was not fully specified
+
+A reviewer failed G1 on three counts, all correct, all fixed and retained in this version:
+
+1. "the Plague Race problem" named no symptom while the other four did. It now reads "Aug 2025 Plague Race would not start, screen unresponsive", taken from what the player actually reported in live-incidents on 2025-08-04: "Whenever I try to start the race nothing happens. I try to press the screen but it's not reacting". Symptom only, so the algo-levels root cause stays a discovery rather than a restatement.
+2. The summary destination was described rather than named. The fully specified prompt says "#live-incidents". The under-specified prompt keeps a description, which is omission 2 and is meant to stay vague.
+3. No incident was mapped to a game. The enumeration is grouped: four on Domino Delights, one on Zombie Match 3D. Verified rather than assumed. Incidents 1 to 4 are all Domino Delights, on 0.2.x build numbers (ENG-2346 records "0.2.197", the June thread cites 0.2.152 and 0.2.161 to 162, Leonard is "playing domino delights" in the July thread), the four June-related bugs all carry the "DD 2.1" label, the quest postmortem names Domino Delights outright, and the May fix merged in the GameOfDominoes repository. Incident 5 is Zombie Match 3D per the live-ops calendar. Zombie Match 3D uses 0.3.x builds, which is how the two are told apart in the channel.
+
+### Second review pass: six wording fixes
+
+1. Word count. The previous version was written to a 350-word limit that does not exist. Rule 7 sets 200 and calls over-length a hard fail. Both prompts were cut: 282 to 198 and 241 to 169. Nothing a rubric grades was removed. What went was restatement ("All of them, not just the obvious ones"), one line of flavour ("I doubt any of it was recorded") and the one deliverable whose scope was agent-determined, below.
+
+2. "Add any other open ticket you can tie to an incident" was cut. Its scope was agent-determined, so two correct agents produced different final Linear states, and no rubric graded it. The golden solution still credits the defensible extras (ENG-2345, ZOM-611, ZOM-667, ENG-2277, ENG-2349, ENG-2350) when they appear, and still never requires them.
+
+3. "how many players" became "how widely it spread". No player count is recoverable for any of the five incidents, so the old wording asked for a figure the universe cannot supply and the correct answer was "unknown" five times over. Spread is answerable everywhere: catalog-wide on both platforms for incident 1, global builds worst for non-English font packs for incident 2, both platforms for incident 3, all Domino Delights players plus the 30 percent revenue drop for incident 4, players above level 100 for incident 5. Rubrics 28 and 29 still grade the honest "count cannot be established" line for incidents 3 and 4, which is now carried by "flag gaps rather than guessing" rather than by a direct ask.
+
+4. "Name the pull request and its merge date where one exists" became "Name the merged fixes and their dates". Incident 1 has no single pull request: "Quest system updates" (2024-11-16), "Assuring quests are loaded from the server before it's unlocked" (2024-11-19) and a quest fix branch (2024-11-19) are all defensible answers and the golden solution lists all three. The singular phrasing implied a uniqueness the data does not have.
+
+5. "for the remediation we wrote down and never filed" became "any remediation we wrote down but never filed". The old wording asserted, as fact, a finding the agent is supposed to discover. "Any" leaves it to be established. The count stays effectively five, since the engine page is the only remediation list with nothing filed against it, and the quest postmortem's unfiled canary follow-up remains credit-not-required in the golden solution.
+
+6. The under-specified summary destination was tightened. See omission 2 below.
+
+### Grading consequences of the wording
+
+- No rubric grades section ordering, the presence of a recommendation, or whether the revenue figure was recomputed. The prompt does not ask for any of them.
+- The rubric set is 60 items in rubrics.json, 8 of them gates, every item Objective Compliance and binary, with no banded judgment anywhere. Enumerable repeated writes get one rubric each: five incident pages, five remediation tickets, five root causes, four confirmed grants. The one exception is the 45-ticket sweep, where enumeration is impractical, so it uses the prescribed shape of one aggregate count plus three named instances.
+- Grade new tickets on existing and naming what they cover, not on containing specific fields.
+- linear_comments is empty in this universe, so ticket tagging must be graded on the issue's final state, description or labels, never on a comment.
+
+Omissions in the under-specified prompt (2, keeping Pillar 1 at or below 3):
+
+1. Which incidents are in scope. The fully specified prompt names all five, dates them and maps each to its game. The under-specified version gives the count but not the identities. The count is deliberate: it bounds the answer set, so the Oct and Nov 2025 recurrence of the lives-stuck-at-zero symptom does not read as a sixth incident. Recovery is one lookup in the Operations space, where the support playbook triage table names four and the live-ops calendar names the Plague Race bug.
+
+2. Where the pages go and where the summary is posted. The fully specified prompt names the Operations space and #live-incidents outright. The under-specified version says "where our support and live-ops planning lives" and "the channel where we tracked these as they happened". The space wording is deliberate. An earlier draft said "where the rest of our live-ops material lives", which is ambiguous, because the Live-Ops Event Engine page and the quest postmortem both sit in Engineering, not Operations. Matching against the OPS space description ("Release procedures, live-ops event planning, customer support, and analytics dashboards") resolves to OPS and nothing else.
+
+   The channel wording was tightened in the second review pass. An earlier draft said "where the team keeps an eye on this stuff", which does not uniquely resolve: god-bugs (13,257 messages), zombie-bugs (3,538) and zombie-ops (1,124) are all non-archived and all bug or live-ops scoped, and god-bugs is ten times the size of live-incidents. "The channel where we tracked these as they happened" is a discriminating test rather than a vibe, since all five incidents were tracked in live-incidents and none of the other three carries the incident narrative. One lookup each.
