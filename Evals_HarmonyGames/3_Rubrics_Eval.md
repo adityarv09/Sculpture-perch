@@ -100,13 +100,16 @@ Read `full_rubrics_guidelines.md` (categories, gate vs partial credit, weights, 
 
 Count only the HIGHEST severity issue per criterion.
 
+### Anti-overtrigger (read before flagging)
+Do **not** invent Majors/Moderates from optional polish. If a criterion already grades the ask, do not also fail the set for a missing “nicer” sibling rubric. Prefer **Non-Failing / Minor** when the judge’s call would not change. When in doubt between Major and Moderate, take the **lower** severity unless a correct agent would clearly fail or a required deliverable has zero coverage.
+
 ### Major
 | Issue | When to flag |
 |---|---|
-| **Missing Criteria — Outcome** | An explicit prompt ask has no covering Outcome criterion; a write action has no 1.1; a user-asked fact has no 2.1 |
+| **Missing Criteria — Outcome** | An explicit prompt ask has no covering Outcome criterion; a write action has no 1.1; a user-asked fact has no 2.1. **Not Major:** layout/order polish when an itemized deliverable + per-item findings already cover the asks; “plain status + evidence” when findings + an itemized-entry rubric already exist |
 | **Not Self-Contained** | Expected value not embedded ("emails the release lead" without the address; "the variance is correct" without the figure) |
-| **Not Atomic** | Bundles 2+ independent actions/checks (email + Slack post; issue update + note) |
-| **Incorrect Criteria** | Contradicts prompt/golden-solution/universe; fabricated value; a detail the prompt never asked for; method lock-in severe enough to fail a correct agent; requires an empty capability |
+| **Not Atomic** | Bundles 2+ independent **write actions** / services (email + Slack post; issue update + separate note; one send per recipient). **Not Major:** one prompt-jointed finding that names two look-alike tickets / two related facts from the same determination (e.g. “whether ZOM-667 and ENG-2400 are the outage work”) — keep as one 2.1; still split the *writes* that update each ticket |
+| **Incorrect Criteria** | Contradicts prompt/golden-solution/universe on a **material** value; fabricated figure/key/handle; method lock-in that fails a correct agent; empty capability. **Not Major:** harmless timezone/date-format synonyms (`03:41` vs `03:41 UTC`, `Jul` vs `July`) when golden and universe agree on the substantive fact — treat as Non-Failing wording or Minor flexibility |
 | **Bad Gate Item** | A subjective/degree criterion placed in the gate; a non-atomic gate item; a gate item that isn't a genuine non-negotiable |
 | **Invalid Expert-Assessment bands** | Off-scale scores (not in −1…−0.75…0…+1); non-distinct/non-falsifiable bands |
 | **Invalid Penalty** | A negative *weight* instead of a penalty item; a must-fail behavior encoded as a penalty (should be a gate item); double-negative wording |
@@ -147,6 +150,8 @@ Quality that varies by degree. Decompose into discrete bands, each with a score 
 
 ### Process (optional, rare — three-condition test)
 Write a Process rubric ONLY if ALL three hold: (1) required by every valid path (phrased broadly, "notifies legal" not "emails legal"); (2) a stricter Outcome can't capture it; (3) it verifies a behavior, not a tool-call trace. Ordering constraints ("notify before scheduling") can be explicit and still need Process because Outcome can't verify ordering — one ordering constraint per rubric. Never name a tool.
+
+**Do not over-invalidate Process:** Outcome scoring the *finding* (e.g. calendar not-safe, sheet dates, Observability gap) does **not** by itself make a Process rubric invalid. Outcome answers “was the fact right?”; Process may still ask “did the agent consult the required sources / confirm-negative *before* writing?” Mark Process invalid only when it is a pure restatement of an Outcome with no extra ordering/consult behavior, locks a tool/method, or is an execution-trace checklist.
 
 ### Verb cheat-sheet (agent-centric)
 - Write happened → "The Agent sends / creates / updates / posts …"
@@ -203,9 +208,9 @@ Decompose each criterion into its noun phrases/values; for each ask "can the jud
 - ✅ "The Agent sends an email to victor.barnes@harmonygames.co".
 
 ### 2.2 Atomicity (HARD GATE — mandatory decomposition)
-Split every criterion into distinct claims. Two claims that can fail independently or come from different write actions/services → **Not Atomic (Major)**.
-- **Independent (split):** email + Slack post; issue update + separate note; sending the same email to multiple recipients (one send per recipient).
-- **Acceptable bundling:** multiple fields of the *same* write (recipient + subject of one email); two facts from the *same* record; the *content* of one email that goes to multiple recipients (content passes/fails together).
+Split every criterion into distinct claims. Two claims that can fail independently **and** come from different write actions/services → **Not Atomic (Major)**.
+- **Independent (split):** email + Slack post; issue update + separate note; sending the same email to multiple recipients (one send per recipient); one rubric per remediation *ticket create*.
+- **Acceptable bundling:** multiple fields of the *same* write (recipient + subject of one email); two facts from the *same* record; the *content* of one email that goes to multiple recipients (content passes/fails together); a **single prompt ask** that jointly scopes a closed set of look-alikes/decoys named together (findings may stay one criterion; the update/create writes stay one-per-item).
 
 ### 2.3 Correctness (HARD GATE — DEEP EXPLORATION)
 Verify every embedded value against `Scepture data/`.
@@ -213,7 +218,7 @@ Verify every embedded value against `Scepture data/`.
 - [ ] Channel names exist in `slack/slack_channels.json`.
 - [ ] Ticket keys exist in `linear/linear_issues.json`; PR titles/numbers in `github/github_pull_requests.json`; pages in `confluence/confluence_pages.json`; docs in `gdocs/docs_documents.json`.
 - [ ] Figures/counts/dates computed from the data (do the math yourself); statuses match current data.
-- [ ] **Reverse-groundedness:** every literal traces to the prompt or the universe. A value found nowhere and never asked for = fabricated → **Incorrect (Major)**.
+- [ ] **Reverse-groundedness:** every literal traces to the prompt or the universe. A value found nowhere and never asked for = fabricated → **Incorrect (Major)**. Harmless presentation synonyms that preserve the same fact (timezone label, month abbreviation, “roughly” vs “approximately”) are **not** fabricated values — do not Major them.
 - [ ] **Tool existence (evidence/justification cross-check):** any tool named in an evidence/justification field must exist in `Tools/5_Server_Tools_Details.json`; any "(or similar)" claim must have a real alternative tool there. (The **criterion** text must name no tool at all — see 2.8.)
 - [ ] **No empty-data criteria:** a rubric requiring a scheduled meeting, a slide deck, a Linear comment, a GitHub issue/release, or Snowflake data is **Incorrect (Major)**. The *tool* exists in `Tools/5_Server_Tools_Details.json`, but the underlying table is empty (per `MANIFEST.md`), so no agent can produce a gradable result.
 - [ ] **Prompt-vs-rubric action alignment (HARD GATE):** for every 1.1 write rubric, confirm the prompt assigns that action to the **agent**, not the user. If the prompt says "I'll write it up / I'll send it" and the rubric makes the agent do it → **Incorrect (Major)**.
@@ -272,9 +277,11 @@ Never use "such as / like / for example" to *define* the correct answer set.
 ## PHASE 3: Set-Level Quality
 
 ### 3.1 Completeness — Outcome coverage
-Map every explicit ask to its covering Outcome rubric. Decompose compound asks ("what's resolved AND what's still open" → two criteria). For determinations ("tell me whether X"), require a criterion grading the **verdict**, not just the evidence. Per-deliverable coverage: a fact required inside the email is not covered by a criterion on the final response.
+Map every explicit ask to its covering Outcome rubric. Decompose compound asks that are **independent determinations** ("what's resolved AND what's still open" → two criteria). A prompt that asks one joint scoping question about a named set may stay one criterion. For determinations ("tell me whether X"), require a criterion grading the **verdict**, not just the evidence. Per-deliverable coverage: a fact required inside the email is not covered by a criterion on the final response.
 
 **Final-response coverage gate:** every fact/finding/conclusion the prompt asks the agent to report to the user must have a **2.1** rubric. Missing = **Major**. (Most commonly missed rubric type: CBs write 1.1/1.2 for writes but forget 2.1 for what the agent tells the user.)
+
+**Do not Major-miss:** item *order* / “laid out in this sequence” when the prompt’s substance is already covered by an itemized-entry rubric plus per-item findings, unless the prompt makes order make-or-break (e.g. a fixed checklist where sequence is itself the deliverable).
 
 **Exclusion/decoy coverage:** if the prompt has filter criteria AND the universe has decoys, at least one rubric must penalize incorrect inclusion. Missing → **Major**.
 
@@ -297,7 +304,11 @@ Penalties are subtract-only (0 / −1 / −2 / −3), written as positive statem
 - **Many-item repeats** where enumeration is impractical: use a spot check = aggregate count ("sends all 16 emails") + ≥3 specific instances ("emails #2, #7, #14 contain the right personalized content").
 
 ### 3.6 Process Audit (three-condition test)
-For each Process rubric, all three must hold or it's invalid (Moderate — Wrong Category; counts toward Process sub-dimension). Invalid when it: reformulates an Outcome, locks a method/tool, is an execution trace, or is reward-hackable. Process sub-dimension FAILs at **2+** invalid Process rubrics.
+For each Process rubric, all three must hold or it's invalid (Moderate — Wrong Category; counts toward Process sub-dimension). Invalid when it: **only** reformulates an Outcome with no added consult/ordering behavior, locks a method/tool, is an execution trace, or is reward-hackable.
+
+**Valid Process (do not flag):** confirmed-negative search before creates; consulting named gate + cross-check sources before the final write-up; reading a corroborating sheet before citing it — even when Outcome also checks the resulting facts. Those Process items grade trajectory ordering/consult, not the finding text.
+
+Process sub-dimension FAILs at **2+** *clearly* invalid Process rubrics. Borderline Process that adds real before/consult behavior → leave valid (score 5 or 3 only if wording is tool-locked).
 
 ### 3.7 Overlap / Redundancy
 Removing a criterion that wouldn't change scoring = redundant (Moderate). Acceptable: OC 1.1 + 1.2 for the same write (action happened vs its content). Not acceptable: a positive and an oppositely-weighted negative for the same aspect (double-penalty).
@@ -359,6 +370,8 @@ Any flag → return to the relevant phase, add to the tally, recalculate.
 
 Grade to the lowest sub-dimension; any FAIL → Rubric dimension FAILs; all 5 → PASS.
 
+**Do not FAIL the whole Rubric dimension on a Process nit alone** when Overall (Phase 4) is PASS/NON-FAIL, gates/bands/penalties/phrasing are 5, and the only Process dispute is “Outcome already covers related findings.” In that case score Process **5** (or **3** if wording is tool-locked), not **1**.
+
 ### 5.2 Final Verdict
 ```
 ## RUBRIC EVALUATION REPORT
@@ -418,4 +431,5 @@ Grade to the lowest sub-dimension; any FAIL → Rubric dimension FAILs; all 5 �
 - **Be skeptical** — assume every embedded value is wrong until verified in `Scepture data/`.
 - **Guard the gate** — it holds only objective, atomic non-negotiables; quality lives in Expert-Assessment partial credit.
 - **Respect the universe shape** — no rubric may require a capability the empty tables can't provide.
-- **Never rationalize a finding away** — over-specification counts even when the locked-in method is likeliest; a write checked as Process is still a finding.
+- **Never rationalize a real finding away** — over-specification counts when a valid path is rejected; a write checked as Process is still a finding.
+- **Do not overtrigger** — a clean, fixed rubric set should stay PASS (5). Do not invent Majors from UTC/format synonyms, joint look-alike findings, missing order polish, or Process consult rubrics that sit beside Outcome findings. Optional polish ≠ FAIL.

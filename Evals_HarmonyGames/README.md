@@ -19,7 +19,7 @@ They follow `attempter_guidelines.md` (the 5 Pillars, persona and prompt rules) 
 ## Universe facts every evaluator relies on
 
 - **Company:** Harmony Games (mobile game studio; flagship *Zombie Match 3D*, ships as *Puzzles vs Zombies*).
-- **Fixed universe date:** **2026-07-30** (extract-complete date, per `Scepture data/MANIFEST.md`).
+- **Today's date in the universe:** **2026-01-27** — the reference "now" for all temporal/feasibility checks (per `Scepture data/MANIFEST.md`).
 - **Data location:** `Scepture data/<schema>/<table>.json` — one flat JSON array per table. Verify every claim/value against these raw files.
 - **12 connectors:** Confluence, Contacts, GCalendar, Google Docs, Google Drive, GitHub, Gmail, Google Sheets, Google Slides, Linear, Slack, Trello.
 - **Tool ground truth:** `Tools/5_Server_Tools_Details.json` — the authoritative catalog of **276 tools + parameters** across 13 connectors (the 12 above plus Snowflake). Every evaluator checks tool/parameter existence against this file.

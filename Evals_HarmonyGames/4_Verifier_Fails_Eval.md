@@ -14,7 +14,7 @@ Your job is to diagnose each failing rubric by cross-referencing the judge's jus
 - A rubric failing many runs is a signal to investigate, but agents can genuinely fail a hard criterion. Never skip Phase 2/3.
 - **Trajectories are recorded per run** in the task's `gemini_fully_specified agent runs/trajectory-run-N.json` (the Pass@5 measurement runs on the fully-specified prompt). The failing run's trajectory is the **ground truth for what the agent actually did**. Use it to separate a **Judge Error** (trajectory shows the agent DID satisfy it) from a **Legitimate Fail** (trajectory confirms it didn't). An **empty** trajectory = the agent errored on that run → **excluded**.
 
-**Fixed universe date:** 2026-07-30.
+**Fixed universe date:** 2026-01-27.
 
 ---
 

@@ -12,7 +12,7 @@ A Harmony Games task ships **two prompts**: a **fully specified** prompt (states
 - **Respect the empty tables.** No calendar/scheduling, no slide decks, no Linear comments, no GitHub issues/releases/tags. A prompt that asks the agent to "schedule a meeting", "build a deck", or "open a GitHub issue" is **infeasible** in this universe.
 - When in doubt, dig deeper. The cost of missing a factual error or feasibility gap is far greater than the cost of extra exploration.
 
-**Fixed universe date:** 2026-07-30 (see `Scepture data/MANIFEST.md`).
+**Today's date in the universe:** 2026-01-27 (the reference "now" for all temporal checks; see `Scepture data/MANIFEST.md`).
 
 ---
 
@@ -36,7 +36,7 @@ TODO:
 - [ ] Phase 2.5: Investigation + Action — read/write balance (writes must be non-scheduling)
 - [ ] Phase 2.6: Clarity & Specificity — action-decision ambiguity, delegation clarity
 - [ ] Phase 2.7: Contrived vs Natural Difficulty
-- [ ] Phase 2.8: Date Alignment — relative time resolves against 2026-07-30 with real data in-window
+- [ ] Phase 2.8: Date Alignment — relative time resolves against 2026-01-27 with real data in-window
 - [ ] Phase 3.1: Pillar Profile Compliance — does each pillar hit its intended band, no off-profile over-build?
 - [ ] Phase 3.2: Difficulty — can this plausibly hold Gemini Pass@5 < 30% on the fully-specified prompt?
 - [ ] Phase 4.1: Final Scoring Table
@@ -277,14 +277,14 @@ Does the prompt require BOTH investigation and a real write action (that isn't s
 
 ### 2.8 Date Alignment Check
 
-Universe fixed date = **2026-07-30**. Relative time is allowed IF it resolves correctly and the resolved window has data.
+Universe fixed date = **2026-01-27**. Relative time is allowed IF it resolves correctly and the resolved window has data.
 
 **Step 1:** scan for relative phrases ("this week", "recently", "the last two shipped versions", "Thursday", "currently").
-**Step 2:** resolve each against 2026-07-30 and apply the litmus test ("would the answer change if the agent thought it was a different date?").
+**Step 2:** resolve each against 2026-01-27 and apply the litmus test ("would the answer change if the agent thought it was a different date?").
 **Step 3:** verify the resolved window actually has data in the universe.
-**Step 4:** confirm the universe data broadly aligns with 2026-07-30 (no stale/contradictory references caused by drift).
+**Step 4:** confirm the universe data broadly aligns with 2026-01-27 (no stale/contradictory references caused by drift).
 
-**Scoring:** FAIL if the request doesn't make sense given 2026-07-30, relative time is unanchored, the resolved window is empty, or universe data is misaligned and creates stale/ambiguous references; PASS otherwise.
+**Scoring:** FAIL if the request doesn't make sense given 2026-01-27, relative time is unanchored, the resolved window is empty, or universe data is misaligned and creates stale/ambiguous references; PASS otherwise.
 
 ---
 

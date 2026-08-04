@@ -1,0 +1,24 @@
+{
+  "task_id": "task1_6a6af03621287707fb1c9375",
+  "task_name": "ZM3D (\"Puzzles vs Zombies\") store-submission release readiness / go-no-go",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt (overall NO-GO)",
+  "authoring_notes": "Objective Compliance and Expert Assessment first, then Process. Every criterion is atomic (one yes/no claim; the reason for a status lives in justification, not the criterion) and self-contained (expected answer, definitions, exact location/format embedded). Agent-centric phrasing, no tool names. Gate = objectively pass/fail AND make-or-break; safety is always gate.",
+  "category": "Process",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent verifies whether a QA sign-off exists for this build before it states the overall call.",
+      "justification": "QA sign-off is the hard gate that decides the call, and the final NO-GO alone cannot prove the Agent actually looked for a sign-off; a confirmed-negative search is something no Outcome rubric can capture. Phrased broadly so any valid verification path passes.",
+      "evidence": "Before the overall call, the trajectory shows the Agent looking for a QA sign-off for this build (for example in QA records or team communications); the specific source does not matter."
+    }
+  ]
+}

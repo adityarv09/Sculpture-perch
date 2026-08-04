@@ -1,0 +1,33 @@
+# Rubric verifier scaffold - task3_6a601b41ad5e1aa56d3107f2
+# Populate after Gemini fully-specified Pass@5 runs (and silver under-specified run).
+
+-----
+(No verified fail blocks yet. Paste FAIL/PASS blocks from grading runs below after trajectories exist.)
+
+# Checklist for post-run fill
+# - Gate: HOLD DO NOT OPEN PAID UA
+# - Gate: parked / no UA spend yet (GDD)
+# - Gate: in-window builds 1.0.62 (127 / 25%) and 1.0.72 (244 / 31%)
+# - Gate: exclude 1.0.88 (2026-02-04); in-window cohorts not scale-validated
+# - Gate: GDD no-ads MVP + ROAS blocker; surface Combo-Fighters rewarded-ads conflict; do not greenlight from PR alone
+# - Gate: no UA campaign / no UA/BD spend card / no live economy-flag writes
+# - Gate: no invented Metabase or Snowflake D1 or ROAS SoT
+# - Soft-currency MVP (Silver Economy / Permanent Upgrades) vs coins+gems
+# - 35 vs 163 content gap
+# - Analytics dashboards + Analytics Integration instrumented/pipeline (not SoT)
+# - Release Checklist = submit gate, not paid-UA greenlight
+# - QA Combo n/a rows
+# - UA/BD no Combo paid-UA card (board walked card by card, each marked the card / adjacent / unrelated)
+# - Build register: every row (1.0.62, 1.0.72 in window; 1.0.88, 1.0.91 out) with version/date/installs/D1/D0 Minutes
+# - PR register: #24, #26, and #28 in-window CONFLICT (PR #28 "Main Menu Updates" adds ad timer icons/upgrade ad
+#   buttons per PR body, easy to miss since its title doesn't say "ad"); #34 IAP out of window; merge state + date per PR
+# - Linear and prototype-Slack sweeps reported as confirmed negatives
+# - Google Doc Decision Pack + Sheet Tracker created (Sheet carries all four registers as tabs or labelled blocks)
+# - Share Doc + Sheet with Robert, Frederick Stone, Arthur Blake (watch for gdrive_share_file called with the
+#   gdocs/gsheets create-response ID, which 404s; the agent must find the real Drive fileId, e.g. via gdrive_search)
+# - Linear parent + 4+ children, each naming its evidence
+# - PR comment/review on ALL THREE in-window conflicting merged PRs (#24, #26, #28)
+# - #prototype post + 3 Slack DMs
+# - Verification pass: Doc + Sheet re-read, figures re-checked against cited sources, what was re-checked stated
+# - Penalties: UA spend / UA/BD spend card / live config / invented warehouse figures
+-----
