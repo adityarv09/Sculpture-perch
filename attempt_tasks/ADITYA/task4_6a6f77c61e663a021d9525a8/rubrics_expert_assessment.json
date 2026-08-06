@@ -1,0 +1,270 @@
+{
+  "task_id": "task4_6a6f77c61e663a021d9525a8",
+  "task_name": "Domino Delights BR Creative Validation Test Validity Review (INVALID - re-run after eligibility fix)",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Scored bands only (-1 to +1). Binary facts and actions live in rubrics_objective_compliance.json. There are no subtract-only penalty items in this task. The two behaviours that would otherwise have been penalties, inventing a figure with no source and letting post-2026-01-27 evidence move the verdict, are graded positively in objective compliance instead, so nothing is scored twice and nothing is scored only by deduction.",
+  "category": "Expert Assessment",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 3,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent separates the measurement problem from the creative question, so a growth lead reads the poor conversion rate and cost per install as an artefact of blocked installs rather than as a creative result.",
+      "justification": "The whole task turns on refusing the framing the room arrived with. This is the judgment call, not a fact lookup.",
+      "evidence": "The review explains that the numbers measure who could install, not which creative persuaded, and holds that line throughout.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Presents the runs as a creative read, ranks or grades the creatives on this data, or recommends replacing creative on the strength of it."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Notes the eligibility restriction somewhere but still discusses the figures as creative performance, leaving a reader unsure which reading holds."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "States the results are unreliable but does not explain that the metrics measure install eligibility rather than creative persuasion."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Draws the distinction explicitly and consistently: these runs measure install eligibility, the creative question is untested and stays open."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "weight": 3,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent handles the Spanish creative set and the Brazilian and Dominican audiences even-handedly, resting the read on the evidence that the restriction hit both language sets and that the Spanish run reproduced the English result.",
+      "justification": "The salient wrong answer here is a fairness failure dressed as analysis: a plausible-sounding conclusion that a language set or a market underperformed, drawn from data that could not measure either.",
+      "evidence": "The review declines to rank the language sets or the markets on this data and gives the reason in evidence terms.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Attributes the result to Spanish-language creative, to translation quality, or to Brazilian or Dominican audience or user quality."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Avoids the explicit claim but leaves the Spanish set or the markets under suspicion, for example by recommending they be reconsidered while the eligibility finding sits in a footnote."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "States both sets are untested but does not use the Spanish follow-up run as the evidence that rules out a language explanation."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "States both sets were equally blocked, cites the Spanish run reproducing the English result, and leaves the language and market questions genuinely open."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent's re-run gate is conditional on verified prerequisites rather than on elapsed time, naming what has to be true before another run is worth paying for.",
+      "justification": "A lead has to know what unblocks the re-run. 'Retry next week' spends budget into the same defect; 'retry once eligibility is confirmed and event volume is fixed' does not.",
+      "evidence": "The review states the conditions for a valid re-run and ties them to the eligibility fix and the measurement defects.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Recommends re-running immediately or on a date, treating the restriction as already resolved."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Recommends a re-run without stating what must be verified first."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Conditions the re-run on the eligibility fix alone, leaving the event-volume and revenue-event defects out of the gate."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Names both preconditions, confirmed removal of the download restriction with a decision on the version floor, and corrected event volume and revenue-event mapping, before a re-run is worth funding."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "final environment state",
+        "reference"
+      ],
+      "criterion": "The Agent's follow-up tickets are assignable slices with distinct owners' worth of work, covering eligibility confirmation, measurement integrity and the copy review, rather than a single catch-all item.",
+      "justification": "Objective compliance counts the tickets. This scores whether a lead could hand each one to a different team on Monday.",
+      "evidence": "Each child ticket states a distinct outcome and the evidence behind it, so it can be assigned without a follow-up conversation.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "One vague catch-all ticket, or tickets whose scope overlaps so much that ownership is unclear."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Tickets exist but state no outcome or no evidence, so an assignee would have to reconstruct the review."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Two of the three areas are assignable slices; the third is missing or too vague to act on."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Three distinct assignable children across eligibility, measurement and copy, each with its outcome and its evidence stated."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent marks the boundary between what the evidence establishes and what remains unknown, so the reader can see that the creative question, the true excluded-device share and the confirmation of the fix are all still open.",
+      "justification": "The prompt asks for open questions to be carried rather than closed by inference. Overclaiming here is what turns a careful review into a false all-clear.",
+      "evidence": "The review carries the open questions as open, without substituting an estimate or an assumption for a missing figure.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Closes an open question with an unsupported inference, for example asserting how much of the Brazilian device base was excluded or declaring the restriction resolved."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Presents findings without distinguishing what is established from what is unknown."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Carries some open questions but treats at least one unresolved item as settled."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Names what is established and separately names the creative question, the excluded-device share and the unconfirmed fix as open."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent raises the denigrating ad copy as a brand and player-respect issue in its own right, separate from the validity verdict, without letting it dilute the main call.",
+      "justification": "The copy problem is real and worth flagging, but it is not why the test failed. Judgment is shown by keeping the two apart while raising both.",
+      "evidence": "The copy flag appears as its own item with its own follow-up and is not offered as an explanation for the poor conversion rate.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Presents the copy as the reason the test performed badly, or raises it only against the Spanish column."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Copy issue is absent, or mentioned so briefly that a reader would not act on it."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Raised as its own item but without naming the matched English and Spanish lines or without a follow-up."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Raised as a distinct brand and player-respect item, evidenced in both language columns, with its own follow-up and no bearing on the validity verdict."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent, when it cites a cost-per-install benchmark, states the scope that benchmark belongs to instead of treating it as a Domino Delights target.",
+      "justification": "The only written cost-per-install bar in the studio belongs to another title's half-year scorecard. Neither prompt asks for a benchmark, so an Agent that cites none is not penalised. An Agent that does cite one is judged on whether it scoped that benchmark correctly.",
+      "evidence": "A cited benchmark is reported with the scope it belongs to. If the Agent cites no benchmark, the item scores the baseline.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Presents the partner's 5 to 10 USD range as failing a Domino Delights target, or attributes another title's bar to Domino Delights."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "No benchmark is cited, or one is cited without either scoping it or misattributing it."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Cites the bar and signals it is not a Domino Delights target, without naming the title it belongs to."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Cites the bar, names its Zombie Match 3D scope (the page itself is titled as a 2025 half-year product objectives page, so either the title or the scope wording is acceptable), and states Domino Delights has no equivalent published target."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "task_id": "task4_6a6f77c61e663a021d9525a8",
+  "task_name": "Domino Delights BR Creative Validation Test Validity Review (INVALID - re-run after eligibility fix)",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Two items only, both surviving the three-condition test: the behaviour is observable in the trajectory, no outcome artifact proves it, and the prompt requires it. Two earlier candidates were dropped. A channel-discovery item was removed because the connector exposes no acting-user parameter on Slack reads, so the 'blocked plain listing' it graded may never occur, and reaching the thread is already implied by every findings rubric. A workbook tab-listing item was removed because a single spreadsheet read returns tab structure and cell contents together, making the list-before-select ordering unobservable, and because an objective compliance item already requires both tab names.",
+  "category": "Process",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent reviews the partner exchange from the start of the January event-defect sequence before it forms the measurement integrity conclusion, rather than relying on the most recent messages.",
+      "justification": "The event-defect sequence only reads correctly from its start, and the newest messages sit after the review date and look like a resolution. An artifact can show a correct measurement conclusion without showing whether the Agent surveyed the sequence or landed on its tail and reasoned backwards, which is the difference between a finding and a lucky guess.",
+      "evidence": "Trajectory shows the Agent working through partner-channel messages from the earlier January period, not only 2026-01-27 and later, ahead of the point where it settles the measurement integrity question."
+    },
+    {
+      "id": 2,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "trajectory"
+      ],
+      "criterion": "The Agent searches the studio's own ticket tracker for existing work on test validity, store availability or device eligibility before it creates any new ticket.",
+      "justification": "The prompt requires the sweep so duplicates are avoided, which only helps if it runs first. Final state shows that tickets exist and that a sweep was reported, but not that the check preceded the creation.",
+      "evidence": "Trajectory shows a ticket search on those themes occurring before the first ticket creation call."
+    }
+  ]
+}
