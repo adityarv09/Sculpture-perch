@@ -1,0 +1,1196 @@
+[
+  {
+    "name": "github_health",
+    "parameters": {}
+  },
+  {
+    "name": "github_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_search_repositories",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string"
+      },
+      "order": {
+        "required": "optional",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_repository",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_list_branches",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_list_pull_requests",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string"
+      },
+      "base": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "head": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string"
+      },
+      "direction": {
+        "required": "optional",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_search_pull_requests",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "owner": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "repo": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_reviews",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_comments",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_issue_comments",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_status",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_pull_request_timeline",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_create_pull_request_review",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "event": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_add_reply_to_pull_request_comment",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "commentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_list_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "path": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "author": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "since": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "until": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_commit",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_compare_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "base": {
+        "required": "required",
+        "type": "string"
+      },
+      "head": {
+        "required": "required",
+        "type": "string"
+      },
+      "include_patch": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "github_get_commit_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "required",
+        "type": "string"
+      },
+      "include_patch": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "github_get_file_history",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "follow_renames": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_blame",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_get_file_contents",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "optional",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_get_repository_tree",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "tree_sha": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "recursive": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "github_search_code",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_submit_search_code",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_search_commits",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_me",
+    "parameters": {}
+  },
+  {
+    "name": "github_get_user",
+    "parameters": {
+      "username": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_search_users",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_list_repository_collaborators",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_list_issues",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_search_issues",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_list_labels",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_create_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_update_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "new_name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_delete_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_list_tags",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_tag",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_list_releases",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "github_get_latest_release",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_get_release_by_tag",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "tag": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_create_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "assignees": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "github_update_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "assignees": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    }
+  },
+  {
+    "name": "github_add_issue_comment",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "github_create_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "head": {
+        "required": "required",
+        "type": "string"
+      },
+      "base": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "draft": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "github_update_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "base": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_merge_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "merge_method": {
+        "required": "optional",
+        "type": "string"
+      },
+      "commit_title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "commit_message": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_create_branch",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "required",
+        "type": "string"
+      },
+      "from_branch": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_create_or_update_file",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_delete_file",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "github_push_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "files": {
+        "required": "required",
+        "type": "array"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]

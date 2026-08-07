@@ -1,0 +1,196 @@
+{
+  "task_id": "task3_6a601b41ad5e1aa56d3107f2",
+  "task_name": "Combo Fighter UA Scale-Readiness Decision Pack (HOLD)",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Expert Assessment scored bands only (−1…+1). OC owns binary facts/actions.",
+  "category": "Expert Assessment",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent's decision pack leads with blockers and gaps and an explicit HOLD call a growth lead could act on without re-reading every source.",
+      "justification": "The prompt asks for gaps at the top and one clear hold-versus-open call. A senior reader needs both in the pack.",
+      "evidence": "The top of the Decision Pack has blockers/gaps first and an explicit HOLD / do-not-open-paid-UA call.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Leads with an OPEN / ready-to-spend call, or buries blockers so a lead would misread readiness."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Has a call or some gaps, but not blockers-first with an explicit HOLD a lead can act on."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Has HOLD or blockers-first, but not both clearly."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Blockers and gaps first and a clear HOLD / do-not-open-paid-UA call."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent treats clearing D1 > 30% on a test-track cohort as insufficient for paid UA without addressing thin in-window cohorts, the GDD/QA no-ads gate (including any GitHub ads conflict), and content cliff together.",
+      "justification": "Expert judgment is the multi-factor HOLD, not a single-metric or single-PR greenlight.",
+      "evidence": "The pack ties HOLD to thin cohorts + product-gate ROAS/ads issue + content gap, not D1 or a merged PR alone.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Greenlights paid UA from D1 alone, or from a merged ads PR alone, or otherwise treats a single flattering signal as fundable readiness."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Mentions more than one factor but the HOLD is not decision-usable (factors listed without tying them to the spend call)."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Builds a multi-factor HOLD but misses one of: thin cohorts / date-window, ads/ROAS product gate, content cliff."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "HOLD rests on thin in-window cohorts + ads/ROAS product-gate (with GitHub conflict if present) + content cliff."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "final environment state",
+        "reference"
+      ],
+      "criterion": "The Agent's opened tickets are actionable workstream slices (cohort plan, monetization and ads, content, currency alignment) rather than one vague 'fix Combo' ticket.",
+      "justification": "OC checks count. This checks whether a lead can assign the children.",
+      "evidence": "Children are distinct and actionable across cohort plan, monetization and ads, content past MVP, and currency alignment.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "One vague catch-all ticket that a lead cannot assign, or children that obscure the workstream."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Children exist but lack clear assignable themes across the four workstreams."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "At least two distinct actionable children with incomplete theme coverage."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Four distinct actionable children covering the four themes."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "weight": 1,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent surfaces the GDD ~60 minute vs Versions D0 Minutes conflict without silently picking the more flattering figure.",
+      "justification": "Truthfulness quality beyond the binary OC check.",
+      "evidence": "Conflict between GDD ~60 and Versions D0 Minutes is explicit, and Versions is used for per-build minutes (about 48.74 / 42.98).",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Silently picks the more flattering GDD ~60 figure and presents it as the per-build truth."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Uses only ~60 or only one figure with no conflict noted."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "Mentions both loosely without stating which is used for per-build."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "States conflict and locks per-build minutes to Versions."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "weight": 2,
+      "category": "Expert Assessment",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": [
+        "artifact",
+        "reference"
+      ],
+      "criterion": "The Agent's build and PR registers keep each item on its own line with its own verdict, so a reader can see which build and which PR drove the HOLD, rather than collapsing them into an averaged or single-example summary.",
+      "justification": "The prompt forbids averaging builds and stopping at the first ads hit. This scores whether the registers are usable per item.",
+      "evidence": "Registers show per-build and per-PR verdicts a lead could act on without reopening the workbook or the repo.",
+      "score_bands": [
+        {
+          "score": -1,
+          "label": "misleading",
+          "description": "Averages builds into one figure, or lets a single example PR stand in for the ads/monetization sweep."
+        },
+        {
+          "score": 0,
+          "label": "baseline",
+          "description": "Registers exist but collapse items or omit per-row verdicts a lead could act on."
+        },
+        {
+          "score": 0.5,
+          "label": "partial",
+          "description": "One register is per item, the other is collapsed or missing verdicts."
+        },
+        {
+          "score": 1,
+          "label": "complete",
+          "description": "Both registers are per item with an explicit verdict on every row."
+        }
+      ]
+    }
+  ]
+}

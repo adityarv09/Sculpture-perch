@@ -1,0 +1,5000 @@
+[
+  {
+    "name": "confluence_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "confluence_add_comment",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "authorId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Add a comment to a page (optionally as a threaded reply)."
+  },
+  {
+    "name": "confluence_add_label",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "prefix": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Apply a label to a page."
+  },
+  {
+    "name": "confluence_create_page",
+    "parameters": {
+      "space": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "bodyFormat": {
+        "required": "optional",
+        "type": "string"
+      },
+      "authorId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a new page in a space."
+  },
+  {
+    "name": "confluence_create_space",
+    "parameters": {
+      "key": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "type": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a new space."
+  },
+  {
+    "name": "confluence_delete_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Move a page to the trash (soft delete; sets status to trashed)."
+  },
+  {
+    "name": "confluence_get_current_user",
+    "parameters": {},
+    "description": "Get the current session user."
+  },
+  {
+    "name": "confluence_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the result of a completed Confluence asynchronous job."
+  },
+  {
+    "name": "confluence_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the status of a previously submitted Confluence asynchronous job."
+  },
+  {
+    "name": "confluence_get_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single page by id, including its body content."
+  },
+  {
+    "name": "confluence_get_page_children",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List the direct child pages of a page."
+  },
+  {
+    "name": "confluence_get_page_diff",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "from_version": {
+        "required": "required",
+        "type": "integer"
+      },
+      "to_version": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Unified diff of a page's body between two versions."
+  },
+  {
+    "name": "confluence_get_page_history",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List a page's version history (newest first)."
+  },
+  {
+    "name": "confluence_get_page_version",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "version": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get a specific historical version of a page."
+  },
+  {
+    "name": "confluence_get_space",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single space by id, key, or name."
+  },
+  {
+    "name": "confluence_get_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a user by id, account id, email, or display name."
+  },
+  {
+    "name": "confluence_list_attachments",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List attachment metadata for a page."
+  },
+  {
+    "name": "confluence_list_comments",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List comments on a page in chronological order."
+  },
+  {
+    "name": "confluence_list_labels",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List labels applied to a page."
+  },
+  {
+    "name": "confluence_list_pages",
+    "parameters": {
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List pages, optionally filtered by space, parent, status, or title."
+  },
+  {
+    "name": "confluence_list_spaces",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List spaces in the Confluence site."
+  },
+  {
+    "name": "confluence_list_users",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List users, optionally filtered by name/email substring."
+  },
+  {
+    "name": "confluence_restore_page_version",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "version": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Restore a page to a historical version (creates a new version)."
+  },
+  {
+    "name": "confluence_search",
+    "parameters": {
+      "cql": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search current pages via a CQL string or structured filters (CQL parsed for type/space/label/title/text/parent, AND-combined)."
+  },
+  {
+    "name": "confluence_search_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search users by name or email."
+  },
+  {
+    "name": "confluence_submit_search",
+    "parameters": {
+      "cql": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Submit an asynchronous search across Confluence content; returns a job id to poll."
+  },
+  {
+    "name": "confluence_update_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Update a page. Editing title or body bumps the version number."
+  },
+  {
+    "name": "contacts_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "contacts_add_new_contact",
+    "parameters": {
+      "first_name": {
+        "required": "required",
+        "type": "string"
+      },
+      "last_name": {
+        "required": "required",
+        "type": "string"
+      },
+      "gender": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "age": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "nationality": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "city_living": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "country": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "job": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "phone": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "address": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Add a new contact."
+  },
+  {
+    "name": "contacts_delete_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Delete a contact."
+  },
+  {
+    "name": "contacts_edit_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "updates": {
+        "required": "required",
+        "type": "any"
+      }
+    },
+    "description": "Edit a contact's fields."
+  },
+  {
+    "name": "contacts_get_contact",
+    "parameters": {
+      "contact_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a specific contact by ID."
+  },
+  {
+    "name": "contacts_get_contacts",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get contacts list with cursor pagination."
+  },
+  {
+    "name": "contacts_search_contacts",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search contacts by name, phone, or email."
+  },
+  {
+    "name": "contacts_show_data",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Show raw contacts data."
+  },
+  {
+    "name": "gcal_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gcal_create_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "event": {
+        "required": "required",
+        "type": "object"
+      }
+    },
+    "description": "Create an event on a calendar."
+  },
+  {
+    "name": "gcal_delete_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "hardDelete": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Delete an event (soft-delete by default)."
+  },
+  {
+    "name": "gcal_freebusy_query",
+    "parameters": {
+      "calendarIds": {
+        "required": "required",
+        "type": "array"
+      },
+      "timeMin": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMax": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Query free/busy windows across calendars."
+  },
+  {
+    "name": "gcal_get_calendar",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single calendar."
+  },
+  {
+    "name": "gcal_get_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single event."
+  },
+  {
+    "name": "gcal_list_calendars",
+    "parameters": {},
+    "description": "List calendars visible to the viewer."
+  },
+  {
+    "name": "gcal_list_events",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMin": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "timeMax": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "q": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "singleEvents": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "maxResults": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "showDeleted": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "List events on a calendar, optionally filtered."
+  },
+  {
+    "name": "gcal_patch_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "patch": {
+        "required": "required",
+        "type": "object"
+      }
+    },
+    "description": "Patch an event with a partial update."
+  },
+  {
+    "name": "gcal_respond_to_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "attendeeEmail": {
+        "required": "required",
+        "type": "string"
+      },
+      "responseStatus": {
+        "required": "required",
+        "type": "string"
+      },
+      "comment": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Update an attendee's responseStatus on an event."
+  },
+  {
+    "name": "gcal_search_events",
+    "parameters": {
+      "q": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMin": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "timeMax": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "maxResults": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Cross-calendar text search."
+  },
+  {
+    "name": "gcal_update_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "event": {
+        "required": "required",
+        "type": "object"
+      }
+    },
+    "description": "Replace an event (full update)."
+  },
+  {
+    "name": "gdocs_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gdocs_batch_update",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Apply a list of update requests to a Doc."
+  },
+  {
+    "name": "gdocs_create_document",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "bodyText": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a new Doc, optionally pre-linking a Drive file row."
+  },
+  {
+    "name": "gdocs_delete_document",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Hard-delete a Doc."
+  },
+  {
+    "name": "gdocs_get_document",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a Google Doc (full Docs-API-shaped document)."
+  },
+  {
+    "name": "gdocs_get_document_text",
+    "parameters": {
+      "documentId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the plaintext body of a Doc."
+  },
+  {
+    "name": "gdocs_search_documents",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search Docs by title or body+title."
+  },
+  {
+    "name": "gdrive_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gdrive_create_file",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveMimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a file with content."
+  },
+  {
+    "name": "gdrive_create_folder",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a folder."
+  },
+  {
+    "name": "gdrive_delete_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Hard delete a file."
+  },
+  {
+    "name": "gdrive_get_file_metadata",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get metadata for a single file."
+  },
+  {
+    "name": "gdrive_get_file_path",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Resolve a file ID to its full /My Drive/.../name.ext path."
+  },
+  {
+    "name": "gdrive_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Fetch an async job's result once ready."
+  },
+  {
+    "name": "gdrive_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Poll an async job."
+  },
+  {
+    "name": "gdrive_list_folder",
+    "parameters": {
+      "folderId": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List immediate children of a folder."
+  },
+  {
+    "name": "gdrive_list_recent_files",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List files sorted by modifiedTime descending."
+  },
+  {
+    "name": "gdrive_list_sheets",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List tabs in a Google Sheet."
+  },
+  {
+    "name": "gdrive_move_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "newParentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "oldParentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Move a file (addParents/removeParents)."
+  },
+  {
+    "name": "gdrive_read_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "exportMimeType": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Read a file's content with format conversion (Docs→MD, Sheets→CSV, Slides→text)."
+  },
+  {
+    "name": "gdrive_read_sheet_range",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "sheetIndex": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Read one tab of a Google Sheet as CSV."
+  },
+  {
+    "name": "gdrive_restore_from_trash",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Untrash a file."
+  },
+  {
+    "name": "gdrive_search",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedAfter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedBefore": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeTrashed": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search Drive files; mirrors GET /drive/v3/files with q syntax."
+  },
+  {
+    "name": "gdrive_share_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "emailAddress": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "role": {
+        "required": "optional",
+        "type": "string"
+      },
+      "type": {
+        "required": "optional",
+        "type": "string"
+      },
+      "domain": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Grant a permission (owner-only)."
+  },
+  {
+    "name": "gdrive_submit_search",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedAfter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedBefore": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeTrashed": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Submit a Drive file search for async execution."
+  },
+  {
+    "name": "gdrive_trash_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Soft-delete: set trashed=true."
+  },
+  {
+    "name": "gdrive_update_file_content",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Replace a file's content."
+  },
+  {
+    "name": "gdrive_update_file_metadata",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "starred": {
+        "required": "optional",
+        "type": "boolean | null"
+      }
+    },
+    "description": "Update file metadata (owner-only)."
+  },
+  {
+    "name": "github_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "github_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Poll an async job."
+  },
+  {
+    "name": "github_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Fetch an async job's result once ready."
+  },
+  {
+    "name": "github_search_repositories",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string"
+      },
+      "order": {
+        "required": "optional",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search repositories. Mirrors GET /search/repositories."
+  },
+  {
+    "name": "github_get_repository",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a repository. Mirrors GET /repos/{owner}/{repo}."
+  },
+  {
+    "name": "github_list_branches",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List branches. Mirrors GET /repos/{owner}/{repo}/branches."
+  },
+  {
+    "name": "github_get_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get a pull request."
+  },
+  {
+    "name": "github_list_pull_requests",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string"
+      },
+      "base": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "head": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string"
+      },
+      "direction": {
+        "required": "optional",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List pull requests."
+  },
+  {
+    "name": "github_search_pull_requests",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "owner": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "repo": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search PRs. Supports repo:, author:, state:, is:merged."
+  },
+  {
+    "name": "github_get_pull_request_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List files changed in a pull request."
+  },
+  {
+    "name": "github_get_pull_request_reviews",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get PR reviews (APPROVED/CHANGES_REQUESTED/etc.)."
+  },
+  {
+    "name": "github_get_pull_request_comments",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get PR inline review comments (on diff lines)."
+  },
+  {
+    "name": "github_get_issue_comments",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get PR/issue conversation comments (not inline)."
+  },
+  {
+    "name": "github_get_pull_request_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "List commits in a pull request."
+  },
+  {
+    "name": "github_get_pull_request_status",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get combined PR check/status state (success-stub)."
+  },
+  {
+    "name": "github_get_pull_request_timeline",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get the PR timeline (assigned, labeled, review_requested, merged, etc.)."
+  },
+  {
+    "name": "github_create_pull_request_review",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "event": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a pull request review."
+  },
+  {
+    "name": "github_add_reply_to_pull_request_comment",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "commentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Reply to an inline PR review comment."
+  },
+  {
+    "name": "github_list_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "path": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "author": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "since": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "until": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List commits."
+  },
+  {
+    "name": "github_get_commit",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a commit by OLD or NEW SHA (auto-resolved via commit_map)."
+  },
+  {
+    "name": "github_compare_commits",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "base": {
+        "required": "required",
+        "type": "string"
+      },
+      "head": {
+        "required": "required",
+        "type": "string"
+      },
+      "include_patch": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Compare two commits/branches."
+  },
+  {
+    "name": "github_get_commit_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "sha": {
+        "required": "required",
+        "type": "string"
+      },
+      "include_patch": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "List files a single commit touched (git show --stat)."
+  },
+  {
+    "name": "github_get_file_history",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "follow_renames": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List commits that touched a file (git log -- <path>)."
+  },
+  {
+    "name": "github_get_blame",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Line-by-line authorship for a file (git blame)."
+  },
+  {
+    "name": "github_get_file_contents",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "optional",
+        "type": "string"
+      },
+      "ref": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get file or directory contents."
+  },
+  {
+    "name": "github_get_repository_tree",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "tree_sha": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "recursive": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "List files in a repository."
+  },
+  {
+    "name": "github_search_code",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search code across unpacked repos; supports repo:/org:/path:/language:/extension:/filename:."
+  },
+  {
+    "name": "github_submit_search_code",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Submit a code search for async execution."
+  },
+  {
+    "name": "github_search_commits",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search commits by message substring."
+  },
+  {
+    "name": "github_get_me",
+    "parameters": {},
+    "description": "Get the authenticated user (synthetic agent identity)."
+  },
+  {
+    "name": "github_get_user",
+    "parameters": {
+      "username": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a user by login."
+  },
+  {
+    "name": "github_search_users",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search users."
+  },
+  {
+    "name": "github_list_repository_collaborators",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List collaborators for a repository."
+  },
+  {
+    "name": "github_list_issues",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List issues (seeded empty for hg4; create_issue populates at runtime)."
+  },
+  {
+    "name": "github_get_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      }
+    },
+    "description": "Get an issue by number."
+  },
+  {
+    "name": "github_search_issues",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search issues."
+  },
+  {
+    "name": "github_list_labels",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List labels for a repository."
+  },
+  {
+    "name": "github_get_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a label by name."
+  },
+  {
+    "name": "github_create_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a label."
+  },
+  {
+    "name": "github_update_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "new_name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Update a label."
+  },
+  {
+    "name": "github_delete_label",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Delete a label."
+  },
+  {
+    "name": "github_list_tags",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List tags for a repository."
+  },
+  {
+    "name": "github_get_tag",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a tag by name."
+  },
+  {
+    "name": "github_list_releases",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "page": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "perPage": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List releases."
+  },
+  {
+    "name": "github_get_latest_release",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the latest non-draft release."
+  },
+  {
+    "name": "github_get_release_by_tag",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "tag": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a release by its tag name."
+  },
+  {
+    "name": "github_create_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "assignees": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Create an issue."
+  },
+  {
+    "name": "github_update_issue",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "assignees": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Update an issue."
+  },
+  {
+    "name": "github_add_issue_comment",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "issue_number": {
+        "required": "required",
+        "type": "integer"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Add a comment to a PR or Issue."
+  },
+  {
+    "name": "github_create_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "head": {
+        "required": "required",
+        "type": "string"
+      },
+      "base": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "draft": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Create a pull request."
+  },
+  {
+    "name": "github_update_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "base": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Update a pull request."
+  },
+  {
+    "name": "github_merge_pull_request",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "pullNumber": {
+        "required": "required",
+        "type": "integer"
+      },
+      "merge_method": {
+        "required": "optional",
+        "type": "string"
+      },
+      "commit_title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "commit_message": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Merge a pull request (synthesizes a merge commit, updates base head, closes PR)."
+  },
+  {
+    "name": "github_create_branch",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "required",
+        "type": "string"
+      },
+      "from_branch": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a branch."
+  },
+  {
+    "name": "github_create_or_update_file",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create or update a file."
+  },
+  {
+    "name": "github_delete_file",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "path": {
+        "required": "required",
+        "type": "string"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "sha": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Delete a file."
+  },
+  {
+    "name": "github_push_files",
+    "parameters": {
+      "owner": {
+        "required": "required",
+        "type": "string"
+      },
+      "repo": {
+        "required": "required",
+        "type": "string"
+      },
+      "files": {
+        "required": "required",
+        "type": "array"
+      },
+      "message": {
+        "required": "required",
+        "type": "string"
+      },
+      "branch": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Push multiple files in a single commit."
+  },
+  {
+    "name": "gmail_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gmail_archive_thread",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Archive a thread by removing the INBOX label from all its messages."
+  },
+  {
+    "name": "gmail_batch_modify_message_labels",
+    "parameters": {
+      "message_ids": {
+        "required": "required",
+        "type": "array"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "add_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "remove_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Batch version of modify_message_labels (up to 1000)."
+  },
+  {
+    "name": "gmail_create_label",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "text_color": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "background_color": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "message_list_visibility": {
+        "required": "optional",
+        "type": "string"
+      },
+      "label_list_visibility": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a new user label."
+  },
+  {
+    "name": "gmail_delete_label",
+    "parameters": {
+      "label_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Delete a user label."
+  },
+  {
+    "name": "gmail_delete_message",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Permanently delete a message (irreversible)."
+  },
+  {
+    "name": "gmail_delete_thread",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Permanently delete a thread and all its messages."
+  },
+  {
+    "name": "gmail_get_attachment",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "attachment_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get an attachment's metadata plus inline base64 bytes when small."
+  },
+  {
+    "name": "gmail_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Fetch an async job's result once ready."
+  },
+  {
+    "name": "gmail_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Poll an async job."
+  },
+  {
+    "name": "gmail_get_label",
+    "parameters": {
+      "label_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get a single label by ID."
+  },
+  {
+    "name": "gmail_get_message",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get a single message by ID from a specific mailbox."
+  },
+  {
+    "name": "gmail_get_messages_batch",
+    "parameters": {
+      "message_ids": {
+        "required": "required",
+        "type": "array"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Batch-fetch multiple messages from one mailbox (up to 100)."
+  },
+  {
+    "name": "gmail_get_profile",
+    "parameters": {
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get the mailbox owner profile."
+  },
+  {
+    "name": "gmail_get_thread",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get a thread by ID; messages ordered by internalDate ASC."
+  },
+  {
+    "name": "gmail_list_labels",
+    "parameters": {
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List all labels visible to this user."
+  },
+  {
+    "name": "gmail_list_messages",
+    "parameters": {
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "max_results": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "page_token": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List messages in a mailbox, optionally filtered by labels."
+  },
+  {
+    "name": "gmail_list_threads",
+    "parameters": {
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "max_results": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "page_token": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List threads in a mailbox, most-recent first."
+  },
+  {
+    "name": "gmail_list_users",
+    "parameters": {},
+    "description": "List all mailbox owners known to this server."
+  },
+  {
+    "name": "gmail_modify_message_labels",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "add_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "remove_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Add/remove labels on a single message."
+  },
+  {
+    "name": "gmail_modify_thread_labels",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "add_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "remove_label_ids": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Apply label changes to all messages in a thread."
+  },
+  {
+    "name": "gmail_search_messages",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "max_results": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "page_token": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search messages in a mailbox using Gmail q-operators."
+  },
+  {
+    "name": "gmail_submit_search_messages",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "max_results": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "page_token": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Submit a message search for async execution."
+  },
+  {
+    "name": "gmail_trash_message",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Move a message to TRASH (reversible)."
+  },
+  {
+    "name": "gmail_trash_thread",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Move all messages in a thread to TRASH."
+  },
+  {
+    "name": "gmail_untrash_message",
+    "parameters": {
+      "message_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Restore a trashed message."
+  },
+  {
+    "name": "gmail_untrash_thread",
+    "parameters": {
+      "thread_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "user_email": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Restore a trashed thread."
+  },
+  {
+    "name": "gsheets_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gsheets_batch_update",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Apply spreadsheet-level updates."
+  },
+  {
+    "name": "gsheets_create_spreadsheet",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "initialSheetTitle": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a new spreadsheet."
+  },
+  {
+    "name": "gsheets_get_spreadsheet",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "includeGridData": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Get a spreadsheet, optionally including cell grid data."
+  },
+  {
+    "name": "gsheets_search_spreadsheets",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search spreadsheets by title."
+  },
+  {
+    "name": "gsheets_values_append",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      },
+      "values": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Append rows to a sheet."
+  },
+  {
+    "name": "gsheets_values_batch_get",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "ranges": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Get multiple ranges in one call."
+  },
+  {
+    "name": "gsheets_values_get",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get values from a range."
+  },
+  {
+    "name": "gsheets_values_update",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "range": {
+        "required": "required",
+        "type": "string"
+      },
+      "values": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Write values into a range."
+  },
+  {
+    "name": "gslides_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "gslides_batch_update",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      },
+      "requests": {
+        "required": "required",
+        "type": "array"
+      }
+    },
+    "description": "Apply a list of update requests."
+  },
+  {
+    "name": "gslides_create_presentation",
+    "parameters": {
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "driveFileId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a new presentation."
+  },
+  {
+    "name": "gslides_get_page",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      },
+      "pageObjectId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single slide."
+  },
+  {
+    "name": "gslides_get_presentation",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a presentation."
+  },
+  {
+    "name": "gslides_get_presentation_text",
+    "parameters": {
+      "presentationId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get plaintext content for the whole deck."
+  },
+  {
+    "name": "gslides_search_presentations",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search presentations by title."
+  },
+  {
+    "name": "linear_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "linear_create_comment",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a comment on an issue."
+  },
+  {
+    "name": "linear_create_issue",
+    "parameters": {
+      "team": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "links": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Create a new issue in the Linear workspace."
+  },
+  {
+    "name": "linear_create_project",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "team": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "summary": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "lead": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "startDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "targetDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Create a new project in the Linear workspace."
+  },
+  {
+    "name": "linear_create_team",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Create a new team in the Linear workspace."
+  },
+  {
+    "name": "linear_create_user",
+    "parameters": {
+      "email": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Create a new user in the Linear workspace."
+  },
+  {
+    "name": "linear_get_attachment",
+    "parameters": {
+      "attachmentId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single Linear attachment by id."
+  },
+  {
+    "name": "linear_get_attachments",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "List attachments for a Linear issue."
+  },
+  {
+    "name": "linear_get_issue",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a specific issue."
+  },
+  {
+    "name": "linear_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the result of a completed Linear asynchronous job."
+  },
+  {
+    "name": "linear_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the status of a previously submitted Linear asynchronous job."
+  },
+  {
+    "name": "linear_get_project",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a specific project."
+  },
+  {
+    "name": "linear_get_team",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a specific team."
+  },
+  {
+    "name": "linear_get_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a specific user."
+  },
+  {
+    "name": "linear_list_comments",
+    "parameters": {
+      "issueId": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List comments for an issue."
+  },
+  {
+    "name": "linear_list_cycles",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List cycles in use across issues, with per-cycle issue counts."
+  },
+  {
+    "name": "linear_list_issue_labels",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List issue labels in use, with per-label issue counts."
+  },
+  {
+    "name": "linear_list_issue_statuses",
+    "parameters": {
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List issue statuses in use, with per-status issue counts."
+  },
+  {
+    "name": "linear_list_issues",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List issues in the workspace, with optional filters."
+  },
+  {
+    "name": "linear_list_projects",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "member": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List projects in the workspace, with optional filtering."
+  },
+  {
+    "name": "linear_list_teams",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List teams in the workspace, with optional filtering."
+  },
+  {
+    "name": "linear_list_users",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeDisabled": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List users in the workspace, with optional filtering."
+  },
+  {
+    "name": "linear_show_data",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Show raw Linear data across all tables (debugging/bulk access)."
+  },
+  {
+    "name": "linear_submit_list_issues",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "team": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "orderBy": {
+        "required": "optional",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "createdAt": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "updatedAt": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Submit an asynchronous request to list Linear issues; returns a job id to poll."
+  },
+  {
+    "name": "linear_update_issue",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "assignee": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "project": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "estimate": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "cycle": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "links": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Update an existing issue in the Linear workspace."
+  },
+  {
+    "name": "linear_update_project",
+    "parameters": {
+      "id": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "summary": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "lead": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "priority": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "startDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "targetDate": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "labels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Update an existing project in the Linear workspace."
+  },
+  {
+    "name": "slack_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "slack_conversations_add_message",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "payload": {
+        "required": "required",
+        "type": "string"
+      },
+      "content_type": {
+        "required": "optional",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user_id": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Post a message to a Slack channel or thread."
+  },
+  {
+    "name": "slack_add_reaction",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Add an emoji reaction to a message."
+  },
+  {
+    "name": "slack_channels_list",
+    "parameters": {
+      "channel_types": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "sort": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List Slack channels, DMs, and Group DMs."
+  },
+  {
+    "name": "slack_conversations_history",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "include_activity_messages": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | string | null"
+      }
+    },
+    "description": "Get messages from a Slack channel or DM."
+  },
+  {
+    "name": "slack_conversations_replies",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "include_activity_messages": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get an entire Slack message thread."
+  },
+  {
+    "name": "slack_create_conversation",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "is_private": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "is_im": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "user_ids": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "creator": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a channel, DM, or group DM."
+  },
+  {
+    "name": "slack_conversations_edit_message",
+    "parameters": {
+      "channel_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "message_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "new_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "shift_subsequent": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Edit an existing Slack message."
+  },
+  {
+    "name": "slack_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Fetch an async job's result once ready."
+  },
+  {
+    "name": "slack_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Poll an async job; pending until ready, then ready or failed."
+  },
+  {
+    "name": "slack_get_message_metadata",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Read extended metadata for a message: edit history, etc."
+  },
+  {
+    "name": "slack_get_reactions",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Read all reactions on a message."
+  },
+  {
+    "name": "slack_list_channel_members",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List members of a channel / group / MPIM."
+  },
+  {
+    "name": "slack_list_drafts",
+    "parameters": {
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List saved drafts (newest first)."
+  },
+  {
+    "name": "slack_list_files",
+    "parameters": {
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List uploaded files, optionally filtered by channel or uploader."
+  },
+  {
+    "name": "slack_read_channel",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Read channel/DM message history (newest first). Alias for conversations_history."
+  },
+  {
+    "name": "slack_read_file",
+    "parameters": {
+      "file_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "max_bytes": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Read a file's content by ID (up to max_bytes, default 10 MB)."
+  },
+  {
+    "name": "slack_read_thread",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Read a thread (parent + replies). Alias for conversations_replies."
+  },
+  {
+    "name": "slack_read_user_profile",
+    "parameters": {
+      "user": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Read a user's detailed profile."
+  },
+  {
+    "name": "slack_remove_reaction",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "ts": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Remove an emoji reaction from a message."
+  },
+  {
+    "name": "slack_schedule_message",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "post_at": {
+        "required": "required",
+        "type": "integer"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Schedule a message for future delivery."
+  },
+  {
+    "name": "slack_search_channels",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "include_private": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Find channels by name / topic / purpose."
+  },
+  {
+    "name": "slack_search_emojis",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Find custom workspace emojis by name."
+  },
+  {
+    "name": "slack_conversations_search_messages",
+    "parameters": {
+      "search_query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "cursor": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "filter_date_on": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_during": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_after": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_date_before": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_in_channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_in_im_or_mpim": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_threads_only": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "filter_users_from": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "filter_users_with": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Search across Slack messages."
+  },
+  {
+    "name": "slack_search_public",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search messages restricted to PUBLIC channels only."
+  },
+  {
+    "name": "slack_search_public_and_private",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Search messages across all channels + DMs + MPIMs."
+  },
+  {
+    "name": "slack_search_users",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Find users by name / email / profile."
+  },
+  {
+    "name": "slack_send_message",
+    "parameters": {
+      "channel": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Send a message to a channel or DM. Alias for conversations_add_message."
+  },
+  {
+    "name": "slack_send_message_draft",
+    "parameters": {
+      "text": {
+        "required": "required",
+        "type": "string"
+      },
+      "channel": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "user": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "thread_ts": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Save a draft to 'Drafts & Sent' without sending."
+  },
+  {
+    "name": "slack_submit_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Submit a workspace-wide message search for async execution."
+  },
+  {
+    "name": "snowflake_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "snowflake_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Poll an async job."
+  },
+  {
+    "name": "snowflake_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Fetch an async job's result once ready."
+  },
+  {
+    "name": "snowflake_list_databases",
+    "parameters": {},
+    "description": "List databases in the warehouse."
+  },
+  {
+    "name": "snowflake_list_schemas",
+    "parameters": {
+      "database": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List schemas, optionally within a single database."
+  },
+  {
+    "name": "snowflake_list_tables",
+    "parameters": {
+      "database": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "schema": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List tables and views, optionally filtered."
+  },
+  {
+    "name": "snowflake_describe_table",
+    "parameters": {
+      "table": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Describe a table's columns and metadata."
+  },
+  {
+    "name": "snowflake_execute_query",
+    "parameters": {
+      "sql": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Run a read-only Snowflake SQL query synchronously (SELECT/WITH/SHOW/DESCRIBE/USE)."
+  },
+  {
+    "name": "snowflake_submit_query",
+    "parameters": {
+      "sql": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Submit a read-only query for async execution."
+  },
+  {
+    "name": "snowflake_query_history",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "List recent queries run through this server."
+  },
+  {
+    "name": "trello_health",
+    "parameters": {},
+    "description": "Check the health of the service."
+  },
+  {
+    "name": "trello_add_comment",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "text": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Add a comment to a card."
+  },
+  {
+    "name": "trello_add_label_to_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "labelId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Add a label to a card."
+  },
+  {
+    "name": "trello_add_member_to_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Add a member to a card."
+  },
+  {
+    "name": "trello_archive_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Archive a card (closed=true)."
+  },
+  {
+    "name": "trello_archive_list",
+    "parameters": {
+      "listId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Archive a list."
+  },
+  {
+    "name": "trello_create_card",
+    "parameters": {
+      "idList": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "desc": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      },
+      "due": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "idMembers": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "idLabels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Create a card in a list."
+  },
+  {
+    "name": "trello_create_check_item",
+    "parameters": {
+      "checklistId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      },
+      "checked": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    },
+    "description": "Create a check-item on a checklist."
+  },
+  {
+    "name": "trello_create_checklist",
+    "parameters": {
+      "idCard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a checklist on a card."
+  },
+  {
+    "name": "trello_create_label",
+    "parameters": {
+      "idBoard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "color": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Create a label on a board."
+  },
+  {
+    "name": "trello_create_list",
+    "parameters": {
+      "idBoard": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Create a list on a board."
+  },
+  {
+    "name": "trello_delete_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Hard-delete a card."
+  },
+  {
+    "name": "trello_get_attachment",
+    "parameters": {
+      "attachmentId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single Trello card attachment by id."
+  },
+  {
+    "name": "trello_get_attachments",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get attachments on a card."
+  },
+  {
+    "name": "trello_get_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a board by ID."
+  },
+  {
+    "name": "trello_get_board_actions",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "before": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "since": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Get activity actions on a board, newest first."
+  },
+  {
+    "name": "trello_get_board_members",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get members on a board."
+  },
+  {
+    "name": "trello_get_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single card by ID."
+  },
+  {
+    "name": "trello_get_card_actions",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Get activity actions on a card, newest first."
+  },
+  {
+    "name": "trello_get_cards_in_list",
+    "parameters": {
+      "listId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Get cards in a single list."
+  },
+  {
+    "name": "trello_get_cards_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Get cards on a board (default open; filter=all for archived)."
+  },
+  {
+    "name": "trello_get_checklist",
+    "parameters": {
+      "checklistId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a checklist with its checkItems."
+  },
+  {
+    "name": "trello_get_checklists_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get all checklists on a board (metadata only)."
+  },
+  {
+    "name": "trello_get_comments",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Get comments (commentCard) on a card."
+  },
+  {
+    "name": "trello_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the result of a completed Trello asynchronous job."
+  },
+  {
+    "name": "trello_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get the status of a previously submitted Trello asynchronous job."
+  },
+  {
+    "name": "trello_get_labels_on_board",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get labels defined on a board."
+  },
+  {
+    "name": "trello_get_lists",
+    "parameters": {
+      "boardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "filter": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Get lists on a board."
+  },
+  {
+    "name": "trello_get_member",
+    "parameters": {
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get a single member by ID."
+  },
+  {
+    "name": "trello_get_member_cards",
+    "parameters": {
+      "memberId": {
+        "required": "required",
+        "type": "string"
+      }
+    },
+    "description": "Get cards assigned to a member, across boards."
+  },
+  {
+    "name": "trello_list_boards",
+    "parameters": {
+      "organizationId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "List boards, optionally filtered by organization."
+  },
+  {
+    "name": "trello_move_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "idList": {
+        "required": "required",
+        "type": "string"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string"
+      }
+    },
+    "description": "Move a card to a different list."
+  },
+  {
+    "name": "trello_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "modelTypes": {
+        "required": "optional",
+        "type": "array"
+      },
+      "idBoards": {
+        "required": "optional",
+        "type": "array"
+      },
+      "boards_limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cards_limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Trello-style universal search."
+  },
+  {
+    "name": "trello_submit_search",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "modelTypes": {
+        "required": "optional",
+        "type": "array"
+      },
+      "idBoards": {
+        "required": "optional",
+        "type": "array"
+      },
+      "boards_limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "cards_limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    },
+    "description": "Submit an asynchronous Trello search; returns a job id to poll."
+  },
+  {
+    "name": "trello_update_card",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "desc": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "due": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "dueComplete": {
+        "required": "optional",
+        "type": "boolean | null"
+      },
+      "idList": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "closed": {
+        "required": "optional",
+        "type": "boolean | null"
+      },
+      "idMembers": {
+        "required": "optional",
+        "type": "array | null"
+      },
+      "idLabels": {
+        "required": "optional",
+        "type": "array | null"
+      }
+    },
+    "description": "Update a card (any subset of fields; changing idList moves it)."
+  },
+  {
+    "name": "trello_update_check_item",
+    "parameters": {
+      "cardId": {
+        "required": "required",
+        "type": "string"
+      },
+      "checkItemId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "state": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "pos": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    },
+    "description": "Update a check-item."
+  }
+]

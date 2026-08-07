@@ -1,0 +1,46 @@
+{
+  "task_id": "task2_6a5e8d740d8f3d5bc4090274",
+  "task_name": "ZM3D July 2025 event/lives scheduler outage root cause + remediation workstream",
+  "prompt_reference": "prompt.txt (fully specified prompt)",
+  "ground_truth_reference": "golden_solution.txt",
+  "authoring_notes": "Process covers confirmed-negative and multi-source verification behaviors that Outcomes cannot prove from the artifact alone. Aligned to 'open if none exists' and discovery-framed Observability/calendar asks. No tool names.",
+  "category": "Process",
+  "rubrics": [
+    {
+      "id": 1,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["trajectory"],
+      "criterion": "The Agent searches the issue tracker for an existing outage record and for existing remediation tickets before opening the incident record and creating remediation tickets.",
+      "justification": "The prompt says open an incident if one does not already exist and create tickets only for remediations that are genuinely missing; that confirmed-negative search cannot be proven from the artifact alone.",
+      "evidence": "Before creating those tickets, the trajectory shows tracker searches for outage/remediation work."
+    },
+    {
+      "id": 2,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["trajectory"],
+      "criterion": "Agent consults the Live-Ops Event Engine page plus both required cross-check pages (Live-Ops Event Calendar & Planning and Observability & Alerting) before writing the register entry.",
+      "justification": "The prompt requires cross-checking Calendar and Observability so alerting and calendar-safety findings are not judged from a single source; Outcome rubrics score the findings, not whether those pages were actually read.",
+      "evidence": "Trajectory shows reads of the Engine page, the Calendar page, and the Observability page before the final entry."
+    },
+    {
+      "id": 3,
+      "weight": 2,
+      "category": "Process",
+      "gate_or_partial": "Partial credit",
+      "grading_method": "llm_judge",
+      "score_type": "discrete",
+      "dependencies": ["trajectory"],
+      "criterion": "Agent looks up the Zombie Match 3D Level Changelog sheet (or its spreadsheet) before citing the version columns that bracket the outage window.",
+      "justification": "Sheet corroboration is a required ask; Outcome scores the citation in the register, Process scores that the sheet was looked up first.",
+      "evidence": "Before the register cites the bracketing dates, the trajectory shows a Google Sheets or Drive call targeting spreadsheet f_5880c5ea428803df7d0d50 or the Zombie Match 3D Level Changelog workbook/tab. A bona fide open/list/values call on that spreadsheet before citing passes even if the tool returns empty/404 afterward. Citing the dates with no prior call to that spreadsheet fails."
+    }
+  ]
+}

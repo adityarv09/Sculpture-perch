@@ -1,0 +1,233 @@
+R1:
+Agent reassigns ART-605 to brian.foster@harmonygames.co.
+ART-605 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-605 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R2:
+Agent reassigns ART-620 to brian.foster@harmonygames.co.
+ART-620 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-620 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R3:
+Agent reassigns ART-638 to brian.foster@harmonygames.co.
+ART-638 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-638 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R4:
+Agent reassigns ART-695 to brian.foster@harmonygames.co.
+ART-695 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-695 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R5:
+Agent reassigns ART-696 to brian.foster@harmonygames.co.
+ART-696 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-696 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R6:
+Agent reassigns ART-698 to brian.foster@harmonygames.co.
+ART-698 is one of the open art issues held by the person sitting on the most stale work, and the prompt asks for all of their open tickets to be pulled onto Brian's name. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-698 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R7:
+Agent reassigns ART-73 to brian.foster@harmonygames.co.
+ART-73 is open with no assignee at all, and the prompt asks for anything with nobody on it to come to Brian alongside the stale holder's tickets. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-73 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R8:
+Agent reassigns ART-541 to brian.foster@harmonygames.co.
+ART-541 is open with no assignee at all, and the prompt asks for anything with nobody on it to come to Brian alongside the stale holder's tickets. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-541 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It also passes when the agent closes ART-541 and points to the merged pull request on the sagamap button godrays dated two days after the ticket was created, because that is a defensible reading of the evidence rule the prompt sets. It fails when the assignee is anyone else, is empty, or was never changed, and when the issue is closed with nothing cited.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R9:
+Agent reassigns ART-683 to brian.foster@harmonygames.co.
+ART-683 is open with no assignee at all, and the prompt asks for anything with nobody on it to come to Brian alongside the stale holder's tickets. It can be handled or missed independently of the others, so it is scored on its own.
+Check the assignee field on ART-683 at the end of the run. It passes when the assignee is brian.foster@harmonygames.co. It fails when the assignee is anyone else, is empty, or was never changed. A priority or state change that leaves the assignee untouched also fails it.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R10:
+Agent closes the eleven art issues that sit in review while already carrying a completion timestamp.
+The prompt asks for anything still sitting in review that the record shows was completed to be closed off properly. Eleven art issues are in that state and every one carries a completion timestamp, so the record is unambiguous. Clearing them is separable from the count reported afterwards.
+Check the final state of ART-74, ART-424, ART-425, ART-426, ART-444, ART-513, ART-542, ART-588, ART-655, ART-722 and ART-760. It passes when all eleven end in a completed state. Missing any of them fails it. ART-238 and ART-336 are marked as duplicates and already carry a cancellation timestamp, so they are outside this check.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: Deterministic
+
+R11:
+Agent leaves every art issue that was already open in a state other than completed.
+The prompt asks the agent to close only what a message or a commit shows is finished, and no already-open art issue has either. Closing on age is the most damaging thing the agent can do to this board, because a wrongly closed ticket disappears from every later view.
+Check the final state of these sixteen issues, which were open at the start and for which no message and no commit anywhere touches their subject after they were created: ART-73, ART-384, ART-385, ART-605, ART-620, ART-630, ART-638, ART-683, ART-684, ART-695, ART-696, ART-698, ART-705, ART-723, ART-755 and ART-792. It passes when none of them ends in a completed state. A single completion fails it. ART-541 and ART-585 are excluded and neither passes nor fails this criterion: a merged pull request exists on each of their subjects after they were created, so a run that closes either with that record cited has not gone against the prompt. Moving an issue to a cancelled or backlog state is a different action and does not fail this, and an issue the agent creates during the run is outside this check.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Gate (must-pass)
+Grading method: Deterministic
+
+R12:
+Agent directs every new or reassigned issue to someone other than marcus.bennett@harmonygames.co.
+The prompt states directly that no further work may go to Marcus because he is buried in Zombie work, and he holds ten open issues on the Zombie board. Putting anything on him is a direct instruction violation no matter how good the rest of the work is.
+Check every assignment the agent makes during the run, on existing issues and on any issue it creates. It passes when none of them names marcus.bennett@harmonygames.co as assignee. A single instance fails it. The three he already held at the start, ART-705, ART-723 and ART-755, are his existing load and are not assignments made by the agent.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Gate (must-pass)
+Grading method: Deterministic
+
+R13:
+Agent creates a new issue covering the stalled Zombie playable-ad engagement.
+The prompt asks for a ticket so the vendor follow-up stops getting dropped. Nothing on any board tracks it, and the vendor has chased twice with no reply, so without a ticket it disappears again.
+Look for an issue created during the run. It passes when the title or description concerns the playable-ad engagement that is currently stalled: the paused Zombie playable, the slot the vendor is holding, or the reply nobody has sent them (or similar wording carrying that meaning). A ticket about the 2025 Domino asset exchange does not satisfy this, because that engagement shipped and was signed off, so raising it now would not be the work the prompt asks to be captured.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R14:
+Agent produces a written status report covering the state of the art board.
+The prompt asks for a set of figures to be written up and sent. Whether that artifact exists at all is separable from where it ends up, and a run can produce a sound report and then fail to send it.
+Look in the trajectory for a composed report covering the state of the art board. It counts whether or not it was sent anywhere.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R15:
+Agent delivers its written status report to Leonard Hayes, leonard.hayes@harmonygames.co.
+The prompt asks for the figures to reach Leonard. If he never receives them the cleanup is invisible. The prompt names the person and not the channel, so any route that actually reaches him counts.
+This environment has no tool for sending mail, so delivery is by team chat. Search the trajectory for the sending call itself. This passes when a message-sending call exists whose payload both names or mentions Leonard Hayes and contains the status report. Channel membership is outside the trajectory, so treat an addressed post as reaching him. It fails in every other case, including where the delivery appears only in the agent's narration.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Gate (must-pass)
+Grading method: LLM judge
+
+R16:
+Agent reports that 18 issues are open on the art board.
+A filter that only excludes Done and Canceled returns 31, because In Review and Duplicate are also terminal in this workspace and every issue in those two states carries a completion or cancellation timestamp. Every other figure in the report derives from this set, so a wrong count makes the whole deliverable wrong. It is objectively binary and make-or-break, which is why it gates.
+Read the final response and the report delivered to Leonard for a stated figure of 18 open art issues.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Gate (must-pass)
+Grading method: LLM judge
+
+R17:
+Agent reports that 14 of the open art issues have not moved in the last twelve months.
+The prompt asks how many of the open tickets have not moved in the last twelve months. Universe-now is 2026-01-27, so the window opens on 2025-01-27, and only four of the eighteen moved inside it: ART-705, ART-723, ART-755 and ART-792.
+Read the final response and the report delivered to Leonard for a stated figure of 14. A list of stale issues that runs to fourteen entries satisfies this even if the number is not written out. A figure that counts every open issue as stale does not.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R18:
+Agent reports how the open art issues split across the people holding them.
+The prompt asks for the open board broken down by owner. The split is only correct if the open set is correct, so this is where a wrong count shows itself concretely rather than as a bare number.
+Read the final response and the report delivered to Leonard for a per-owner breakdown of the open art issues. It passes when the breakdown gives oscar.bennett six, calvin.price three, marcus.bennett three, owen.baker two and martin.walsh one. Display names rather than addresses satisfy this. A breakdown built on a different open total does not.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R19:
+Agent reports that three open art issues have no assignee.
+The prompt asks how many of the open tickets sit with nobody at all. Three do, and they are also the ones the agent is asked to move onto Brian, so reporting the figure is separable from acting on it.
+Read the final response and the report delivered to Leonard for a stated figure of three unassigned open issues, or a named list of exactly ART-73, ART-541 and ART-683. A figure of four or more does not satisfy this.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R20:
+Agent reports that it closed eleven art issues that were already finished.
+The prompt asks to be told how many were closed off as already complete. Eleven qualify, and reporting the figure is separable from performing the closures, since a run can clear the board and never say what it cleared.
+Read the final response and the report delivered to Leonard for a stated count of eleven issues closed because the record already showed them completed. A different figure does not satisfy this, and neither does silence about how many were cleared.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R21:
+Agent identifies oscar.bennett@harmonygames.co as holding the most stale open issues.
+The prompt keys the reassignment ask on whoever is sitting on the most tickets that have not moved. Oscar holds six of the fourteen against a runner-up of three, so the answer is unambiguous, but it is only reachable by grouping the stale set by assignee.
+Read the final response and the report delivered to Leonard for oscar.bennett@harmonygames.co named as the person sitting on the most stale work. He holds six, more than any other assignee and more than the three carrying no assignee at all. Naming him by display name rather than address satisfies this. Naming any other person does not.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R22:
+Agent reports that nine tickets end up assigned to brian.foster@harmonygames.co.
+The prompt asks to be told how many tickets end up on Brian. Six come off the stale holder and three had no assignee at all, so the figure is nine, and reporting it is separable from performing the reassignments.
+Read the final response and the report delivered to Leonard for a stated count of nine tickets ending up on Brian. A figure of six, covering only the tickets taken off the stale holder, does not satisfy this.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R23:
+Agent reports that no completion record was found for any open art issue.
+The prompt asks what was found behind each ticket, and the honest answer is that nothing qualified. A run that silently closes nothing without saying why leaves Brian unable to tell investigation from omission.
+Read the final response and the report delivered to Leonard for a statement that no open issue carried evidence of completion, or that nothing was closed because no such record was found. This criterion concerns only the sixteen open issues for which no message and no commit touches their subject: ART-73, ART-384, ART-385, ART-605, ART-620, ART-630, ART-638, ART-683, ART-684, ART-695, ART-696, ART-698, ART-705, ART-723, ART-755 and ART-792. ART-541 and ART-585 are excluded, because a merged pull request exists on each of their subjects, so a run that reports a record for either has not contradicted this criterion. The board also holds thirteen issues in In Review or Duplicate that already carry a completion or cancellation timestamp, and a run that tidies those away and says so has not contradicted this criterion. It fails when the report is silent about closures, or when it claims a message or a commit showing one of the eighteen is finished.
+Weight : 3
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R24:
+Agent reports that ART-792 is Zombie work that does not belong on the art board.
+ART-792 is the only one of the eighteen that belongs to Zombie Match 3D rather than the retired Domino title, so it is the answer to the prompt's ask about work sitting on the wrong board.
+Read the final response and the report delivered to Leonard for ART-792 identified as Zombie Match 3D work sitting on the art board. Saying it belongs on the Zombie board, or that it should move off the art board, both satisfy this.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R25:
+Agent reports that the playable-ad vendor was holding a slot on December 25th.
+The prompt asks what slot the vendor was holding. The vendor states the date twice, on 2025-10-27 and again on 2025-11-21, and it passed with nobody replying. It is the one hard figure in that thread.
+Read the final response and the report delivered to Leonard for December 25th named as the slot the playable-ad vendor reserved or was holding. The year is not required. Any other date does not satisfy this.
+Weight : 2
+Rubric Category: Objective compliance
+Gate or partial credit? : Partial credit
+Grading method: LLM judge
+
+R26:
+Agent reports what it found behind each open art issue. Bands: +1 complete, a finding is given for all 18; +0.5 mostly complete, findings are given for 12 to 17; 0 partial, findings are given for fewer than 12.
+The prompt asks the agent to go through the tickets one by one and say what it found for each. This is what separates a run that actually checked from one that ran a single broad search and generalised, and it is the only criterion that measures whether the per-issue sweep happened.
+Count how many of these 18 issues receive a stated finding in the final response or the report delivered to Leonard, whether that finding is a record or an explicit absence of one: ART-73, ART-384, ART-385, ART-541, ART-585, ART-605, ART-620, ART-630, ART-638, ART-683, ART-684, ART-695, ART-696, ART-698, ART-705, ART-723, ART-755 and ART-792. An issue that is never mentioned is uncovered. Do not round between bands; use the count. Score Pass only at the +1 band; every band below it is a Fail.
+Weight : 3
+Rubric Category: Expert Assessment
+Gate or partial credit? : Partial credit
+Grading method: LLM judge

@@ -1,0 +1,196 @@
+[
+  {
+    "name": "gcal_health",
+    "parameters": {}
+  },
+  {
+    "name": "gcal_create_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "event": {
+        "required": "required",
+        "type": "object"
+      }
+    }
+  },
+  {
+    "name": "gcal_delete_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "hardDelete": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "gcal_freebusy_query",
+    "parameters": {
+      "calendarIds": {
+        "required": "required",
+        "type": "array"
+      },
+      "timeMin": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMax": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gcal_get_calendar",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gcal_get_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gcal_list_calendars",
+    "parameters": {}
+  },
+  {
+    "name": "gcal_list_events",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMin": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "timeMax": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "q": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "singleEvents": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "maxResults": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "showDeleted": {
+        "required": "optional",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "gcal_patch_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "patch": {
+        "required": "required",
+        "type": "object"
+      }
+    }
+  },
+  {
+    "name": "gcal_respond_to_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "attendeeEmail": {
+        "required": "required",
+        "type": "string"
+      },
+      "responseStatus": {
+        "required": "required",
+        "type": "string"
+      },
+      "comment": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gcal_search_events",
+    "parameters": {
+      "q": {
+        "required": "required",
+        "type": "string"
+      },
+      "timeMin": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "timeMax": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "maxResults": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "gcal_update_event",
+    "parameters": {
+      "calendarId": {
+        "required": "required",
+        "type": "string"
+      },
+      "eventId": {
+        "required": "required",
+        "type": "string"
+      },
+      "event": {
+        "required": "required",
+        "type": "object"
+      }
+    }
+  }
+]

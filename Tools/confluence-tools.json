@@ -1,0 +1,399 @@
+[
+  {
+    "name": "confluence_health",
+    "parameters": {}
+  },
+  {
+    "name": "confluence_add_comment",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "authorId": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "confluence_add_label",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "prefix": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_create_page",
+    "parameters": {
+      "space": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "required",
+        "type": "string"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "bodyFormat": {
+        "required": "optional",
+        "type": "string"
+      },
+      "authorId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "confluence_create_space",
+    "parameters": {
+      "key": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "type": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_delete_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_current_user",
+    "parameters": {}
+  },
+  {
+    "name": "confluence_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_page_children",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_page_diff",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "from_version": {
+        "required": "required",
+        "type": "integer"
+      },
+      "to_version": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_page_history",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_page_version",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "version": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_space",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_get_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_attachments",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_comments",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_labels",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_pages",
+    "parameters": {
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_spaces",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeArchived": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_list_users",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_restore_page_version",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "version": {
+        "required": "required",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_search",
+    "parameters": {
+      "cql": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_search_user",
+    "parameters": {
+      "query": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_submit_search",
+    "parameters": {
+      "cql": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "text": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "space": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "label": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "confluence_update_page",
+    "parameters": {
+      "page_id": {
+        "required": "required",
+        "type": "string"
+      },
+      "title": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "body": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "status": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  }
+]

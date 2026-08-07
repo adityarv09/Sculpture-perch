@@ -1,0 +1,102 @@
+[
+  {
+    "name": "snowflake_health",
+    "parameters": {}
+  },
+  {
+    "name": "snowflake_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "snowflake_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "snowflake_list_databases",
+    "parameters": {}
+  },
+  {
+    "name": "snowflake_list_schemas",
+    "parameters": {
+      "database": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "snowflake_list_tables",
+    "parameters": {
+      "database": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "schema": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "snowflake_describe_table",
+    "parameters": {
+      "table": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "snowflake_execute_query",
+    "parameters": {
+      "sql": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "snowflake_submit_query",
+    "parameters": {
+      "sql": {
+        "required": "required",
+        "type": "string"
+      },
+      "limit": {
+        "required": "optional",
+        "type": "integer | null"
+      },
+      "offset": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "snowflake_query_history",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  }
+]

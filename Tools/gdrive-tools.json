@@ -1,0 +1,334 @@
+[
+  {
+    "name": "gdrive_health",
+    "parameters": {}
+  },
+  {
+    "name": "gdrive_create_file",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string"
+      },
+      "driveMimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_create_folder",
+    "parameters": {
+      "name": {
+        "required": "required",
+        "type": "string"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_delete_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_get_file_metadata",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_get_file_path",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_get_job_result",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_get_job_status",
+    "parameters": {
+      "job_id": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_list_folder",
+    "parameters": {
+      "folderId": {
+        "required": "optional",
+        "type": "string"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_list_recent_files",
+    "parameters": {
+      "limit": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "gdrive_list_sheets",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_move_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "newParentId": {
+        "required": "required",
+        "type": "string"
+      },
+      "oldParentId": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_read_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "exportMimeType": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_read_sheet_range",
+    "parameters": {
+      "spreadsheetId": {
+        "required": "required",
+        "type": "string"
+      },
+      "sheetIndex": {
+        "required": "optional",
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "name": "gdrive_restore_from_trash",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_search",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedAfter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedBefore": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeTrashed": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_share_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "emailAddress": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "role": {
+        "required": "optional",
+        "type": "string"
+      },
+      "type": {
+        "required": "optional",
+        "type": "string"
+      },
+      "domain": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_submit_search",
+    "parameters": {
+      "query": {
+        "required": "optional",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "parentId": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "fullText": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedAfter": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "modifiedBefore": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "includeTrashed": {
+        "required": "optional",
+        "type": "boolean"
+      },
+      "pageSize": {
+        "required": "optional",
+        "type": "integer"
+      },
+      "pageToken": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_trash_file",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "gdrive_update_file_content",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "content": {
+        "required": "required",
+        "type": "string"
+      },
+      "mimeType": {
+        "required": "optional",
+        "type": "string | null"
+      }
+    }
+  },
+  {
+    "name": "gdrive_update_file_metadata",
+    "parameters": {
+      "fileId": {
+        "required": "required",
+        "type": "string"
+      },
+      "name": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "description": {
+        "required": "optional",
+        "type": "string | null"
+      },
+      "starred": {
+        "required": "optional",
+        "type": "boolean | null"
+      }
+    }
+  }
+]
